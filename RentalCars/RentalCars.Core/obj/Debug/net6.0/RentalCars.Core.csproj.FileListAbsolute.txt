@@ -1,0 +1,15 @@
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.csproj.AssemblyReference.cache
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.AssemblyInfoInputs.cache
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.AssemblyInfo.cs
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.csproj.CoreCompileInputs.cache
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\bin\Debug\net6.0\RentalCars.Core.deps.json
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\bin\Debug\net6.0\RentalCars.Core.dll
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\bin\Debug\net6.0\RentalCars.Core.pdb
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\bin\Debug\net6.0\RentalCars.Infrastructure.dll
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\bin\Debug\net6.0\RentalCars.Infrastructure.pdb
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.csproj.CopyComplete
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.dll
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\refint\RentalCars.Core.dll
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\RentalCars.Core.pdb
+C:\Users\cmi\Desktop\RentalCars\RentalCars.Core\obj\Debug\net6.0\ref\RentalCars.Core.dll
