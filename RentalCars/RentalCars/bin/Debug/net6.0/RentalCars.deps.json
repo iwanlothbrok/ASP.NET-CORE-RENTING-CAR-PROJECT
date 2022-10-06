@@ -2327,7 +2327,8 @@
       "RentalCars.Infrastructure/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "RentalCars.Infrastructure.dll": {}
