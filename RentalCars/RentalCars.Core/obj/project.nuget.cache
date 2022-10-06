@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4NbNbpBv57cDcSEKB15zsOPgdgPEyzNcQJLY4roAT/xPfube3vVP8MB37U9rhZwV3o4OlmKzrltExoaOLAiSKA==",
+  "dgSpecHash": "kNCk9cFTqz7JLXntGLJfEVW+jYMOVICdruG9/cSCchFK8aN+f4XXmPalsXFZ8FBRaaJx+JGROCtnQRHNQ1hc9A==",
   "success": true,
   "projectFilePath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\cmi\\.nuget\\packages\\bootstrap\\5.2.1\\bootstrap.5.2.1.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.9\\microsoft.aspnetcore.cryptography.internal.6.0.9.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.9\\microsoft.aspnetcore.cryptography.keyderivation.6.0.9.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.9\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.9.nupkg.sha512",

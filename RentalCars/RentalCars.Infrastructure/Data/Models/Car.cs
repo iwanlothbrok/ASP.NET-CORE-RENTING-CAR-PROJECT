@@ -18,21 +18,22 @@ namespace RentalCars.Infrastructure.Data.Models
         /// car brand 
         /// </summary>
         [Required]
-        [MaxLength(BrandMaxLenght)]
+        [Range(BrandMinLength, BrandMaxLength)]
         public string Brand { get; set; }
 
         /// <summary>
         /// car model 
         /// </summary>
         [Required]
-        [MaxLength(ModelMaxLenght)]
+        [Range(ModelMinLength, ModelMaxLength)]
         public string Model { get; set; }
 
         /// <summary>
         /// desctription of the car  
         /// </summary>
         [Required]
-        public string Discription { get; set; }
+        [MinLength(DescriptionMinLength)]
+        public string Description { get; set; }
 
         /// <summary>
         /// photo of the car 
@@ -43,7 +44,7 @@ namespace RentalCars.Infrastructure.Data.Models
         /// <summary>
         /// when the car is made
         /// </summary>
-        [Range(CarMinYear, CarMaxYear)]
+        [Range(YearMinValue, YearMaxValue)]
         public int Year { get; set; }
 
         /// <summary>

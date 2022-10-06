@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1lSXzNJ9iKBQZPkKZF/Iz89qnI+R+aYbq8LzfO2JvRYwr/wwEH6s5zOMwvffRbLpLPS0J8BGrkeUlBMUwfd0vA==",
+  "dgSpecHash": "7ro/MQbxNqr48w6V88/GYrW2E35z+ChS14S2X+Ein6blJMJyAURPxENgapkvaWPf5wQlmKWhc6p7PSwMyU5Xtg==",
   "success": true,
   "projectFilePath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\RentalCars.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\cmi\\.nuget\\packages\\bootstrap\\5.2.1\\bootstrap.5.2.1.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

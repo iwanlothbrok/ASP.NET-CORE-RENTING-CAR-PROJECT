@@ -20,6 +20,7 @@
           "RentalCars.dll": {}
         }
       },
+      "bootstrap/5.2.1": {},
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -2328,7 +2329,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.1",
+          "bootstrap": "5.2.1"
         },
         "runtime": {
           "RentalCars.Infrastructure.dll": {}
@@ -2341,6 +2343,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "bootstrap/5.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hZdgEyJ4xwoNYWOJiS0HPYhe3f2Ja+Sm0s9PfWhNiKDVUys/SqqJOSdz0FPYS3E+AKmMhkk5jTcUJ/q0jWpNuw==",
+      "path": "bootstrap/5.2.1",
+      "hashPath": "bootstrap.5.2.1.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
