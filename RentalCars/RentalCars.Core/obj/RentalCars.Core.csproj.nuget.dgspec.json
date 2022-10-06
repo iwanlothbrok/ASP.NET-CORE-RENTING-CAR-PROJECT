@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {}
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
+        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
         "projectName": "RentalCars.Core",
-        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
+        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
         "packagesPath": "C:\\Users\\cmi\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Core\\obj\\",
+        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
-                "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj"
+              "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
+                "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj"
               }
             }
           }
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
+        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
         "projectName": "RentalCars.Infrastructure",
-        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
+        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\cmi\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING CAR PROJECT\\RentalCars\\RentalCars.Infrastructure\\obj\\",
+        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
