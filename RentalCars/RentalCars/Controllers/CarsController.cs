@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿namespace RentalCars.Controllers
+{
 using Microsoft.AspNetCore.Mvc;
 using RentalCars.Data;
 using RentalCars.Infrastructure.Data.Models;
 using RentalCars.Models.Cars;
-
-namespace RentalCars.Controllers
-{
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
 
+
         public CarsController(ApplicationDbContext data)
             => this.data = data;
 
+        [HttpGet]
         public IActionResult Add() => View(new CarFormModel
         {
             Categories = this.GetCarCategories()
@@ -21,11 +21,12 @@ namespace RentalCars.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(CarFormModel car)
         {
-            if (!this.data.Categories.Any(c => c.Id == car.CategoryId))
+            if (!CategoryExists(car.CategoryId) || car.CategoryId == 0)
             {
                 this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
-            }
 
+            }
+         
             if (!ModelState.IsValid)
             {
                 car.Categories = this.GetCarCategories();
@@ -58,7 +59,10 @@ namespace RentalCars.Controllers
                     Name = c.Name
                 })
                 .ToList();
+
+        public bool CategoryExists(int categoryId)
+         => this.data
+             .Categories
+             .Any(c => c.Id == categoryId);
     }
-
-
 }

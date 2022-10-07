@@ -1,6 +1,6 @@
 ﻿namespace RentalCars.Models.Cars
 {
-    using RentalCars.Infrastructure.Data.Models;
+
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -10,8 +10,11 @@
     public class CarFormModel
     {
         [Required]
-        [StringLength(BrandMaxLength, MinimumLength = BrandMinLength)]
-        public string Brand { get; init; }
+        [StringLength(
+            BrandMaxLength, 
+            MinimumLength = BrandMinLength,
+            ErrorMessage = "The field Brand must be minumum {0} length and maximum {1} length! ")]
+        public string Brand { get; set; }
 
         [Required]
         [StringLength(ModelMaxLength, MinimumLength = ModelMinLength)]
@@ -35,6 +38,6 @@
         [Display(Name = "Category")]
         public int CategoryId { get; init; }
 
-        public IEnumerable<CarCategoryModel> Categories { get; set; }
+        public IEnumerable<CarCategoryModel>? Categories { get; set; }
     }
 }
