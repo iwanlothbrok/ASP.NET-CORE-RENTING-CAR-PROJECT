@@ -1,9 +1,10 @@
 ﻿namespace RentalCars.Controllers
 {
-using Microsoft.AspNetCore.Mvc;
-using RentalCars.Data;
-using RentalCars.Infrastructure.Data.Models;
-using RentalCars.Models.Cars;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using RentalCars.Data;
+    using RentalCars.Infrastructure.Data.Models;
+    using RentalCars.Models.Cars;
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
@@ -11,6 +12,61 @@ using RentalCars.Models.Cars;
 
         public CarsController(ApplicationDbContext data)
             => this.data = data;
+
+
+        public IActionResult All([FromQuery] AllCarsQueryModel query)
+        {
+            var carsQuery = this.data.Cars.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Brand))
+            {
+                carsQuery = carsQuery.Where(c => c.Brand == query.Brand);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                carsQuery = carsQuery.Where(c =>
+                    (c.Brand + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()) ||
+                    c.Description.ToLower().Contains(query.SearchTerm.ToLower()));
+            }
+                    
+            carsQuery = query.Sorting switch
+            {
+                CarSorting.Year => carsQuery.OrderByDescending(c => c.Year),
+                CarSorting.BrandAndModel => carsQuery.OrderBy(c => c.Brand).ThenBy(c => c.Model),
+                CarSorting.DateCreated or _ => carsQuery.OrderByDescending(c => c.Id)
+            };
+
+            var totalCars = carsQuery.Count();
+
+            var cars = carsQuery
+                .Skip((query.CurrentPage - 1) * AllCarsQueryModel.CarsPerPage)
+                .Take(AllCarsQueryModel.CarsPerPage)
+                .Select(c => new CarListingViewModel
+                {
+                    Id = c.Id,
+                    Brand = c.Brand,
+                    Model = c.Model,
+                    Year = c.Year,
+                    ImageUrl = c.ImageUrl,
+                    Category = c.Category.Name
+                })
+                .ToList();
+
+            var carBrands = this.data
+                .Cars
+                .Select(c => c.Brand)
+                .Distinct()
+                .OrderBy(br => br)
+                .ToList();
+
+            query.TotalCars = totalCars;
+            query.Brands = carBrands;
+            query.Cars = cars;
+
+            return View(query);
+        }
+
 
         [HttpGet]
         public IActionResult Add() => View(new CarFormModel
@@ -21,12 +77,12 @@ using RentalCars.Models.Cars;
         [HttpPost]
         public async Task<IActionResult> Add(CarFormModel car)
         {
-            if (!CategoryExists(car.CategoryId) || car.CategoryId == 0)
+            if (!CategoryExists(car.CategoryId))
             {
                 this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
 
             }
-         
+
             if (!ModelState.IsValid)
             {
                 car.Categories = this.GetCarCategories();
@@ -47,7 +103,7 @@ using RentalCars.Models.Cars;
             await this.data.Cars.AddAsync(carData);
             await this.data.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
         }
 
         private IEnumerable<CarCategoryModel> GetCarCategories()

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars", "RentalCars\RentalCars.csproj", "{7471BB2E-6A34-4B46-9BDE-3597BBB83F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Infrastructure", "RentalCars.Infrastructure\RentalCars.Infrastructure.csproj", "{58EE13B8-5757-464C-8AA8-704115EB2F92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Infrastructure", "RentalCars.Infrastructure\RentalCars.Infrastructure.csproj", "{58EE13B8-5757-464C-8AA8-704115EB2F92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Core", "RentalCars.Core\RentalCars.Core.csproj", "{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Core", "RentalCars.Core\RentalCars.Core.csproj", "{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
