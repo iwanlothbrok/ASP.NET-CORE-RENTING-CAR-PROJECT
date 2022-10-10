@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace RentalCars.Controllers
+﻿namespace RentalCars.Controllers
 {
+using Microsoft.AspNetCore.Mvc;
     public class HomeController : BaseController
     {
         public IActionResult Index()

@@ -23,10 +23,15 @@
         public static class DealerConstants
         {
             public const int NameMaxLenght = 50;
-            public const int NameMinLenght =3;
-            public const int PhoneNumberMaxLength =30;
-            public const int PhoneNumberMinLength =6;
+            public const int NameMinLenght = 3;
+            public const int PhoneNumberMaxLength = 30;
+            public const int PhoneNumberMinLength = 6;
 
+        }
+
+        public class DateFormatingConstant
+        {
+            public const string NormalDateFormat = "dd.mm.yyyy";
         }
     }
 }

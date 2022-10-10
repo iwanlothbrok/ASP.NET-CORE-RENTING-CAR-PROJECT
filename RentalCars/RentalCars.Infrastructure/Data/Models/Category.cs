@@ -1,6 +1,6 @@
 ﻿namespace RentalCars.Infrastructure.Data.Models
 {
-using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.CategoryConstants;
 
     public class Category

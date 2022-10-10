@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-
-namespace RentalCars.ModelBinders
+﻿namespace RentalCars.ModelBinders
 {
+using Microsoft.AspNetCore.Mvc.ModelBinding;
     public class DateTimeModelBinderProvider : IModelBinderProvider
     {
         private readonly string customDateFormat;

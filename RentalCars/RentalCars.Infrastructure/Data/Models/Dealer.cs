@@ -8,7 +8,7 @@ namespace RentalCars.Infrastructure.Data.Models
         /// <summary>
         /// dealer id 
         /// </summary>
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// first name of the dealer
@@ -28,7 +28,7 @@ namespace RentalCars.Infrastructure.Data.Models
         /// id of the user that is the dealer 
         /// </summary>
         [Required]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         public IEnumerable<Car> Cars { get; init; } = new List<Car>();
     }

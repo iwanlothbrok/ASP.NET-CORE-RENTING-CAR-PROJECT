@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-
-namespace RentalCars.ModelBinders
+﻿namespace RentalCars.ModelBinders
 {
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
     public class DoubleModelBinderProvider : IModelBinderProvider
     {
         public IModelBinder? GetBinder(ModelBinderProviderContext context)

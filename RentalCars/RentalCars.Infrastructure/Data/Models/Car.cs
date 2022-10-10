@@ -1,5 +1,4 @@
-﻿
-namespace RentalCars.Infrastructure.Data.Models
+﻿namespace RentalCars.Infrastructure.Data.Models
 {
 
     using System.ComponentModel.DataAnnotations;
@@ -58,15 +57,15 @@ namespace RentalCars.Infrastructure.Data.Models
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
-        ///// <summary>
-        ///// dealer of the car 
-        ///// </summary>  
-        //public Guid DealerId { get; set; }
+        /// <summary>
+        /// dealer of the car 
+        /// </summary>  
+        public int DealerId { get; set; }
 
-        ///// <summary>
-        ///// dealer of the car 
-        ///// </summary>  
-        //[ForeignKey("DealerId")]
-        //public Dealer Dealer { get; set; }
+        /// <summary>
+        /// dealer of the car 
+        /// </summary>  
+        [ForeignKey("DealerId")]
+        public Dealer Dealer { get; set; }
     }
 }

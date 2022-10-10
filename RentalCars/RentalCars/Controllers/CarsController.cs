@@ -1,7 +1,6 @@
 ﻿namespace RentalCars.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;

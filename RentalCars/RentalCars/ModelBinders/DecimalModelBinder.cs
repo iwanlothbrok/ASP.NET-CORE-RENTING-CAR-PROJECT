@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Globalization;
-
-namespace RentalCars.ModelBinders
+﻿namespace RentalCars.ModelBinders
 {
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Globalization;
     public class DecimalModelBinder : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)
