@@ -8,14 +8,15 @@ namespace RentalCars.Infrastructure.Data.Models
         /// <summary>
         /// dealer id 
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
         /// first name of the dealer
         /// </summary>
         [Required]
-        [StringLength(NameMaxLenght, MinimumLength = NameMinLenght)]
-        public string FirstName { get; set; }
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+        public string Name { get; set; }
 
         /// <summary>
         /// phone number of the dealer 

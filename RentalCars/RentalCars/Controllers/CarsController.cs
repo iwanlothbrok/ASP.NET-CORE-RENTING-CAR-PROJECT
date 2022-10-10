@@ -1,9 +1,12 @@
 ﻿namespace RentalCars.Controllers
 {
+    using CarRentingSystem.Controllers;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;
+    using RentalCars.Models.Dealers;
+
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
@@ -28,7 +31,7 @@
                     (c.Brand + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()) ||
                     c.Description.ToLower().Contains(query.SearchTerm.ToLower()));
             }
-                    
+
             carsQuery = query.Sorting switch
             {
                 CarSorting.Year => carsQuery.OrderByDescending(c => c.Year),
@@ -68,13 +71,21 @@
 
 
         [HttpGet]
-        public IActionResult Add() => View(new CarFormModel
+        public IActionResult Add()
         {
-            Categories = this.GetCarCategories()
-        });
+            if (!this.UserIsDealer())
+            {
+                return RedirectToAction(nameof(DealersController.Become), "Dealers");
+            }
+
+            return View(new AddCarFormModel
+            {
+                Categories = this.GetCarCategories()
+            });
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CarFormModel car)
+        public async Task<IActionResult> Add(AddCarFormModel car)
         {
             if (!CategoryExists(car.CategoryId))
             {
@@ -119,5 +130,10 @@
          => this.data
              .Categories
              .Any(c => c.Id == categoryId);
+
+        private bool UserIsDealer()
+           => this.data
+               .Dealers
+               .Any(d => d.UserId == this.User.GetId());
     }
 }

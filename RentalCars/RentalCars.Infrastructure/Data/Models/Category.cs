@@ -8,6 +8,7 @@
         /// <summary>
         /// category id 
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>

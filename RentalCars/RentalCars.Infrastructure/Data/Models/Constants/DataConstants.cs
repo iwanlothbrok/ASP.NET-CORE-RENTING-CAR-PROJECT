@@ -22,8 +22,8 @@
 
         public static class DealerConstants
         {
-            public const int NameMaxLenght = 50;
-            public const int NameMinLenght = 3;
+            public const int NameMaxLength = 50;
+            public const int NameMinLength = 3;
             public const int PhoneNumberMaxLength = 30;
             public const int PhoneNumberMinLength = 6;
 

@@ -70,18 +70,8 @@ namespace RentalCars.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            /// <summary>
-            /// this is username prop 
-            /// </summary>
-            [StringLength(100)]
-            [Display(Name = "User Name")]
-            public string UserName { get; set; }
-            /// <summary>
-            /// this is username prop 
-            /// </summary>
-            [StringLength(100)]
-            [Display(Name = "City")]
-            public string City{ get; set; }
+           
+           
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -133,7 +123,6 @@ namespace RentalCars.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
