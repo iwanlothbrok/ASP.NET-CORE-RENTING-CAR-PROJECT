@@ -2,12 +2,13 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using RentalCars.Controllers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Dealers;
     using System.Linq;
 
-    public class DealersController : Controller
+    public class DealersController : BaseController
     {
         private readonly ApplicationDbContext data;
 

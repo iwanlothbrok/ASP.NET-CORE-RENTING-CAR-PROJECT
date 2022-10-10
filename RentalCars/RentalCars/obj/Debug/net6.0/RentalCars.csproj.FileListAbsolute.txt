@@ -549,3 +549,4 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.0\RentalCars.genruntimeconfig.cache
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.0\ref\RentalCars.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\InitialSeed\categories.json
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll

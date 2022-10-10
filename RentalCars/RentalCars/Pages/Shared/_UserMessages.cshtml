@@ -1,4 +1,4 @@
-﻿@*@using RentalCars.Core.Constants
+﻿@using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants
 
 
 @if (ViewData[MessageConstant.ErrorMessage] != null){
@@ -26,4 +26,4 @@
 			toastr.error('@ViewData[MessageConstant.SuccsessMessage]?.ToString()');
 		});
 	</script>
-}*@
+}

@@ -6,7 +6,7 @@
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;
     using RentalCars.Models.Dealers;
-
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
@@ -113,6 +113,8 @@
             await this.data.Cars.AddAsync(carData);
             await this.data.SaveChangesAsync();
 
+
+            ViewData[MessageConstant.SuccsessMessage] = "Welcome to the Warehouse!";
             return RedirectToAction(nameof(All));
         }
 

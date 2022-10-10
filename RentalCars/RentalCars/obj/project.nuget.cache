@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7ro/MQbxNqr48w6V88/GYrW2E35z+ChS14S2X+Ein6blJMJyAURPxENgapkvaWPf5wQlmKWhc6p7PSwMyU5Xtg==",
+  "dgSpecHash": "jOeSoQUjJcLJ1tb2GqORJ/RGIBKFiVXlX7vT7Z7TG2mb3tU2WJ6zF6DRdxKtQwHijRCTrRSujAh8Z0lIn4KIMA==",
   "success": true,
   "projectFilePath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\RentalCars.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\cmi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.8\\microsoft.aspnetcore.authentication.facebook.6.0.8.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.9\\microsoft.aspnetcore.cryptography.internal.6.0.9.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.9\\microsoft.aspnetcore.cryptography.keyderivation.6.0.9.nupkg.sha512",
     "C:\\Users\\cmi\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\6.0.8\\microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.8.nupkg.sha512",
