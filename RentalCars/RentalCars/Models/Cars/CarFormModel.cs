@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
 
-    using static RentalCars.Infrastructure.Data.Constants.CarConstants;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.CarConstants;
 
     public class CarFormModel
     {

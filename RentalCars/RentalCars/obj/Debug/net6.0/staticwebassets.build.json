@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dwEW2XtKtImSdtjOH95JExw62OGYNGRdHoZHXSOkpWc=",
+  "Hash": "dYxrZZnXwnNet/LogVfauHGdysEq9ARRq6ALUhLbBDQ=",
   "Source": "RentalCars",
   "BasePath": "_content/RentalCars",
   "Mode": "Default",
@@ -16,40 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\bundle\\RentalCars.styles.css",
-      "SourceId": "RentalCars",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/RentalCars",
-      "RelativePath": "RentalCars.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\bundle\\RentalCars.styles.css"
-    },
-    {
-      "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\RentalCars.bundle.scp.css",
-      "SourceId": "RentalCars",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/RentalCars",
-      "RelativePath": "RentalCars.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\RentalCars.bundle.scp.css"
-    },
     {
       "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "RentalCars",
