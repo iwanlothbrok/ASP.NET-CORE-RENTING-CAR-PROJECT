@@ -56,6 +56,13 @@
         previousPage = 1;
     }
     var maxPage = Math.Ceiling((double)Model.TotalCars / AllCarsQueryModel.CarsPerPage);
+
+    if (Model.TotalCars == 0)
+    {
+        maxPage = Model.CurrentPage;
+
+    }
+   
 }
 <div class="row mb-5">
     <div class="col-md-6">

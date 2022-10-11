@@ -18,7 +18,7 @@
 
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
-            var carsQuery = this.data.Cars.AsQueryable();
+            var carsQuery = data.Cars.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Brand))
             {
@@ -41,7 +41,7 @@
 
             var totalCars = carsQuery.Count();
 
-            var cars = carsQuery
+            var cars =  carsQuery
                 .Skip((query.CurrentPage - 1) * AllCarsQueryModel.CarsPerPage)
                 .Take(AllCarsQueryModel.CarsPerPage)
                 .Select(c => new CarListingViewModel
@@ -87,9 +87,21 @@
         [HttpPost]
         public async Task<IActionResult> Add(AddCarFormModel car)
         {
+            var dealerId = this.data
+               .Dealers
+               .Where(d => d.UserId == this.User.GetId())
+               .Select(d => d.Id)
+               .FirstOrDefault();
+
+            if (dealerId == 0)
+            {
+                return RedirectToAction(nameof(DealersController.Become), "Dealers");
+            }
+
+
             if (!CategoryExists(car.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+                ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
 
             }
 
@@ -107,11 +119,12 @@
                 Description = car.Description,
                 ImageUrl = car.ImageUrl,
                 Year = car.Year,
-                CategoryId = car.CategoryId
+                CategoryId = car.CategoryId,
+                DealerId = dealerId
             };
 
-            await this.data.Cars.AddAsync(carData);
-            await this.data.SaveChangesAsync();
+            await data.Cars.AddAsync(carData);
+            await data.SaveChangesAsync();
 
 
             ViewData[MessageConstant.SuccsessMessage] = "Welcome to the Warehouse!";
@@ -119,7 +132,7 @@
         }
 
         private IEnumerable<CarCategoryModel> GetCarCategories()
-            => this.data
+            => data
                 .Categories
                 .Select(c => new CarCategoryModel
                 {
@@ -129,12 +142,12 @@
                 .ToList();
 
         public bool CategoryExists(int categoryId)
-         => this.data
+         => data
              .Categories
              .Any(c => c.Id == categoryId);
 
         private bool UserIsDealer()
-           => this.data
+           => data
                .Dealers
                .Any(d => d.UserId == this.User.GetId());
     }

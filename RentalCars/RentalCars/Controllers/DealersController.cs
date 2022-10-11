@@ -16,11 +16,12 @@
             => this.data = data;
 
         [Authorize]
+        [HttpGet]
         public IActionResult Become() => View();
 
         [HttpPost]
         [Authorize]
-        public IActionResult Become(BecomeDealerFormModel dealer)
+        public async Task<IActionResult> Become(BecomeDealerFormModel dealer)
         {
             var userId = this.User.GetId();
 
@@ -45,8 +46,8 @@
                 UserId = userId
             };
 
-            this.data.Dealers.Add(dealerData);
-            this.data.SaveChanges();
+            await data.Dealers.AddAsync(dealerData);
+            await data.SaveChangesAsync();
 
             return RedirectToAction("All", "Cars");
         }
