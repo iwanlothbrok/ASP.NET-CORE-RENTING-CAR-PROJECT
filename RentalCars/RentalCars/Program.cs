@@ -15,6 +15,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ICarService, CarService>();
 
 var app = builder.Build();
 
@@ -31,7 +32,6 @@ else
 }
 
 
-builder.Services.AddScoped<ICarService, CarService>();
 
 
 

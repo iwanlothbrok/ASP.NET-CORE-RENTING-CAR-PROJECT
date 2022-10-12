@@ -1,5 +1,4 @@
-﻿@using RentalCars.Models.Cars
-@model AllCarsQueryModel
+﻿@model AllCarsQueryModel
 @{
     ViewData["Title"] = "All Cars";
 }
@@ -62,6 +61,7 @@
         maxPage = Model.CurrentPage;
 
     }
+    
    
 }
 <div class="row mb-5">
@@ -84,6 +84,10 @@
            asp-route-sorting="@((int)Model.Sorting)">>></a>
     </div>
 </div>
+    @if (!Model.Cars.Any())
+    {
+        <h4 class="text-center">There are no cars with that criteria!</h4>
+    }
 <div class="row">
     @foreach (var car in Model.Cars)
     {
@@ -97,4 +101,7 @@
             </div>
         </div>
     }
+   
 </div>
+
+            
