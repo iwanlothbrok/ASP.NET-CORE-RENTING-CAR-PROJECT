@@ -6,65 +6,35 @@
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;
     using RentalCars.Models.Dealers;
+    using RentalCars.Services.Cars;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
+        private readonly ICarService carService;
 
 
-        public CarsController(ApplicationDbContext data)
-            => this.data = data;
-
+        public CarsController(ICarService _carService, ApplicationDbContext _data)
+        {
+            carService = _carService;
+            data = _data;
+        }
 
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
-            var carsQuery = data.Cars.AsQueryable();
+            var queryResult = this.carService.All(
+                 query.Brand,   
+                 query.SearchTerm,
+                 query.Sorting,
+                 query.CurrentPage,
+                 AllCarsQueryModel.CarsPerPage);
 
-            if (!string.IsNullOrWhiteSpace(query.Brand))
-            {
-                carsQuery = carsQuery.Where(c => c.Brand == query.Brand);
-            }
+            var carBrands = this.carService.AllCarBrands();
 
-            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-            {
-                carsQuery = carsQuery.Where(c =>
-                    (c.Brand + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()) ||
-                    c.Description.ToLower().Contains(query.SearchTerm.ToLower()));
-            }
 
-            carsQuery = query.Sorting switch
-            {
-                CarSorting.Year => carsQuery.OrderByDescending(c => c.Year),
-                CarSorting.BrandAndModel => carsQuery.OrderBy(c => c.Brand).ThenBy(c => c.Model),
-                CarSorting.DateCreated or _ => carsQuery.OrderByDescending(c => c.Id)
-            };
-
-            var totalCars = carsQuery.Count();
-
-            var cars =  carsQuery
-                .Skip((query.CurrentPage - 1) * AllCarsQueryModel.CarsPerPage)
-                .Take(AllCarsQueryModel.CarsPerPage)
-                .Select(c => new CarListingViewModel
-                {
-                    Id = c.Id,
-                    Brand = c.Brand,
-                    Model = c.Model,
-                    Year = c.Year,
-                    ImageUrl = c.ImageUrl,
-                    Category = c.Category.Name
-                })
-                .ToList();
-
-            var carBrands = this.data
-                .Cars
-                .Select(c => c.Brand)
-                .Distinct()
-                .OrderBy(br => br)
-                .ToList();
-
-            query.TotalCars = totalCars;
             query.Brands = carBrands;
-            query.Cars = cars;
+            query.TotalCars = queryResult.TotalCars;
+            query.Cars = queryResult.Cars;
 
             return View(query);
         }
@@ -87,7 +57,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(AddCarFormModel car)
         {
-            var dealerId = this.data
+            var dealerId = data
                .Dealers
                .Where(d => d.UserId == this.User.GetId())
                .Select(d => d.Id)
@@ -127,7 +97,7 @@
             await data.SaveChangesAsync();
 
 
-            ViewData[MessageConstant.SuccsessMessage] = "Welcome to the Warehouse!";
+            ViewData[MessageConstant.SuccsessMessage] = "Your car is added!";
             return RedirectToAction(nameof(All));
         }
 
