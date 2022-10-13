@@ -1,35 +1,32 @@
 ﻿namespace CarRentingSystem.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Controllers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Dealers;
-    using System.Linq;
+    using RentalCars.Services.Dealers;
 
     public class DealersController : BaseController
     {
         private readonly ApplicationDbContext data;
+        private readonly IDealerService dealerService;
 
-        public DealersController(ApplicationDbContext data)
-            => this.data = data;
+        public DealersController(ApplicationDbContext data, IDealerService dealer)
+        {
 
-        [Authorize]
+            this.data = data;
+            this.dealerService = dealer;
+        }
+
         [HttpGet]
         public IActionResult Become() => View();
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Become(BecomeDealerFormModel dealer)
         {
-            var userId = this.User.GetId();
 
-            var userIdAlreadyDealer = this.data
-                .Dealers
-                .Any(d => d.UserId == userId);
-
-            if (userIdAlreadyDealer)
+            if (dealerService.IsDealer(User.GetId()))
             {
                 return BadRequest();
             }
@@ -43,7 +40,7 @@
             {
                 Name = dealer.Name,
                 PhoneNumber = dealer.PhoneNumber,
-                UserId = userId
+                UserId = User.GetId(),
             };
 
             await data.Dealers.AddAsync(dealerData);

@@ -7,29 +7,32 @@
     using RentalCars.Models.Cars;
     using RentalCars.Models.Dealers;
     using RentalCars.Services.Cars;
+    using RentalCars.Services.Dealers;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
-        private readonly ICarService carService;
+        private readonly ICarService car;
+        private readonly IDealerService dealer;
 
 
-        public CarsController(ICarService _carService, ApplicationDbContext _data)
+        public CarsController(IDealerService dealer,ICarService car, ApplicationDbContext data)
         {
-            carService = _carService;
-            data = _data;
+            this.car = car;
+            this.data = data;
+            this.dealer = dealer;
         }
 
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
-            var queryResult = this.carService.All(
+            var queryResult = this.car.All(
                  query.Brand,   
                  query.SearchTerm,
                  query.Sorting,
                  query.CurrentPage,
                  AllCarsQueryModel.CarsPerPage);
 
-            var carBrands = this.carService.AllCarBrands();
+            var carBrands = this.car.AllCarBrands();
 
 
             query.Brands = carBrands;
@@ -43,7 +46,7 @@
         [HttpGet]
         public IActionResult Add()
         {
-            if (!this.UserIsDealer())
+            if (dealer.IsDealer(User.GetId()) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
@@ -57,25 +60,19 @@
         [HttpPost]
         public async Task<IActionResult> Add(AddCarFormModel car)
         {
-            var dealerId = data
-               .Dealers
-               .Where(d => d.UserId == this.User.GetId())
-               .Select(d => d.Id)
-               .FirstOrDefault();
-
-            if (dealerId == 0)
+            if (dealer.IsDealer(User.GetId()) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
 
-            if (!CategoryExists(car.CategoryId))
+            if (CategoryExists(car.CategoryId) == false)
             {
                 ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
 
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid == false)
             {
                 car.Categories = this.GetCarCategories();
 
@@ -90,7 +87,7 @@
                 ImageUrl = car.ImageUrl,
                 Year = car.Year,
                 CategoryId = car.CategoryId,
-                DealerId = dealerId
+                DealerId = dealer.IdByUser(User.GetId())
             };
 
             await data.Cars.AddAsync(carData);
@@ -116,9 +113,6 @@
              .Categories
              .Any(c => c.Id == categoryId);
 
-        private bool UserIsDealer()
-           => data
-               .Dealers
-               .Any(d => d.UserId == this.User.GetId());
+        
     }
 }
