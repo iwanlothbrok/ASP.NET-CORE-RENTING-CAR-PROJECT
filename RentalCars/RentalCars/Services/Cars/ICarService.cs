@@ -13,7 +13,13 @@
            int currentPage,
            int carsPerPage);
 
-        CarDetailsServiceModel Details(int carId);
+        public bool Edit(int id,
+            string brand,
+            string model,
+            string description,
+            string imageUrl,
+            int year,
+            int categoryId);
 
         int Create(
           string brand,
@@ -23,6 +29,7 @@
           int year,
           int categoryId,
           int dealerId);
+        CarDetailsServiceModel Details(int carId);
 
         IEnumerable<CarServiceModel> ByUser(string userId);
 

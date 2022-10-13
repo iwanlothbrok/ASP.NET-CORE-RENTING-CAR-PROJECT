@@ -2,22 +2,7 @@
 @{
     ViewData["Title"] = "All Cars";
 }
-<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css"/>
-	<!-- Theme style -->
-	<link rel="stylesheet" href="~/css/adminlte.min.css"/>
-	<!-- bootstrap-->
-	<link rel="stylesheet" href="~/bootstrap/dist/css/bootstrap-grid.css"/>
-      <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/css/adminlte.min.css">
+
 <form method="get">
     <div class="row">
         <div class="form-group col-md-4">
@@ -88,20 +73,6 @@
     {
         <h4 class="text-center">There are no cars with that criteria!</h4>
     }
-<div class="row">
-    @foreach (var car in Model.Cars)
-    {
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <img class="card-img-top" src="@car.ImageUrl" alt="@car.Brand @car.Model - @car.Year (@car.Category)">
-                <div class="card-body text-center">
-                    <h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.Category)</h5>
-                    <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-    }
-   
-</div>
 
+<partial name="_CarsPartial" model="@Model.Cars" />
             

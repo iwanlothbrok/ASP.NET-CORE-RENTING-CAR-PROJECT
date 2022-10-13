@@ -1,7 +1,5 @@
 ﻿namespace RentalCars.Services.Cars.Models
 {
-    using NuGet.Protocol.Core.Types;
-
     public class CarDetailsServiceModel : CarServiceModel
     {
         public string Description { get; init; }

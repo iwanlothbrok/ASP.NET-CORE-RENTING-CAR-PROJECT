@@ -2,6 +2,7 @@
 {
 
     using RentalCars.Data;
+    using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;
     using RentalCars.Services.Cars.Models;
 
@@ -42,19 +43,9 @@
 
             var totalCars = carsQuery.Count();
 
-            var cars = carsQuery
+            var cars = GetCars(carsQuery
                 .Skip((currentPage - 1) * carsPerPage)
-                .Take(carsPerPage)
-                .Select(c => new CarServiceModel
-                {
-                    Id = c.Id,
-                    Brand = c.Brand,
-                    Model = c.Model,
-                    Year = c.Year,
-                    ImageUrl = c.ImageUrl,
-                    Category = c.Category.Name
-                })
-                .ToList();
+                .Take(carsPerPage));
 
             return new CarQueryServiceModel
             {
@@ -65,47 +56,113 @@
             };
         }
 
-        public IEnumerable<string> AllBrands()
+
+        public int Create(string brand, string model, string description, string imageUrl, int year, int categoryId, int dealerId)
         {
-            throw new NotImplementedException();
+            var carData = new Car
+            {
+                Brand = brand,
+                Model = model,
+                Description = description,
+                ImageUrl = imageUrl,
+                Year = year,
+                CategoryId = categoryId,
+                DealerId = dealerId
+            };
+
+            data.Cars.Add(carData);
+            data.SaveChanges();
+
+            return carData.Id;
         }
 
-        public IEnumerable<string> AllCarBrands()
+        public bool Edit(int id, string brand, string model, string description, string imageUrl, int year, int categoryId)
+        {
+            var carData = this.data.Cars.Find(id);
+
+            if (carData == null)
+            {
+                return false;
+            }
+
+            carData.Brand = brand;
+            carData.Model = model;
+            carData.Description = description;
+            carData.ImageUrl = imageUrl;
+            carData.Year = year;
+            carData.CategoryId = categoryId;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public CarDetailsServiceModel Details(int id)
             => this.data
+            .Cars
+            .Where(c => c.Id == id)
+             .Select(c => new CarDetailsServiceModel
+             {
+                 Id = c.Id,
+                 Brand = c.Brand,
+                 Model = c.Model,
+                 Description = c.Description,
+                 Year = c.Year,
+                 ImageUrl = c.ImageUrl,
+                 CategoryId = c.CategoryId,
+                 CategoryName = c.Category.Name,
+                 DealerId = c.DealerId,
+                 DealerName = c.Dealer.Name,
+                 UserId = c.Dealer.UserId
+             })
+                .FirstOrDefault();
+
+        public IEnumerable<string> AllBrands()
+        => this.data
                 .Cars
                 .Select(c => c.Brand)
                 .Distinct()
                 .OrderBy(br => br)
                 .ToList();
 
-        public IEnumerable<CarCategoryServiceModel> AllCategories()
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<CarServiceModel> ByUser(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CategoryExists(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Create(string brand, string model, string description, string imageUrl, int year, int categoryId, int dealerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CarDetailsServiceModel Details(int carId)
-        {
-            throw new NotImplementedException();
-        }
+             => GetCars(this.data
+                 .Cars
+                 .Where(c => c.Dealer.UserId == userId));
 
         public bool IsByDealer(int carId, int dealerId)
-        {
-            throw new NotImplementedException();
-        }
+            => this.data
+                .Cars
+                .Any(c => c.Id == carId && c.DealerId == dealerId);
+
+        public IEnumerable<CarCategoryServiceModel> AllCategories()
+          => data
+                .Categories
+                .Select(c => new CarCategoryServiceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
+
+
+        public bool CategoryExists(int categoryId)
+         => data
+             .Categories
+             .Any(c => c.Id == categoryId);
+
+        private static IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery)
+           => carQuery
+               .Select(c => new CarServiceModel
+               {
+                   Id = c.Id,
+                   Brand = c.Brand,
+                   Model = c.Model,
+                   Year = c.Year,
+                   ImageUrl = c.ImageUrl,
+                   CategoryName = c.Category.Name
+               })
+               .ToList();
     }
 }
