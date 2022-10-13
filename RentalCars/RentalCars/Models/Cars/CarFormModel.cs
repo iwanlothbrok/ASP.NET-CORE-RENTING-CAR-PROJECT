@@ -3,11 +3,10 @@
 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-
+    using RentalCars.Services.Cars.Models;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.CarConstants;
 
-    public class AddCarFormModel
+    public class CarFormModel
     {
         [Required]
         [StringLength(
@@ -38,6 +37,6 @@
         [Display(Name = "Category")]
         public int CategoryId { get; init; }
 
-        public IEnumerable<CarCategoryModel>? Categories { get; set; }
+        public IEnumerable<CarCategoryServiceModel>? Categories { get; set; }
     }
 }

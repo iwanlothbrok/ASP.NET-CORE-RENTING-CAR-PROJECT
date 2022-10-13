@@ -7,32 +7,33 @@
     using RentalCars.Models.Cars;
     using RentalCars.Models.Dealers;
     using RentalCars.Services.Cars;
+    using RentalCars.Services.Cars.Models;
     using RentalCars.Services.Dealers;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
     public class CarsController : BaseController
     {
         private readonly ApplicationDbContext data;
-        private readonly ICarService car;
-        private readonly IDealerService dealer;
+        private readonly ICarService carService;
+        private readonly IDealerService dealerService;
 
 
         public CarsController(IDealerService dealer,ICarService car, ApplicationDbContext data)
         {
-            this.car = car;
+            this.carService = car;
             this.data = data;
-            this.dealer = dealer;
+            this.dealerService = dealer;
         }
 
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
-            var queryResult = this.car.All(
+            var queryResult = this.carService.All(
                  query.Brand,   
                  query.SearchTerm,
                  query.Sorting,
                  query.CurrentPage,
                  AllCarsQueryModel.CarsPerPage);
 
-            var carBrands = this.car.AllCarBrands();
+            var carBrands = this.carService.AllBrands();
 
 
             query.Brands = carBrands;
@@ -46,27 +47,27 @@
         [HttpGet]
         public IActionResult Add()
         {
-            if (dealer.IsDealer(User.GetId()) == false)
+            if (dealerService.IsDealer(User.GetId()) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
-            return View(new AddCarFormModel
+            return View(new CarFormModel
             {
                 Categories = this.GetCarCategories()
             });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddCarFormModel car)
+        public async Task<IActionResult> Add(CarFormModel car)
         {
-            if (dealer.IsDealer(User.GetId()) == false)
+            if (dealerService.IsDealer(User.GetId()) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
 
-            if (CategoryExists(car.CategoryId) == false)
+            if (cars.Cas == false)
             {
                 ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
 
@@ -87,7 +88,7 @@
                 ImageUrl = car.ImageUrl,
                 Year = car.Year,
                 CategoryId = car.CategoryId,
-                DealerId = dealer.IdByUser(User.GetId())
+                DealerId = dealerService.IdByUser(User.GetId())
             };
 
             await data.Cars.AddAsync(carData);
@@ -98,21 +99,17 @@
             return RedirectToAction(nameof(All));
         }
 
-        private IEnumerable<CarCategoryModel> GetCarCategories()
+        private IEnumerable<CarCategoryServiceModel> GetCarCategories()
             => data
                 .Categories
-                .Select(c => new CarCategoryModel
+                .Select(c => new CarCategoryServiceModel
                 {
                     Id = c.Id,
                     Name = c.Name
                 })
                 .ToList();
 
-        public bool CategoryExists(int categoryId)
-         => data
-             .Categories
-             .Any(c => c.Id == categoryId);
-
+      
         
     }
 }

@@ -65,6 +65,11 @@
             };
         }
 
+        public IEnumerable<string> AllBrands()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<string> AllCarBrands()
             => this.data
                 .Cars
@@ -72,5 +77,35 @@
                 .Distinct()
                 .OrderBy(br => br)
                 .ToList();
+
+        public IEnumerable<CarCategoryServiceModel> AllCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CarServiceModel> ByUser(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CategoryExists(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Create(string brand, string model, string description, string imageUrl, int year, int categoryId, int dealerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailsServiceModel Details(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsByDealer(int carId, int dealerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
