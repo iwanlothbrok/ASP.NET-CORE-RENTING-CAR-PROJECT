@@ -1,6 +1,7 @@
 ﻿namespace RentalCars.Controllers
 {
     using CarRentingSystem.Controllers;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Data;
     using RentalCars.Models.Cars;
@@ -20,6 +21,8 @@
             this.dealerService = dealer;
         }
 
+        [AllowAnonymous]
+        [HttpGet]
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
             var queryResult = this.carService.All(

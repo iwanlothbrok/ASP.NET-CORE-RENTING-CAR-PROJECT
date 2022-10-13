@@ -1,6 +1,6 @@
 ﻿namespace RentalCars.Services.Cars
 {
-
+    using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Models.Cars;
     using RentalCars.Services.Cars.Models;
 
@@ -30,6 +30,8 @@
           int categoryId,
           int dealerId);
         CarDetailsServiceModel Details(int carId);
+
+        public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery);
 
         IEnumerable<CarServiceModel> ByUser(string userId);
 

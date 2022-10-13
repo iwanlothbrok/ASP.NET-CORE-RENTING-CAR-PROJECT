@@ -152,7 +152,7 @@
              .Categories
              .Any(c => c.Id == categoryId);
 
-        private static IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery)
+        public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery)
            => carQuery
                .Select(c => new CarServiceModel
                {
