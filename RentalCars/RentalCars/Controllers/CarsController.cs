@@ -21,7 +21,7 @@
             this.dealerService = dealer;
         }
 
-        [AllowAnonymous]
+        
         [HttpGet]
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {

@@ -1,10 +1,26 @@
-﻿<nav class="mt-2">
+﻿@inject IDealerService Dealers
+@inject SignInManager<IdentityUser> SignInManager
+
+<nav class="mt-2">
 	<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 		<!-- Add icons to the links using the .nav-icon class
 			 with font-awesome or any other icon font library -->
 		<li class="nav-item ">
 			<a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-			<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="All">Cars</a>
+			<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="All">Avaible Cars</a>
+
+			@if (SignInManager.IsSignedIn(User))
+			{
+				var userId = User.GetId();
+				var userIsDealer = Dealers.IsDealer(userId);
+
+
+				if (userIsDealer)
+				{
+					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Mine">Mine</a>
+					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Add">Add Car</a>
+				}
+			}
 		</li>
 	</ul>
 </nav>
