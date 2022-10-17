@@ -3,7 +3,7 @@
 
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.CarConstants;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Car;
 
     public class Car
     {

@@ -2,10 +2,10 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Controllers;
+    using RentalCars.Core.Models.Dealers;
+    using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Models.Dealers;
-    using RentalCars.Services.Dealers;
 
     public class DealersController : BaseController
     {

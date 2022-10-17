@@ -1,14 +1,12 @@
 ﻿namespace RentalCars.Controllers
 {
     using CarRentingSystem.Controllers;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using RentalCars.Core.Models.Cars;
+    using RentalCars.Core.Models.Dealers;
+    using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
-    using RentalCars.Models.Cars;
-    using RentalCars.Models.Dealers;
-    using RentalCars.Services.Cars;
-    using RentalCars.Services.Dealers;
-    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
     public class CarsController : BaseController
     {
         private readonly ICarService carService;
@@ -83,7 +81,6 @@
             this.carService.Create(car.Brand, car.Model, car.Description, car.ImageUrl, car.Year, car.CategoryId, dealerId);
 
 
-            ViewData[MessageConstant.SuccsessMessage] = "Your car is added!";
             return RedirectToAction(nameof(All));
         }
         [HttpGet]

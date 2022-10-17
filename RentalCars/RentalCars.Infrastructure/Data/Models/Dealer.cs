@@ -1,7 +1,7 @@
 ﻿namespace RentalCars.Infrastructure.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.DealerConstants;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Dealer;
     public class Dealer
     {
         /// <summary>

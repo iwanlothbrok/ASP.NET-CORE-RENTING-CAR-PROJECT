@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using RentalCars.Infrastructure.Data.Models;
 
 namespace RentalCars.Areas.Identity.Pages.Account
 {
@@ -28,13 +29,13 @@ namespace RentalCars.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly IEmailSender _emailSender;
-        private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly ILogger<RegisterModel> _logger;
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
-            ILogger<ExternalLoginModel> logger,
+            ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _signInManager = signInManager;

@@ -1,4 +1,4 @@
-﻿@using RentalCars.Models.Dealers
+﻿@using RentalCars.Core.Models.Dealers
 @inject IDealerService Dealers
 @inject SignInManager<IdentityUser> SignInManager
 
@@ -194,7 +194,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- AdminLTE App -->
 	<script src="~/js/adminlte.min.js"></script>
 	<script src="~/plugins/toastr/toastr.min.js"></script>
-	<partial name="_UserMessages" />
 
 	@await RenderSectionAsync("Scripts",false)
 </body>

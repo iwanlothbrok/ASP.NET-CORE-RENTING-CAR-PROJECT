@@ -42,6 +42,7 @@
         }
 
         public DbSet<Car> Cars { get; set; }
+       // public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
     }

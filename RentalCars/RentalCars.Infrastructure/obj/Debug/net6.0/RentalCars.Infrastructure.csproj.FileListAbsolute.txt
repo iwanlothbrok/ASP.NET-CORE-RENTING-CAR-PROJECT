@@ -1,15 +1,3 @@
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.csproj.AssemblyReference.cache
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.AssemblyInfo.cs
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.deps.json
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.dll
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.pdb
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.dll
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\refint\RentalCars.Infrastructure.dll
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\RentalCars.Infrastructure.pdb
-C:\Users\cmi\Desktop\RentalCars\RentalCars.Infrastructure\obj\Debug\net6.0\ref\RentalCars.Infrastructure.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.deps.json
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars.Infrastructure\bin\Debug\net6.0\RentalCars.Infrastructure.pdb

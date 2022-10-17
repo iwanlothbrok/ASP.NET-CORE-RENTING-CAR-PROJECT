@@ -2,7 +2,7 @@
 {
     public static class DataConstants
     {
-        public static class CarConstants
+        public static class Car
         {
             public const int BrandMinLength = 2;
             public const int BrandMaxLength = 20;
@@ -13,14 +13,23 @@
             public const int YearMaxValue = 2050;
 
         }
+        public class User
+        {
+            public const int FullNameMinLength = 5;
+            public const int FullNameMaxLength = 40;
+            public const int PasswordMinLength = 6;
+            public const int PasswordMaxLength = 100;
+        }
 
-        public static class CategoryConstants
+
+
+        public static class Category
         {
             public const int NameMaxLenght = 30;
 
         }
 
-        public static class DealerConstants
+        public static class Dealer
         {
             public const int NameMaxLength = 50;
             public const int NameMinLength = 3;
@@ -29,13 +38,12 @@
 
         }
 
-        public class DateFormatingConstant
+        public class DateFormating
         {
             public const string NormalDateFormat = "dd.mm.yyyy";
         }
 
-
-        public class MessageConstant
+        public class Message
         {
             public const string ErrorMessage = "Something is wrong!";
             public const string SuccsessMessage = "The job is done!";
