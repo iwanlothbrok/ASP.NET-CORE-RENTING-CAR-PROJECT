@@ -6,11 +6,11 @@
     public interface ICarService
     {
         CarQueryServiceModel All(
-           string brand,
-           string searchTerm,
-           CarSorting sorting,
-           int currentPage,
-           int carsPerPage);
+          string brand,
+          string searchTerm,
+          CarSorting sorting,
+          int currentPage,
+          int carsPerPage);
 
         public bool Edit(int id,
             string brand,

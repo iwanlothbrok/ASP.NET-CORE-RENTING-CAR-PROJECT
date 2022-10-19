@@ -5,6 +5,7 @@
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Models.Dealers;
     using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     public class CarsController : BaseController
@@ -19,7 +20,7 @@
             this.dealerService = dealer;
         }
 
-        
+
         [HttpGet]
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
@@ -157,6 +158,41 @@
             var myCars = this.carService.ByUser(this.User.GetId());
 
             return View(myCars);
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var car = carService.Details(id);
+
+
+            return View(new CarDetailsServiceModel
+            {
+                Id = car.Id,
+                Brand = car.Brand,
+                Model = car.Model,
+                Description = car.Description,
+                ImageUrl = car.ImageUrl,
+                Year = car.Year,
+                CategoryId = car.CategoryId,
+                CategoryName = car.CategoryName,
+            });
+        }
+        [HttpPost]
+        public IActionResult Details(int id, CarDetailsServiceModel car)
+        {
+            
+            if (!this.carService.CategoryExists(car.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {  
+
+                return View(car);
+            }
+           
+            return View(car);
         }
     }
 }
