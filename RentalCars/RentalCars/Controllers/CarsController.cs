@@ -164,7 +164,10 @@
         {
             var car = carService.Details(id);
 
-
+            if (ModelState.IsValid == false)
+            {
+                return Unauthorized();
+            }
             return View(new CarDetailsServiceModel
             {
                 Id = car.Id,
@@ -177,22 +180,37 @@
                 CategoryName = car.CategoryName,
             });
         }
-        [HttpPost]
-        public IActionResult Details(int id, CarDetailsServiceModel car)
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            
-            if (!this.carService.CategoryExists(car.CategoryId))
+            if (id == 0)
             {
-                this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+                return Unauthorized();
+            }
+            var user = User.GetId();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            var dealerId = dealerService.IdByUser(user);
+
+            if (dealerId == 0)
+            {
+                return Unauthorized();
             }
 
-            if (!ModelState.IsValid)
-            {  
-
-                return View(car);
+            if (carService.Delete(id, dealerId) == false)
+            {
+                return Unauthorized();
             }
-           
-            return View(car);
+            carService.Delete(id, dealerId);
+
+
+
+
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

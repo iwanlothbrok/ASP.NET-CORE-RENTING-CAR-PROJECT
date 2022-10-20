@@ -3,8 +3,11 @@
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Core.Models.Cars;
+    using Microsoft.AspNetCore.Mvc;
+
     public interface ICarService
     {
+        bool Delete(int id, int dealerId);
         CarQueryServiceModel All(
           string brand,
           string searchTerm,

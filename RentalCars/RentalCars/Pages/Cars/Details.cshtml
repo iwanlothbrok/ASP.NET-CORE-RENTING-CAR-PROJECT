@@ -1,18 +1,25 @@
 ﻿@model CarDetailsServiceModel
 
 @{
-    ViewBag.Title = "Detais of the car";
-    ViewBag.AllowCarEdit = true;
+	ViewBag.Title = "Detais of the car";
+	ViewBag.AllowCarEdit = true;
 }
 
 
 <div row-3>
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
-            <div class="card-body text-center">
-                <h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
-            </div>
-        </div>
-    </div>
+	<div class="col-md-4">
+		<div class="card mb-3">
+			<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
+			<div class="card-body text-center">
+				<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
+			</div>
+			<h5 class="card-title ml-3">Description of the car. @Model.Description</h5>
+		</div>
+	</div>
 </div>
+<div>
+	<div>
+		<a asp-controller="Cars" asp-action="Renting" asp-route-id="@Model.Id" class="btn btn-primary ml-5">Rent it</a>
+	</div>
+</div>
+

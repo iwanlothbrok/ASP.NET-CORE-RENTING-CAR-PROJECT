@@ -21,7 +21,8 @@
                         @if (userIsDealer)
                         {
                             <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-warning">Edit</a>
-                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
+                            
                         }
                     </div>
                 </div>
@@ -44,3 +45,10 @@
         }  
     }
 </div>
+
+
+<script>
+    function myFunction() {
+        confirm("Are you sure you want to remove the car?");
+    }
+</script>
