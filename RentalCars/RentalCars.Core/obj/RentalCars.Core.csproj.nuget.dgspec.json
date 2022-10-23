@@ -1,0 +1,150 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {}
+  },
+  "projects": {
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
+        "projectName": "RentalCars.Core",
+        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\RentalCars.Core.csproj",
+        "packagesPath": "C:\\Users\\cmi\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
+                "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
+        "projectName": "RentalCars.Infrastructure",
+        "projectPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\RentalCars.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\cmi\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

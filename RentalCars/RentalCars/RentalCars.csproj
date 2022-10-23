@@ -24,4 +24,9 @@
     <ProjectReference Include="..\RentalCars.Core\RentalCars.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\" />
+  </ItemGroup>
+
 </Project>
