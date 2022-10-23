@@ -1,10 +1,7 @@
 ﻿namespace RentalCars.Core.Services.Cars
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ModelBinding;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars.Models;
-    using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
 

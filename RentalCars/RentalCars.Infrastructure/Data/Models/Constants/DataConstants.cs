@@ -48,7 +48,11 @@
             public const string ErrorMessage = "Something is wrong!";
             public const string SuccsessMessage = "The job is done!";
             public const string WarningMessage = "Warning!";
+        }
+        public class Web
+        {
 
+            public const string AdministratorRoleName = "Administrator";
         }
     }
 }

@@ -12,7 +12,7 @@
         private readonly ApplicationDbContext data;
         private readonly IDealerService dealerService;
 
-        public DealersController(ApplicationDbContext data, IDealerService dealer)
+        public DealersController(ApplicationDbContext data, IDealerService dealer )
         {
 
             this.data = data;
@@ -25,7 +25,6 @@
         [HttpPost]
         public async Task<IActionResult> Become(BecomeDealerFormModel dealer)
         {
-
             if (dealerService.IsDealer(User.GetId()))
             {
                 return BadRequest();
@@ -48,5 +47,7 @@
 
             return RedirectToAction("All", "Cars");
         }
+
+
     }
 }

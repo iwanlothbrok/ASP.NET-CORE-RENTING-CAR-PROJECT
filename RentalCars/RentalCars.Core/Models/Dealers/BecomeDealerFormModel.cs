@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RentalCars.Core.Models.Dealers
+﻿namespace RentalCars.Core.Models.Dealers
 {
+
+    using System.ComponentModel.DataAnnotations;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Dealer;
+
     public class BecomeDealerFormModel
     {
         [Required]

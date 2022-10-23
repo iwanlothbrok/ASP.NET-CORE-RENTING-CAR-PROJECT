@@ -3,11 +3,14 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.InitialSeed;
 
     public class ApplicationDbContext : IdentityDbContext
     {
+       
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -42,8 +45,11 @@
         }
 
         public DbSet<Car> Cars { get; set; }
-       // public DbSet<ApplicationUser> Users { get; set; }
+        // public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+
+        
     }
 }

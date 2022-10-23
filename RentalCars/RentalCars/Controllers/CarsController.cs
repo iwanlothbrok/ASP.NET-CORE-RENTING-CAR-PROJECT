@@ -204,7 +204,6 @@
             {
                 return Unauthorized();
             }
-            carService.Delete(id, dealerId);
 
 
 
