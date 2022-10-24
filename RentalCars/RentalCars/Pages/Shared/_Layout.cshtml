@@ -1,5 +1,7 @@
 ﻿@using RentalCars.Core.Extensions
 @using RentalCars.Core.Models.Dealers
+@using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
+
 @inject IDealerService Dealers
 @inject SignInManager<IdentityUser> SignInManager
 
@@ -156,6 +158,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</div>
 			<!-- /.content-header -->
 			<!-- Main content -->
+			@if (TempData.ContainsKey(GlobalMessageKey))
+				{
+					 <div class="alert alert-success text-center" role="alert">
+					 @TempData[GlobalMessageKey]
+            </div>
+				 }
 			<div class="content ml-6">
 				<div class="container-fluid">
 					@RenderBody()

@@ -8,6 +8,7 @@
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
     public class DealersController : BaseController
     {
@@ -44,6 +45,8 @@
 
             await data.Dealers.AddAsync(dealerForm);
             await data.SaveChangesAsync();
+
+            TempData[GlobalMessageKey] = "You become dealer successfully!";
 
             return RedirectToAction("All", "Cars");
         }

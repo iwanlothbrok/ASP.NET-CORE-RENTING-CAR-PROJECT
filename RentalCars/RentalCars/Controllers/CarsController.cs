@@ -8,6 +8,8 @@
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
+
     public class CarsController : BaseController
     {
         private readonly ICarService carService;
@@ -83,6 +85,7 @@
 
             this.carService.Create(car.Brand, car.Model, car.Description, car.ImageUrl, car.Year, car.CategoryId, dealerId);
 
+            TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
             return RedirectToAction(nameof(All));
         }
@@ -146,6 +149,8 @@
                 car.Year,
                 car.CategoryId);
 
+            TempData[GlobalMessageKey] = "You edit your car successfully!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -197,6 +202,10 @@
             {
                 return Unauthorized();
             }
+
+
+            TempData[GlobalMessageKey] = "You delete your car successfully!";
+
 
             return RedirectToAction(nameof(All));
         }
