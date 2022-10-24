@@ -1,9 +1,8 @@
 ﻿namespace RentalCars.Core.Services.Cars
 {
+    using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Core.Models.Cars;
-    using Microsoft.AspNetCore.Mvc;
 
     public interface ICarService
     {

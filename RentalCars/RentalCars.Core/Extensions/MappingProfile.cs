@@ -11,9 +11,18 @@
 
 		public MappingProfile()
 		{
-			this.CreateMap<CarDetailsServiceModel, CarFormModel>();
+            //Mappin for cars
+            this.CreateMap<CarDetailsServiceModel, CarFormModel>();
+			this.CreateMap<Car, CarServiceModel>();
 			this.CreateMap<CarDetailsServiceModel, CarDetailsServiceModel>();
+			this.CreateMap<Car, CarDetailsServiceModel>()
+				.ForMember(c => c.UserId, cfg => cfg.MapFrom(c => c.Dealer.UserId));
+
+
+
+			//Mappin for dealers
 			this.CreateMap<BecomeDealerFormModel, Dealer>();
+			
 				
 		}
 
