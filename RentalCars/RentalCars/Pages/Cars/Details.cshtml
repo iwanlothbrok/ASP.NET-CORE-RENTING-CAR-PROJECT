@@ -5,19 +5,18 @@
 	ViewBag.AllowCarEdit = true;
 }
 
-
-<div class="col-md-6">
-	<div class="card mb-3">
-		<h1 class="text-center">@Model.Brand @Model.Model </h1>
-		<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
-		<div class="card-body text-center">
-			<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
+	<div class="col-md-6">
+		<div class="card mb-3">
+			<h1 class="text-center">@Model.Brand @Model.Model </h1>
+			<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
+			<div class="card-body text-center">
+				<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
+			</div>
+			<h5 class="card-title ml-3">Description of the car: @Model.Description</h5>
 		</div>
-		<h5 class="card-title ml-3">Description of the car: @Model.Description</h5>
 	</div>
-</div>
 
-<div >
+<div>
 	<div>
 		<a asp-controller="Cars" asp-action="Renting" asp-route-id="@Model.Id" class="btn btn-primary ml-5 md-5">Rent it</a>
 	</div>

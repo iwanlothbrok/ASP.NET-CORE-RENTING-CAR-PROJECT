@@ -2,13 +2,20 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        public IActionResult Index() => View();
 
+        public IActionResult Index()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Cars");
+            }
+            return View();
+        }
 
         public IActionResult Error() => View();
-
-
     }
+
 }
+

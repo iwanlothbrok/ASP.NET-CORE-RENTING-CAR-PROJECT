@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("RentalCars.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]

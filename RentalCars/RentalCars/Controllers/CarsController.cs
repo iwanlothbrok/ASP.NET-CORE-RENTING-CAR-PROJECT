@@ -1,23 +1,25 @@
 ﻿namespace RentalCars.Controllers
 {
+    using AutoMapper;
     using CarRentingSystem.Controllers;
     using Microsoft.AspNetCore.Mvc;
+    using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Cars;
-    using RentalCars.Core.Models.Dealers;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
-    using RentalCars.Data;
     public class CarsController : BaseController
     {
         private readonly ICarService carService;
         private readonly IDealerService dealerService;
+        private readonly IMapper mapper;
 
 
-        public CarsController(IDealerService dealer, ICarService car, ApplicationDbContext data)
+        public CarsController(IDealerService dealer, ICarService car, IMapper mapper)
         {
             this.carService = car;
             this.dealerService = dealer;
+            this.mapper = mapper;
         }
 
 
@@ -101,16 +103,11 @@
             {
                 return Unauthorized();
             }
-            return View(new CarFormModel
-            {
-                Brand = car.Brand,
-                Model = car.Model,
-                Description = car.Description,
-                ImageUrl = car.ImageUrl,
-                Year = car.Year,
-                CategoryId = car.CategoryId,
-                Categories = carService.AllCategories()
-            });
+
+            var carForm = this.mapper.Map<CarFormModel>(car);
+            carForm.Categories = this.carService.AllCategories();
+
+            return View(carForm);
         }
 
         [HttpPost]
@@ -159,6 +156,7 @@
 
             return View(myCars);
         }
+
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -168,17 +166,12 @@
             {
                 return Unauthorized();
             }
-            return View(new CarDetailsServiceModel
-            {
-                Id = car.Id,
-                Brand = car.Brand,
-                Model = car.Model,
-                Description = car.Description,
-                ImageUrl = car.ImageUrl,
-                Year = car.Year,
-                CategoryId = car.CategoryId,
-                CategoryName = car.CategoryName,
-            });
+
+            var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
+
+
+            return View(carForm);
+          
         }
         [HttpGet]
         public IActionResult Delete(int id)
@@ -204,10 +197,6 @@
             {
                 return Unauthorized();
             }
-
-
-
-
 
             return RedirectToAction(nameof(All));
         }

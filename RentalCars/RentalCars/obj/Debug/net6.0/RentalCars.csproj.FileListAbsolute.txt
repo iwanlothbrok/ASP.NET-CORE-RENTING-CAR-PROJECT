@@ -16,6 +16,8 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\RentalCars.runtimeconfig.json
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\RentalCars.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\RentalCars.pdb
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\AutoMapper.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Humanizer.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\MessagePack.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -25,6 +27,8 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Build.dll
@@ -45,6 +49,7 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -52,6 +57,7 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
@@ -72,6 +78,7 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\NuGet.Common.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\NuGet.Configuration.dll
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
@@ -274,8 +281,3 @@ C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.0\RentalCars.pdb
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.0\RentalCars.genruntimeconfig.cache
 C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\obj\Debug\net6.0\ref\RentalCars.dll
-C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
-C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
-C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
