@@ -50,7 +50,14 @@
         }
 
 
+        public void ChangeVisility(int carId)
+        {
+            var car = this.data.Cars.Find(carId);
 
+            car.IsPublic = !car.IsPublic;
+
+            this.data.SaveChanges();
+        }
 
         public CarQueryServiceModel All(
            string brand = null,

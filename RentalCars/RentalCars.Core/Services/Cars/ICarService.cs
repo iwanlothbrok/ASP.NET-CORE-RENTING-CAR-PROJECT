@@ -15,6 +15,7 @@
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
 
+        public void ChangeVisility(int carId);
         public bool Edit(int id,
             string brand,
             string model,

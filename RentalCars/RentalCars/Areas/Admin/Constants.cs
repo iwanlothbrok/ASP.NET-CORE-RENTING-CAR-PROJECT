@@ -3,5 +3,6 @@
     public class Constants
     {
         public const string AreaName = "Admin";
+        
     }
 }

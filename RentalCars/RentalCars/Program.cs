@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using RentalCars.Controllers;
 using RentalCars.Core.Extensions;
 using RentalCars.Core.ModelBinders;
 using RentalCars.Core.Services.Cars;
@@ -67,10 +66,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+ {
+     endpoints.MapControllerRoute(
+         name: "Areas",
+         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages();
+     endpoints.MapDefaultControllerRoute();
+     endpoints.MapRazorPages();
+     app.MapRazorPages();
+ });
+
 
 app.Run();

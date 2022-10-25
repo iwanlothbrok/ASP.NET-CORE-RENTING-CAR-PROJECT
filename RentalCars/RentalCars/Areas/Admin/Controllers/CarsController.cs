@@ -5,7 +5,7 @@
     using RentalCars.Core.Services.Cars;
 
     [Area(Constants.AreaName)]
-    [Authorize]
+    [Authorize(Roles = Constants.AreaName)]
     public class CarsController : Controller
     {
         private readonly ICarService cars;
@@ -24,11 +24,11 @@
             return View(cars);
         }
 
-        //public IActionResult ChangeVisibility(int id)
-        //{
-        //    this.cars.ChangeVisility(id);
+        public IActionResult ChangeVisibility(int id)
+        {
+            this.cars.ChangeVisility(id);
 
-        //    return RedirectToAction(nameof(All));
-        //}
+            return RedirectToAction(nameof(All));
+        }
     }
 }
