@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -52,6 +52,7 @@
     <Content Remove="C:\Users\cmi\.nuget\packages\bootstrap\5.2.1\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
     <Content Remove="C:\Users\cmi\.nuget\packages\bootstrap\5.2.1\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
   </ItemGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.2.1" />

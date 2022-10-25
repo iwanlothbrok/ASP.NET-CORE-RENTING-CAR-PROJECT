@@ -47,6 +47,11 @@
         public int Year { get; set; }
 
         /// <summary>
+        /// if the car is public
+        /// </summary>
+        public bool IsPublic { get; set; }
+
+        /// <summary>
         /// foreign key 
         /// </summary>  
         public int CategoryId { get; set; }

@@ -52,7 +52,7 @@
         public class Web
         {
             public const string GlobalMessageKey = "GlobalMessage";
-            public const string AdministratorRoleName = "Administrator";
+            public const string AdministratorRoleName = "Admin";
         }
     }
 }

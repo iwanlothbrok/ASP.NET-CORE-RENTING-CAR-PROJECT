@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using RentalCars.Controllers;
 using RentalCars.Core.Extensions;
 using RentalCars.Core.ModelBinders;
 using RentalCars.Core.Services.Cars;
@@ -54,6 +55,7 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 
 

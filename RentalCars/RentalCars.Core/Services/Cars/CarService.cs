@@ -53,13 +53,16 @@
 
 
         public CarQueryServiceModel All(
-            string brand,
-            string searchTerm,
-            CarSorting sorting,
-            int currentPage,
-            int carsPerPage)
+           string brand = null,
+           string searchTerm = null,
+           CarSorting sorting = CarSorting.DateCreated,
+           int currentPage = 1,
+           int carsPerPage = int.MaxValue,
+            bool publicOnly = true)
         {
-            var carsQuery = this.data.Cars.AsQueryable();
+
+            var carsQuery = this.data.Cars
+                                .Where(p => p.IsPublic == publicOnly);
 
             if (!string.IsNullOrWhiteSpace(brand))
             {
@@ -107,7 +110,8 @@
                 ImageUrl = imageUrl,
                 Year = year,
                 CategoryId = categoryId,
-                DealerId = dealerId
+                DealerId = dealerId,
+                IsPublic = false
             };
 
 
@@ -132,6 +136,7 @@
             carData.ImageUrl = imageUrl;
             carData.Year = year;
             carData.CategoryId = categoryId;
+            carData.IsPublic = false;
 
             this.data.SaveChanges();
 

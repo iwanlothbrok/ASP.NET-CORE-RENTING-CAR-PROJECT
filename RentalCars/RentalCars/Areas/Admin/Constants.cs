@@ -2,6 +2,6 @@
 {
     public class Constants
     {
-        public const string AreaName = "Admininistrator";
+        public const string AreaName = "Admin";
     }
 }

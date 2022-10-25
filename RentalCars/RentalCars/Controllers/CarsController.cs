@@ -87,7 +87,7 @@
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Mine));
         }
         [HttpGet]
         public IActionResult Edit(int id)
@@ -151,7 +151,7 @@
 
             TempData[GlobalMessageKey] = "You edit your car successfully!";
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]
@@ -163,11 +163,15 @@
         }
 
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id,string information)
         {
             var car = carService.Details(id);
 
             if (ModelState.IsValid == false)
+            {
+                return Unauthorized();
+            }
+            if (information != car.GetInformationUrl())
             {
                 return Unauthorized();
             }

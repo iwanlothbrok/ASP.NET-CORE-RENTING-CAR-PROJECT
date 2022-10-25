@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.InitialSeed;
 

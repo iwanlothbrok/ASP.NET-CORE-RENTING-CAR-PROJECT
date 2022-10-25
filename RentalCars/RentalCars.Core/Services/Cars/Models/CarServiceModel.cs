@@ -12,6 +12,8 @@
 
         public int Year { get; init; }
 
+        public bool IsPublic { get; init; }
+
         public string CategoryName { get; init; }
     }
 }

@@ -8,11 +8,12 @@
     {
         bool Delete(int id, int dealerId);
         CarQueryServiceModel All(
-          string brand,
-          string searchTerm,
-          CarSorting sorting,
-          int currentPage,
-          int carsPerPage);
+           string brand = null,
+           string searchTerm = null,
+           CarSorting sorting = CarSorting.DateCreated,
+           int currentPage = 1,
+           int carsPerPage = int.MaxValue,
+            bool publicOnly = true);
 
         public bool Edit(int id,
             string brand,
