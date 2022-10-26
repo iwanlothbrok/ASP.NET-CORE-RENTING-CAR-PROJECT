@@ -32,7 +32,7 @@
         {
             if (dealerService.IsDealer(User.GetId()))
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Cars");
             }
 
             if (!ModelState.IsValid)

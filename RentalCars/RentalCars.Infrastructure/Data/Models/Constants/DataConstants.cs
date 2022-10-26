@@ -21,8 +21,6 @@
             public const int PasswordMaxLength = 100;
         }
 
-
-
         public static class Category
         {
             public const int NameMaxLenght = 30;

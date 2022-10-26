@@ -104,7 +104,7 @@
 
             if (car.UserId != userId)
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
 
             var carForm = this.mapper.Map<CarFormModel>(car);
@@ -125,7 +125,7 @@
 
             if (!this.carService.CategoryExists(car.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+                return RedirectToAction("Error", "Cars");
             }
 
             if (!ModelState.IsValid)
@@ -137,7 +137,7 @@
 
             if (!this.carService.IsByDealer(id, dealerId))
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Cars");
             }
 
             this.carService.Edit(
@@ -163,55 +163,58 @@
         }
 
         [HttpGet]
-        public IActionResult Details(int id,string information)
+        public IActionResult Details(int id, string information)
         {
             var car = carService.Details(id);
 
             if (ModelState.IsValid == false)
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
             if (information != car.GetInformationUrl())
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
 
             var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
 
 
             return View(carForm);
-          
+
         }
         [HttpGet]
         public IActionResult Delete(int id)
         {
             if (id == 0)
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
             var user = User.GetId();
 
             if (user == null)
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
             var dealerId = dealerService.IdByUser(user);
 
             if (dealerId == 0)
             {
-                return Unauthorized();
+                return RedirectToAction("Error", "Cars");
             }
 
             if (carService.Delete(id, dealerId) == false)
             {
-                return Unauthorized();
+                return RedirectToAction("Error","Cars");
             }
-
 
             TempData[GlobalMessageKey] = "You delete your car successfully!";
 
 
             return RedirectToAction(nameof(All));
         }
+
+
+        public IActionResult Error()
+        => View();
     }
 }
