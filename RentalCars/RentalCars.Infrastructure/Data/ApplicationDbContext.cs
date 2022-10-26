@@ -8,7 +8,7 @@
 
     public class ApplicationDbContext : IdentityDbContext
     {
-       
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -38,6 +38,28 @@
                 .HasForeignKey<Dealer>(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+                  .Entity<Booking>()
+                  .HasOne<IdentityUser>()
+                  .WithOne()
+                  .HasForeignKey<Booking>(d => d.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+              .Entity<Booking>()
+              .HasOne<Car>()
+              .WithOne()
+              .HasForeignKey<Booking>(d => d.CarId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+             .Entity<Booking>()
+             .HasOne<Dealer>()
+             .WithOne()
+             .HasForeignKey<Booking>(d => d.DealerId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+
             builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
 
             base.OnModelCreating(builder);
@@ -47,8 +69,7 @@
         // public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
-
-        
     }
 }

@@ -52,6 +52,11 @@
         public bool IsPublic { get; set; }
 
         /// <summary>
+        /// price for 1 day for the car 
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// foreign key 
         /// </summary>  
         public int CategoryId { get; set; }
