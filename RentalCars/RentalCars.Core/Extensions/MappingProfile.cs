@@ -14,6 +14,7 @@
             //Mappin for cars
             this.CreateMap<CarDetailsServiceModel, CarFormModel>();
 			this.CreateMap<Car, CarServiceModel>();
+			this.CreateMap<Car, Car>();
 			this.CreateMap<CarDetailsServiceModel, CarDetailsServiceModel>();
 			this.CreateMap<Car, CarDetailsServiceModel>()
 				.ForMember(c => c.UserId, cfg => cfg.MapFrom(c => c.Dealer.UserId));

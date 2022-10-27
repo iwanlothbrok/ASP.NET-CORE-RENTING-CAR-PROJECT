@@ -10,7 +10,7 @@
     {
         [Required]
         [StringLength(
-            BrandMaxLength, 
+            BrandMaxLength,
             MinimumLength = BrandMinLength,
             ErrorMessage = "The field Brand must be minumum {0} length and maximum {1} length! ")]
         public string Brand { get; set; }
@@ -30,6 +30,10 @@
         [Url]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; }
+
+        [Required]
+        [Display(Name = "Daily price")]
+        public decimal Price { get; init; }
 
         [Range(YearMinValue, YearMaxValue)]
         public int Year { get; init; }

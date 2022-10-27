@@ -108,13 +108,14 @@
         }
 
 
-        public int Create(string brand, string model, string description, string imageUrl, int year, int categoryId, int dealerId)
+        public int Create(string brand, string model, string description, decimal price, string imageUrl, int year, int categoryId, int dealerId)
         {
             var carData = new Car
             {
                 Brand = brand,
                 Model = model,
                 Description = description,
+                Price = price,
                 ImageUrl = imageUrl,
                 Year = year,
                 CategoryId = categoryId,
@@ -122,14 +123,13 @@
                 IsPublic = false
             };
 
-
             data.Cars.Add(carData);
             data.SaveChanges();
 
             return carData.Id;
         }
 
-        public bool Edit(int id, string brand, string model, string description, string imageUrl, int year, int categoryId)
+        public bool Edit(int id, string brand, string model, decimal price, string description, string imageUrl, int year, int categoryId)
         {
             var carData = this.data.Cars.Find(id);
 
@@ -141,6 +141,7 @@
             carData.Brand = brand;
             carData.Model = model;
             carData.Description = description;
+            carData.Price = price;
             carData.ImageUrl = imageUrl;
             carData.Year = year;
             carData.CategoryId = categoryId;

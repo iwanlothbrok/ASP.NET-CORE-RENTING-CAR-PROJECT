@@ -10,6 +10,8 @@
 
         public string ImageUrl { get; init; }
 
+        public decimal Price { get; set; }
+
         public int Year { get; init; }
 
         public bool IsPublic { get; init; }

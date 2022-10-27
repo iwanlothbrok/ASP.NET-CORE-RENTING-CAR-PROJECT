@@ -1,7 +1,6 @@
 ﻿namespace RentalCars.Infrastructure.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Car;
 
 

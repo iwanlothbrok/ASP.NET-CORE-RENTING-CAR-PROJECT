@@ -83,7 +83,7 @@
                 return View(car);
             }
 
-            this.carService.Create(car.Brand, car.Model, car.Description, car.ImageUrl, car.Year, car.CategoryId, dealerId);
+            this.carService.Create(car.Brand, car.Model, car.Description,car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
@@ -144,6 +144,7 @@
                 id,
                 car.Brand,
                 car.Model,
+                car.Price,
                 car.Description,
                 car.ImageUrl,
                 car.Year,
