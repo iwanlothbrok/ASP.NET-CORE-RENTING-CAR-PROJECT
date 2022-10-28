@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XxsE+P0Y/LL5XUIvyZfqLDOUACIERZAU+qL/lY2w+oI=",
+  "Hash": "jXM3SjpjSkSIgR6O+flE6lA5DoC0wA5HRXmYK0NmNN4=",
   "Source": "RentalCars",
   "BasePath": "_content/RentalCars",
   "Mode": "Default",
@@ -5219,23 +5219,6 @@
       "OriginalItemSpec": "wwwroot\\js\\pages\\dashboard3.js"
     },
     {
-      "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\js\\site.js",
-      "SourceId": "RentalCars",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\",
-      "BasePath": "_content/RentalCars",
-      "RelativePath": "js/site.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
-    },
-    {
       "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "RentalCars",
       "SourceType": "Discovered",
@@ -6135,6 +6118,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\lib\\jquery-validation\\dist\\jqueryDecimal.js",
+      "SourceId": "RentalCars",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\",
+      "BasePath": "_content/RentalCars",
+      "RelativePath": "lib/jquery-validation/dist/jqueryDecimal.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jqueryDecimal.js"
     },
     {
       "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
