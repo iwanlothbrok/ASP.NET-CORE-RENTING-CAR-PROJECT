@@ -1,0 +1,25 @@
+﻿@using RentalCars.Core.Models.Bookings
+
+@model BookingFormModel
+<!DOCTYPE html>
+
+
+<partial name="_CarFormPartial" model="@Model" />
+
+<html>
+<body>
+
+	<h1>When you want the car</h1>
+
+	<form action="/action_page.php">
+		<label asp-for="BookingDate"></label>
+		<input asp-for="BookingDate" type="date">
+	</form>
+	<form action="/action_page.php">
+		<label asp-for="ReturnDate"></label>
+		<input asp-for="ReturnDate" type="date">
+	</form>
+
+	<input class="btn btn-primary mt-3" type="submit" value="Save" />
+</body>
+</html>

@@ -43,22 +43,11 @@
         /// car id 
         /// </summary>
         public int CarId { get; set; }
-        /// <summary>
-        /// car id 
-        /// </summary>
-        //[ForeignKey(nameof(CarId))]
-        //public Car Car { get; set; } = null!;
 
         /// <summary>
         /// dealer id 
         /// </summary>
         public int DealerId { get; set; }
-
-        /// <summary>
-        /// dealer id 
-        /// </summary>
-        //[ForeignKey(nameof(DealerId))]
-        //public Dealer Dealer { get; set; } = null!;
 
         /// <summary>
         /// customer id 

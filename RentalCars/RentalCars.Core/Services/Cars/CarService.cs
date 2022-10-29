@@ -18,6 +18,9 @@
             this.data = data;
             this.mapper = mapper;
         }
+        public Car GetCar(int id)
+        =>  this.data.Cars.Find(id);
+        
 
         public bool Delete(int id, int dealerId)
         {
