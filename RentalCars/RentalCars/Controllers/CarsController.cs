@@ -104,7 +104,7 @@
 
             if (car.UserId != userId)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             var carForm = this.mapper.Map<CarFormModel>(car);
@@ -125,7 +125,7 @@
 
             if (!this.carService.CategoryExists(car.CategoryId))
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             if (!ModelState.IsValid)
@@ -137,7 +137,7 @@
 
             if (!this.carService.IsByDealer(id, dealerId))
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             this.carService.Edit(
@@ -170,11 +170,11 @@
 
             if (ModelState.IsValid == false)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
             if (information != car.GetInformationUrl())
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
@@ -188,24 +188,24 @@
         {
             if (id == 0)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
             var user = User.GetId();
 
             if (user == null)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
             var dealerId = dealerService.IdByUser(user);
 
             if (dealerId == 0)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             if (carService.Delete(id, dealerId) == false)
             {
-                return RedirectToAction("Error","Cars");
+                return RedirectToAction("Error","Home");
             }
 
             TempData[GlobalMessageKey] = "You delete your car successfully!";
@@ -215,7 +215,6 @@
         }
 
       
-        public IActionResult Error()
-        => View();
+      
     }
 }

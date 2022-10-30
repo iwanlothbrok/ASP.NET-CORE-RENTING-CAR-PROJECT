@@ -3,7 +3,9 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Extensions;
+    using RentalCars.Core.Models.Bookings;
     using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Infrastructure.Data.Models;
 
@@ -21,12 +23,28 @@
             this.mapper = mapper;
         }
 
+
         [HttpGet]
-        public IActionResult Booking(int Id)
-       => View();
+        public IActionResult Booking(int id)
+        {
+
+            var car = carService.Details(id);
+
+            if (ModelState.IsValid == false)
+            {
+                return RedirectToAction("Error", "Cars");
+            }
+
+
+            var carForm = this.mapper.Map<BookingFormModel>(car);
+
+
+            return View(carForm);
+
+        }
 
         [HttpPost]
-        public IActionResult Booking(Car car)
+        public IActionResult Booking(BookingFormModel car)
         {
             var user = User.GetId();
             if (user == null)
@@ -39,15 +57,14 @@
                 return RedirectToAction("Error", "Cars");
             }
 
-            if (car.Id != 0
-                && car.IsPublic == true
+            if (car.CarId != 0
                 && car.Model != null
                 && car.Brand != null
                 && car.DealerId != 0)
             {
                 var booking = new Booking
                 {
-                    CarId = car.Id,
+                    CarId = car.CarId,
                     CarBrand = car.Brand,
                     CarModel = car.Model,
                     DealerId = car.DealerId,

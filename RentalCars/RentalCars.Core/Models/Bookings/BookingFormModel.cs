@@ -1,10 +1,21 @@
 ﻿namespace RentalCars.Core.Models.Bookings
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Runtime.CompilerServices;
 
-    public class BookingFormModel
+    public class BookingFormModel 
     {
+        public int CarId { get; set; }
+        public string Brand { get; init; }
+
+        public string Model { get; init; }
+
+        public int DealerId { get; init; }
+
+        public string ImageUrl { get; init; }
+
+        public int Year { get; init; }
+        public decimal  Price{ get; init; }
+
 
         [Required]
         [Display(Name = "Booking date")]
