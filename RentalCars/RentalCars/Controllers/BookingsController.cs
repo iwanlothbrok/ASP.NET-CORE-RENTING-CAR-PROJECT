@@ -5,9 +5,7 @@
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Bookings;
     using RentalCars.Core.Services.Cars;
-    using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
-    using RentalCars.Infrastructure.Data.Models;
 
     public class BookingsController : BaseController
     {
@@ -24,27 +22,39 @@
         }
 
 
+    
+
         [HttpGet]
         public IActionResult Booking(int id)
         {
 
-            var car = carService.Details(id);
+            var car = carService.FindCar(id);
+
+            var userId = User.GetId();
 
             if (ModelState.IsValid == false)
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
+            }
+            if (dealerService.IsDealer(userId))
+            {
+                var dealerId = dealerService.IdByUser(userId);
+                if (carService.IsByDealer(id, dealerId))
+                {
+                   return RedirectToAction("Error", "Home");
+                }
             }
 
-
-            var carForm = this.mapper.Map<BookingFormModel>(car);
-
-
-            return View(carForm);
+           return View(new BookingFormModel
+           {
+               ImageUrl = car.ImageUrl,
+               Price = car.Price
+           });
 
         }
 
         [HttpPost]
-        public IActionResult Booking(BookingFormModel car)
+        public IActionResult Booking(BookingFormModel model)
         {
             var user = User.GetId();
             if (user == null)
@@ -52,26 +62,9 @@
                 return RedirectToAction("Error", "Cars");
             }
 
-            if (car == null)
-            {
-                return RedirectToAction("Error", "Cars");
-            }
+            
 
-            if (car.CarId != 0
-                && car.Model != null
-                && car.Brand != null
-                && car.DealerId != 0)
-            {
-                var booking = new Booking
-                {
-                    CarId = car.CarId,
-                    CarBrand = car.Brand,
-                    CarModel = car.Model,
-                    DealerId = car.DealerId,
-                    UserId = user,
-
-                };
-            }
+            
             return Ok();
         }
     }

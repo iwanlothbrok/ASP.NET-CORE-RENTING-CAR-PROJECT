@@ -1,5 +1,6 @@
 ﻿namespace RentalCars.Core.Services.Cars
 {
+    using RentalCars.Core.Models.Bookings;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Infrastructure.Data.Models;
@@ -14,8 +15,8 @@
            int currentPage = 1,
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
-
-        public Car GetCar(int id);
+        
+        public Car FindCar(int id);
         public void ChangeVisility(int carId);
         public bool Edit(int id,
             string brand,

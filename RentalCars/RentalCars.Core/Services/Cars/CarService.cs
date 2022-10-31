@@ -18,7 +18,7 @@
             this.data = data;
             this.mapper = mapper;
         }
-        public Car GetCar(int id)
+        public Car FindCar(int id)
         =>  this.data.Cars.Find(id);
         
 

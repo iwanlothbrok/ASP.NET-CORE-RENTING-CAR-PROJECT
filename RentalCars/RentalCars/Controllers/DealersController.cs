@@ -32,7 +32,7 @@
         {
             if (dealerService.IsDealer(User.GetId()))
             {
-                return RedirectToAction("Error", "Cars");
+                return RedirectToAction("Error", "Home");
             }
 
             if (!ModelState.IsValid)
@@ -48,7 +48,7 @@
 
             TempData[GlobalMessageKey] = "You become dealer successfully!";
 
-            return RedirectToAction("All", "Cars");
+            return RedirectToAction("All", "Home");
         }
 
 

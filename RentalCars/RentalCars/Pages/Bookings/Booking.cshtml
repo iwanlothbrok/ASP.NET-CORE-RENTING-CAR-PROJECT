@@ -1,32 +1,32 @@
 ﻿@using RentalCars.Core.Models.Bookings
 @model BookingFormModel
 
+<div class="row">
+	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+		<h2 class="heading-margin text-center">@ViewBag.Title</h2>
 
-@{
-	ViewBag.Title = "Renting the car";
-}
+		<form method="post">
+			<div>
+				<img class="card-img-top" src="@Model.ImageUrl">
+				<h5 class="card-title text-center">Price for one day: @Model.Price</h5>
+			</div>
 
-<!DOCTYPE html>
-<html>
-<body>
-	<h1>When you want the car?</h1>
+			<div class="form-group">
+				<label asp-for="DriverLicense"></label>
+				<input asp-for="DriverLicense" class="form-control" placeholder="Set your price for one day...">
+				<span asp-validation-for="DriverLicense" class="small text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="BookingDate"></label>
+				<input asp-for="BookingDate" type="date" value="2022-10-30">
+			</div>
+			<div class="form-group">
+				<label asp-for="BookingDate"></label>
+				<input asp-for="BookingDate" type="date" value="2022-10-30">
+			</div>
 
-	<div class="col-md-5">
-		<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year">
+
+			<input class="btn btn-primary mt-3" type="submit" value="Save" />
+		</form>
 	</div>
-
-	<form action="/action_page.php">
-		<label asp-for="BookingDate"></label>
-		<input asp-for="BookingDate" type="date" value="2022-10-30">
-	</form>
-	<form action="/action_page.php">
-		<label asp-for="ReturnDate"></label>
-		<input asp-for="ReturnDate" type="date" value="2022-10-30">
-	</form>
-	<form>
-		<h5 class="card-title text-center">@Model.Price$ Price for one day.</h5>
-		<input class="btn btn-primary mt-3" type="submit" method="Post "value="Save" />
-	</form>
-
-</body>
-</html>
+</div> 

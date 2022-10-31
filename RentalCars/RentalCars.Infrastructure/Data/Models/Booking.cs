@@ -1,8 +1,7 @@
 ﻿namespace RentalCars.Infrastructure.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Car;
-
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Booking
     {
@@ -11,21 +10,6 @@
         /// </summary>
         [Key]
         public int Id { get; set; }
-
-        /// <summary>
-        /// car brand 
-        /// </summary>
-        [Required]
-        [Range(BrandMinLength, BrandMaxLength)]
-        public string CarBrand { get; set; } = null!;
-
-        /// <summary>
-        /// car model 
-        /// </summary>
-
-        [Required]
-        [Range(ModelMinLength, ModelMaxLength)]
-        public string CarModel { get; set; } = null!;
 
         /// <summary>
         /// date of the renting 
@@ -44,11 +28,13 @@
         /// </summary>
         public int CarId { get; set; }
 
+        
         /// <summary>
         /// dealer id 
         /// </summary>
+        
         public int DealerId { get; set; }
-
+       
         /// <summary>
         /// customer id 
         /// </summary>

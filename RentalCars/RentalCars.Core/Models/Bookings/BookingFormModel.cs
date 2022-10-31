@@ -4,25 +4,20 @@
 
     public class BookingFormModel 
     {
-        public int CarId { get; set; }
-        public string Brand { get; init; }
+        public string ImageUrl { get; set; }
+        public decimal Price{ get; set; }
 
-        public string Model { get; init; }
-
-        public int DealerId { get; init; }
-
-        public string ImageUrl { get; init; }
-
-        public int Year { get; init; }
-        public decimal  Price{ get; init; }
-
-
+        [Display(Name = "Driver License")]
         [Required]
+        public int DriverLicense { get; set; }
+
         [Display(Name = "Booking date")]
+        [Required]
         public DateTime BookingDate { get; set; }
 
-        [Required]
+
         [Display(Name = "Date of returning the car")]
+        [Required]
         public DateTime ReturnDate { get; set; }
     }
 }

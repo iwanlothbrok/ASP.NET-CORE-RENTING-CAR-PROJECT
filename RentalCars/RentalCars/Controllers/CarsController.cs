@@ -23,29 +23,6 @@
             this.dealerService = dealer;
             this.mapper = mapper;
         }
-
-
-        [HttpGet]
-        public IActionResult All([FromQuery] AllCarsQueryModel query)
-        {
-            var queryResult = this.carService.All(
-                 query.Brand,
-                 query.SearchTerm,
-                 query.Sorting,
-                 query.CurrentPage,
-                 AllCarsQueryModel.CarsPerPage);
-
-            var carBrands = this.carService.AllBrands();
-
-
-            query.Brands = carBrands;
-            query.TotalCars = queryResult.TotalCars;
-            query.Cars = queryResult.Cars;
-
-            return View(query);
-        }
-
-
         [HttpGet]
         public IActionResult Add()
         {
@@ -83,12 +60,86 @@
                 return View(car);
             }
 
-            this.carService.Create(car.Brand, car.Model, car.Description,car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
+            this.carService.Create(car.Brand, car.Model, car.Description, car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
             return RedirectToAction(nameof(Mine));
         }
+
+
+        [HttpGet]
+        public IActionResult All([FromQuery] AllCarsQueryModel query)
+        {
+            var queryResult = this.carService.All(
+                 query.Brand,
+                 query.SearchTerm,
+                 query.Sorting,
+                 query.CurrentPage,
+                 AllCarsQueryModel.CarsPerPage);
+
+            var carBrands = this.carService.AllBrands();
+
+
+            query.Brands = carBrands;
+            query.TotalCars = queryResult.TotalCars;
+            query.Cars = queryResult.Cars;
+
+            return View(query);
+        }
+
+
+        [HttpGet]
+        public IActionResult Details(int id, string information)
+        {
+            var car = carService.Details(id);
+
+            if (ModelState.IsValid == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            if (information != car.GetInformationUrl())
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
+
+
+            return View(carForm);
+
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var user = User.GetId();
+
+            if (user == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var dealerId = dealerService.IdByUser(user);
+
+            if (dealerId == 0)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            if (carService.Delete(id, dealerId) == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            TempData[GlobalMessageKey] = "You delete your car successfully!";
+
+
+            return RedirectToAction(nameof(All));
+        }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -163,58 +214,7 @@
             return View(myCars);
         }
 
-        [HttpGet]
-        public IActionResult Details(int id, string information)
-        {
-            var car = carService.Details(id);
 
-            if (ModelState.IsValid == false)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            if (information != car.GetInformationUrl())
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
-
-
-            return View(carForm);
-
-        }
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            if (id == 0)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            var user = User.GetId();
-
-            if (user == null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            var dealerId = dealerService.IdByUser(user);
-
-            if (dealerId == 0)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            if (carService.Delete(id, dealerId) == false)
-            {
-                return RedirectToAction("Error","Home");
-            }
-
-            TempData[GlobalMessageKey] = "You delete your car successfully!";
-
-
-            return RedirectToAction(nameof(All));
-        }
-
-      
-      
+        
     }
 }
