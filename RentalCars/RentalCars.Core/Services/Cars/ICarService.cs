@@ -1,7 +1,7 @@
 ﻿namespace RentalCars.Core.Services.Cars
 {
-    using RentalCars.Core.Models.Bookings;
     using RentalCars.Core.Models.Cars;
+    using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Infrastructure.Data.Models;
 
@@ -15,7 +15,7 @@
            int currentPage = 1,
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
-        
+
         public Car FindCar(int id);
         public void ChangeVisility(int carId);
         public bool Edit(int id,
@@ -49,5 +49,7 @@
         IEnumerable<CarCategoryServiceModel> AllCategories();
 
         bool CategoryExists(int categoryId);
+
+        IEnumerable<RentCarModel> AllCars();
     }
 }

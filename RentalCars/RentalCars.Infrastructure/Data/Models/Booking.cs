@@ -1,10 +1,14 @@
 ﻿namespace RentalCars.Infrastructure.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Booking
     {
+        [Required]
+        public string CustomerFirstName { get; set; } = null!;
+
+        [Required]
+        public string CustomerLastName { get; set; } = null!;
         /// <summary>
         /// id of the booking
         /// </summary>
@@ -39,7 +43,7 @@
         /// customer id 
         /// </summary>
         [Required]
-        public string UserId { get; set; } = null!;
+        public string CustomerId { get; set; } = null!;
 
         /// <summary>
         /// status of the book

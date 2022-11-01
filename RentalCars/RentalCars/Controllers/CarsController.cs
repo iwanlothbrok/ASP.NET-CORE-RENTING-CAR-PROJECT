@@ -60,6 +60,12 @@
                 return View(car);
             }
 
+            if (car.Price==0)
+            {
+                return RedirectToAction(nameof(Add));
+
+            }
+
             this.carService.Create(car.Brand, car.Model, car.Description, car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";

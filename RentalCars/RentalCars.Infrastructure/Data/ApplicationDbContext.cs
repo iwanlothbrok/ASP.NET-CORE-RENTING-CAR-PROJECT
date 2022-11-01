@@ -42,7 +42,7 @@
                   .Entity<Booking>()
                   .HasOne<IdentityUser>()
                   .WithOne()
-                  .HasForeignKey<Booking>(d => d.UserId)
+                  .HasForeignKey<Booking>(d => d.CustomerId)
                   .OnDelete(DeleteBehavior.Restrict);
 
             builder

@@ -4,6 +4,7 @@
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
     using RentalCars.Core.Models.Cars;
+    using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
@@ -190,7 +191,17 @@
                     Name = c.Name
                 })
                 .ToList();
-
+        public IEnumerable<RentCarModel> AllCars()
+         => data
+               .Cars
+               .Select(c => new RentCarModel
+               {
+                   Id = c.Id,
+                   Brand = c.Brand,
+                   Model = c.Model,
+                   Year= c.Year
+               })
+               .ToList();
 
         public bool CategoryExists(int categoryId)
          => data
