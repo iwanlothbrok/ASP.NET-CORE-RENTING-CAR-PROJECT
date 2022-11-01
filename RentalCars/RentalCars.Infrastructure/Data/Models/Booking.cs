@@ -19,13 +19,13 @@
         /// date of the renting 
         /// </summary>
         [Required]
-        public DateTime BookingDate { get; set; }
+        public string BookingDate { get; set; }
 
         /// <summary>
         /// date of returning the car 
         /// </summary>
         [Required]
-        public DateTime ReturnDate { get; set; }
+        public string ReturnDate { get; set; }
 
         /// <summary>
         /// car id 

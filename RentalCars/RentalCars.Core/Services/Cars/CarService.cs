@@ -111,7 +111,25 @@
             };
         }
 
+        public int CreateBooking(string firstName, string lastName,string userId,int dealerId, string bookingDate, string returingDate,int carId)
+        {
+            var booking = new Booking
+            {
+                CustomerFirstName= firstName,
+                CustomerLastName= lastName,
+                CustomerId = userId,
+                DealerId = dealerId,
+                BookingDate = bookingDate,
+                ReturnDate = returingDate,
+                Status = false,
+                CarId = carId    
+            };
 
+            data.Bookings.Add(booking);
+            data.SaveChanges();
+
+            return booking.Id;
+        }
         public int Create(string brand, string model, string description, decimal price, string imageUrl, int year, int categoryId, int dealerId)
         {
             var carData = new Car
@@ -202,6 +220,11 @@
                    Year= c.Year
                })
                .ToList();
+
+        public bool CarsExists(int carId)
+         => data
+             .Cars
+             .Any(c => c.Id == carId);
 
         public bool CategoryExists(int categoryId)
          => data

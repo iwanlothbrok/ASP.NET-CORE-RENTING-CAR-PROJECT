@@ -7,8 +7,9 @@
     using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Dealers;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
-    public class RentingController : Controller
+    public class RentingController : BaseController
     {
 
         private readonly ICarService carService;
@@ -24,47 +25,44 @@
         public IActionResult Rent()
         {
 
-
             return View(new RentFormModel
             {
                 Cars = this.carService.AllCars().ToList()
-            }); 
+            });
         }
 
         [HttpPost]
-        public IActionResult Rent(RentFormModel car)
+        public IActionResult Rent(RentFormModel model)
         {
-            var dealerId = dealerService.IdByUser(User.GetId());
+            var userId = User.GetId();
+            var dealer = dealerService.IdByUser(userId);
 
-            if (dealerId == 0)
+            if (dealer != 0)
             {
-                return RedirectToAction(nameof(DealersController.Become), "Dealers");
+                if (carService.IsByDealer(model.CarId, dealer))
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
 
-            //if (carService.CategoryExists(car.CategoryId) == false)
-            //{
-            //    ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+            if (carService.CarsExists(model.CarId) == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
 
-            //}
+            if (ModelState.IsValid == false)
+            {
+                model.Cars = this.carService.AllCars().ToList();
 
-            //if (ModelState.IsValid == false)
-            //{
-            //    car.Categories = this.carService.AllCategories();
+                return View(model);
+            }
 
-            //    return View(car);
-            //}
 
-            //if (car.Price == 0)
-            //{
-            //    return RedirectToAction(nameof(Add));
+           var id = this.carService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId,dealer, model.BookingDate, model.ReturningDate, model.CarId);
 
-            //}
+            TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
-            //this.carService.Create(car.Brand, car.Model, car.Description, car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
-
-            //TempData[GlobalMessageKey] = "Thank you for adding your car!";
-
-            return Ok();
+            return RedirectToAction("Index","Home");
         }
     }
 }

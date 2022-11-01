@@ -232,34 +232,44 @@ namespace RentalCars.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("BookingDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("BookingDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CustomerFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CustomerLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DealerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ReturnDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CarId")
                         .IsUnique();
 
-                    b.HasIndex("DealerId")
+                    b.HasIndex("CustomerId")
                         .IsUnique();
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("DealerId")
                         .IsUnique();
 
                     b.ToTable("Bookings");
@@ -457,15 +467,15 @@ namespace RentalCars.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("RentalCars.Infrastructure.Data.Models.Dealer", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithOne()
-                        .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "DealerId")
+                        .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("RentalCars.Infrastructure.Data.Models.Dealer", null)
                         .WithOne()
-                        .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "UserId")
+                        .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "DealerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
