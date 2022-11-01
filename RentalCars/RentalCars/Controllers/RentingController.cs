@@ -32,7 +32,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(RentFormModel car)
+        public IActionResult Rent(RentFormModel car)
         {
             var dealerId = dealerService.IdByUser(User.GetId());
 
