@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\GitHub\ASP.NET-CORE-RENTING-CAR-PROJECT\RentalCars\RentalCars
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Areas/Admin/Views/Booking/Rent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQm9va2luZ1xSZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Areas/Admin/Views/Cars/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2Fyc1xBbGwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

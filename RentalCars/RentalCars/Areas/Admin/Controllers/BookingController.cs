@@ -18,21 +18,22 @@
             this.booking = booking;
         }
 
-        //public IActionResult Rent()
-        //{
-        //    var cars = this.cars
-        //        .All(publicOnly: false)
-        //        .Cars;
+        public IActionResult Rent()
+        {
+            var bookings = this.booking
+                .All()
+                .Bookings;
 
-        //    return View(cars);
-        //}
-
-        //public IActionResult ChangeVisibility(int id)
-        //{
-        //    this.cars.ChangeVisility(id);
+            return View(bookings);
+        }
 
 
-        //    return RedirectToAction(nameof(All));
-        //}
+        public IActionResult ChangeVisibility(int id, int carId)
+        {
+            this.booking.ChangeVisility(id,carId);
+
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

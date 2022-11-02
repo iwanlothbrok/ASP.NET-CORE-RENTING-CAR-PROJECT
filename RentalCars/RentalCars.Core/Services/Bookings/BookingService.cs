@@ -1,8 +1,9 @@
 ﻿namespace RentalCars.Core.Services.Bookings
 {
     using AutoMapper;
-    using RentalCars.Core.Models.Cars;
-    using RentalCars.Core.Services.Cars.Models;
+    using AutoMapper.QueryableExtensions;
+    using RentalCars.Core.Models.Renting;
+    using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
 
@@ -10,11 +11,13 @@
     {
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
+        private readonly ICarService car;
 
-        public BookingService(ApplicationDbContext data, IMapper mapper)
+        public BookingService(ApplicationDbContext data, IMapper mapper, ICarService car)
         {
             this.data = data;
             this.mapper = mapper;
+            this.car = car;
         }
 
         public int CreateBooking(string firstName, string lastName, string userId, int dealerId, string bookingDate, string returingDate, bool status, int carId)
@@ -38,15 +41,40 @@
         }
 
 
-        public void ChangeVisility(int id)
+        public void ChangeVisility(int id, int carId)
         {
             var booking = this.data.Bookings.Find(id);
+            var carForm = car.FindCar(carId);
 
+            carForm.IsPublic = false;
+            carForm.IsBooked = true;
             booking.Status = false;
 
             this.data.SaveChanges();
         }
 
-        
+
+        public BookingQueryModel All()
+        {
+
+            var bookingQuery = this.data.Bookings
+                                .Where(p => p.Status == true);
+
+
+
+            var bookings = GetBookings(bookingQuery);
+
+
+            return new BookingQueryModel
+            {
+                Bookings = bookings
+            };
+        }
+
+
+        public IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking)
+        => booking
+            .ProjectTo<AdminBookingModel>(this.mapper.ConfigurationProvider)
+            .ToList();
     }
 }

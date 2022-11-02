@@ -1,6 +1,5 @@
 ﻿namespace RentalCars.Core.Models.Renting
 {
-    using RentalCars.Core.Extensions.Attributes;
     using System.ComponentModel.DataAnnotations;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.User;
 

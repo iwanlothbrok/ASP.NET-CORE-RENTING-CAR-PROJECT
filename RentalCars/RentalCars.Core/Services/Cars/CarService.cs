@@ -21,8 +21,8 @@
         }
         public Car FindCar(int id)
         =>  this.data.Cars.Find(id);
-        
 
+      
         public bool Delete(int id, int dealerId)
         {
             var carData = this.data.Cars.Find(id);
@@ -74,7 +74,7 @@
         {
 
             var carsQuery = this.data.Cars
-                                .Where(p => p.IsPublic == publicOnly);
+                                .Where(p => p.IsPublic == publicOnly && p.IsBooked == false);
 
             if (!string.IsNullOrWhiteSpace(brand))
             {

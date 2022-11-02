@@ -17,6 +17,7 @@
             bool publicOnly = true);
 
         public Car FindCar(int id);
+
         public void ChangeVisility(int carId);
         public bool Edit(int id,
             string brand,
