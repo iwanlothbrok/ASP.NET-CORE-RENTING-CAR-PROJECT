@@ -48,7 +48,6 @@
 
         IEnumerable<CarCategoryServiceModel> AllCategories();
 
-        int CreateBooking(string firstName, string lastName, string userId, int dealerId, string bookingDate, string returingDate, int carId);
 
         bool CarsExists(int carId);
         bool CategoryExists(int categoryId);

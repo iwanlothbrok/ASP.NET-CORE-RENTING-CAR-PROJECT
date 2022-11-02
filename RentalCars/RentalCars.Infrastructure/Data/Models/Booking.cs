@@ -49,6 +49,6 @@
         /// status of the book
         /// </summary>
         [Required]
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; } = true;
     }
 }

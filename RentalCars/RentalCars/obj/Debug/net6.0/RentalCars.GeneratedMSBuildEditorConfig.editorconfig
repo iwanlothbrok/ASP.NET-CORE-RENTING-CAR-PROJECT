@@ -143,6 +143,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Pages/Booking/Rent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ1xSZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Pages/Cars/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2Fyc1xBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -173,10 +177,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Pages/Dealers/Become.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVhbGVyc1xCZWNvbWUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Pages/Renting/Rent.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVudGluZ1xSZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/GitHub/ASP.NET-CORE-RENTING-CAR-PROJECT/RentalCars/RentalCars/Pages/Shared/Error.cshtml]

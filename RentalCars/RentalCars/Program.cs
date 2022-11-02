@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using RentalCars.Core.Extensions;
 using RentalCars.Core.ModelBinders;
+using RentalCars.Core.Services.Bookings;
 using RentalCars.Core.Services.Cars;
 using RentalCars.Core.Services.Dealers;
 using RentalCars.Data;
@@ -28,6 +29,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IDealerService, DealerService>();
 
 
