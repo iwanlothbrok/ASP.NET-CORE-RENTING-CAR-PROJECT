@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
-
-namespace RentalCars.Infrastructure.Migrations
+﻿namespace RentalCars.Infrastructure.Migrations
 {
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CarColumnIsBookedAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

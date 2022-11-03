@@ -9,6 +9,7 @@
     using RentalCars.Core.Services.Dealers;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
+
     public class BookingController : BaseController
     {
 
@@ -69,7 +70,7 @@
                 return RedirectToAction("Index", "Home");
 
             }
-            TempData[GlobalMessageKey] = "Thank you for adding your car!";
+            TempData[GlobalMessageKey] = "Thank you for renting our car, your request is on the waitlist!";
 
             return RedirectToAction("Index","Home");
         }

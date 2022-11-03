@@ -37,7 +37,7 @@
         /// dealer id 
         /// </summary>
         
-        public int DealerId { get; set; }
+        public int? DealerId { get; set; }
        
         /// <summary>
         /// customer id 

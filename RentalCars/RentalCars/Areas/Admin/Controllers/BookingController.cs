@@ -5,6 +5,7 @@
     using RentalCars.Core.Services.Bookings;
     using RentalCars.Core.Services.Cars;
 
+
     [Area(Constants.AreaName)]
     [Authorize(Roles = Constants.AreaName)]
     public class BookingController : Controller

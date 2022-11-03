@@ -54,7 +54,7 @@
         /// <summary>
         /// if the car is booked
         /// </summary>
-        public bool IsBooked { get; set; }= false;
+        public bool IsBooked { get; set; } = false;
 
         /// <summary>
         /// price for 1 day for the car 
