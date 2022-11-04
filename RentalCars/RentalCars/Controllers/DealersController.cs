@@ -40,15 +40,11 @@
                 return View(dealer);
             }
 
-            var dealerForm = this.mapper.Map<Dealer>(dealer);
-            dealerForm.UserId = User.GetId();
-
-            await data.Dealers.AddAsync(dealerForm);
-            await data.SaveChangesAsync();
+            dealerService.Become(dealer,userId: User.GetId());
 
             TempData[GlobalMessageKey] = "You become dealer successfully!";
 
-            return RedirectToAction("All", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -29,9 +29,9 @@
         }
 
 
-        public IActionResult ChangeVisibility(int id, int carId)
+        public IActionResult ChangeVisibility(int id)
         {
-            this.booking.ChangeVisility(id,carId);
+            this.booking.ChangeVisility(id);
 
 
             return RedirectToAction("Index", "Home");

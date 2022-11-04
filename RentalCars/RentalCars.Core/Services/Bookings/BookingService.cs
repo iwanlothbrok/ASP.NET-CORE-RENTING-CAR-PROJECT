@@ -41,13 +41,11 @@
         }
 
 
-        public void ChangeVisility(int id, int carId)
+        public void ChangeVisility(int id)
         {
             var booking = this.data.Bookings.Find(id);
-            var carForm = car.FindCar(carId);
+          
 
-            carForm.IsPublic = false;
-            carForm.IsBooked = true;
             booking.Status = false;
 
             this.data.SaveChanges();

@@ -69,7 +69,7 @@ app.UseEndpoints(endpoints =>
  {
      endpoints.MapControllerRoute(
          name: "Areas",
-         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}/{carId?}");
 
      endpoints.MapDefaultControllerRoute();
      endpoints.MapRazorPages();
