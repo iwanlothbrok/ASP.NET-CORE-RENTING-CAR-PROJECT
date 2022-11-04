@@ -16,6 +16,7 @@
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
 
+        public IEnumerable<CarIndexModel> GetLastThreeCars();
         public Car FindCar(int id);
 
         public void ChangeVisility(int carId);

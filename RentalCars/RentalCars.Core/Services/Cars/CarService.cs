@@ -22,7 +22,22 @@
         public Car FindCar(int id)
         =>  this.data.Cars.Find(id);
 
-      
+
+        public IEnumerable<CarIndexModel> GetLastThreeCars()
+         => data
+            .Cars
+            .OrderByDescending(i => i.Id)
+            .Where(p => p.IsPublic == true && p.IsBooked == false)
+            .Select(m => new CarIndexModel
+            {
+                Id = m.Id,
+                Brand = m.Brand,
+                ImageUrl = m.ImageUrl
+            }).Take(3)
+            .ToList();
+
+
+
         public bool Delete(int id, int dealerId)
         {
             var carData = this.data.Cars.Find(id);
