@@ -214,7 +214,8 @@
                    Id = c.Id,
                    Brand = c.Brand,
                    Model = c.Model,
-                   Year= c.Year
+                   Year= c.Year,
+                   Price = c.Price
                })
                .ToList();
 

@@ -6,6 +6,7 @@
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using System;
 
     public class BookingService : IBookingService
     {
@@ -20,7 +21,7 @@
             this.car = car;
         }
 
-        public int CreateBooking(string firstName, string lastName, string userId, int dealerId, string bookingDate, string returingDate, bool status, int carId)
+        public int CreateBooking(string firstName, string lastName, string userId, int dealerId, string bookingDate,decimal price, string returingDate, bool status, int carId)
         {
             var booking = new Booking
             {
@@ -28,6 +29,7 @@
                 CustomerLastName = lastName,
                 CustomerId = userId,
                 DealerId = dealerId,
+                DailyPrice = GetCarPrice(bookingDate,returingDate,price),
                 BookingDate = bookingDate,
                 ReturnDate = returingDate,
                 IsConfirmed = status,
@@ -39,7 +41,18 @@
 
             return booking.Id;
         }
-        
+
+        public decimal GetCarPrice(string bookingDate, string returningDate, decimal price)
+        {
+
+            TimeSpan diff = DateTime.Parse(returningDate) - DateTime.Parse(bookingDate);
+
+            var days = diff.Days;
+
+            price = price * days;
+
+            return price;
+        }
 
         public void ChangeVisility(int id)
         {

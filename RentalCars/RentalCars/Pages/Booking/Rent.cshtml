@@ -32,8 +32,7 @@
                 <select asp-for="CarId" class="form-control">
                     @foreach (var car in Model.Cars)
                     {
-                        <option value="@car.Id">@car.Brand @car.Model (@car.Year)</option>
-                        
+                        <option value="@car.Id">@car.Brand @car.Model (Price:@car.Price)(Year of the car @car.Year)</option>                        
                     }
                 </select>
                 <span asp-validation-for="CarId" class="small text-danger"></span>

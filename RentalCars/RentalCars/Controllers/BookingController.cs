@@ -39,7 +39,7 @@
         {
             var userId = User.GetId();
             var dealer = dealerService.IdByUser(userId);
-
+            
             if (dealer != 0)
             {
                 if (carService.IsByDealer(model.CarId, dealer))
@@ -59,9 +59,12 @@
 
                 return View(model);
             }
+            var carId = model.CarId;
+            var car = carService.FindCar(carId);
+            var price = car.Price;
 
-
-           var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId,dealer, model.BookingDate, model.ReturningDate,true, model.CarId);
+                
+           var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId,dealer, model.BookingDate,price, model.ReturningDate,false, model.CarId);
 
             if (isValid == 0)
             {
