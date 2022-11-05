@@ -30,7 +30,7 @@
                 DealerId = dealerId,
                 BookingDate = bookingDate,
                 ReturnDate = returingDate,
-                Status = status,
+                IsConfirmed = status,
                 CarId = carId
             };
 
@@ -39,24 +39,25 @@
 
             return booking.Id;
         }
-
+        
 
         public void ChangeVisility(int id)
         {
             var booking = this.data.Bookings.Find(id);
           
 
-            booking.Status = false;
+            booking.IsConfirmed = true;
 
             this.data.SaveChanges();
         }
+
 
 
         public BookingQueryModel All()
         {
 
             var bookingQuery = this.data.Bookings
-                                .Where(p => p.Status == true);
+                                .Where(p => p.IsConfirmed == false);
 
 
 

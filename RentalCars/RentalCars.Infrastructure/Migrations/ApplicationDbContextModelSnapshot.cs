@@ -251,15 +251,18 @@ namespace RentalCars.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DealerId")
+                    b.Property<decimal>("DailyPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("DealerId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ReturnDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -270,9 +273,10 @@ namespace RentalCars.Infrastructure.Migrations
                         .IsUnique();
 
                     b.HasIndex("DealerId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[DealerId] IS NOT NULL");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Car", b =>
@@ -282,6 +286,9 @@ namespace RentalCars.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("BookingId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Brand")
                         .IsRequired()
@@ -323,7 +330,7 @@ namespace RentalCars.Infrastructure.Migrations
 
                     b.HasIndex("DealerId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Category", b =>
@@ -341,7 +348,7 @@ namespace RentalCars.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -408,7 +415,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Dealers", (string)null);
+                    b.ToTable("Dealers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -479,8 +486,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasOne("RentalCars.Infrastructure.Data.Models.Dealer", null)
                         .WithOne()
                         .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "DealerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Car", b =>

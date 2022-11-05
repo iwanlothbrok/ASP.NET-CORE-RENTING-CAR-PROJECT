@@ -82,5 +82,10 @@
         /// </summary>  
         [ForeignKey("DealerId")]
         public Dealer Dealer { get; set; }
+        
+        /// <summary>
+        /// if car is booked this is the id of booking 
+        /// </summary>
+        public int? BookingId { get; set; }
     }
 }

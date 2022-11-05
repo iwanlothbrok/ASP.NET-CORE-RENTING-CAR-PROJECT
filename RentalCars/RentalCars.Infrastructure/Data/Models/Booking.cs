@@ -27,6 +27,8 @@
         [Required]
         public string ReturnDate { get; set; } = null!;
 
+        
+        public decimal DailyPrice { get; set; }
         /// <summary>
         /// car id 
         /// </summary>
@@ -48,7 +50,6 @@
         /// <summary>
         /// status of the book
         /// </summary>
-        [Required]
-        public bool Status { get; set; } = true;
+        public bool IsConfirmed { get; set; } = false;
     }
 }
