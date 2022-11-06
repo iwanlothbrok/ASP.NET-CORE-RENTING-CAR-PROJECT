@@ -39,7 +39,7 @@
         {
             var userId = User.GetId();
             var dealer = dealerService.IdByUser(userId);
-            
+
             if (dealer != 0)
             {
                 if (carService.IsByDealer(model.CarId, dealer))
@@ -61,10 +61,21 @@
             }
             var carId = model.CarId;
             var car = carService.FindCar(carId);
+            if (car.IsBooked == true || car.IsPublic == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             var price = car.Price;
 
-                
-           var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId,dealer, model.BookingDate,price, model.ReturningDate,false, model.CarId);
+            var isDateValid = DateChecker(model.BookingDate, model.ReturningDate);
+
+            if (isDateValid == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+           
+            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, false, model.CarId);
 
             if (isValid == 0)
             {
@@ -75,7 +86,39 @@
             }
             TempData[GlobalMessageKey] = "Thank you for renting our car, your request is on the waitlist!";
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
+        }
+        public bool DateChecker(string dateOfBooking, string dateOfReturning)
+        {
+            char[] delimiterChars = { ' ', '-', '/', '\\', ',' };
+
+
+
+            string[] bookingDate = dateOfBooking.Split(delimiterChars);
+            string[] returningDate = dateOfReturning.Split(delimiterChars);
+
+
+            var bookingMonth = int.Parse(bookingDate[0]);
+            var returninMonth = int.Parse(returningDate[0]);
+            var bookingDay = int.Parse(bookingDate[1]);
+            var returningDay = int.Parse(returningDate[1]);
+            var bookingYear = int.Parse(bookingDate[2]);
+            var returningYear = int.Parse(returningDate[2]);
+
+            if (bookingDay > 31 || returningDay > 31)
+            {
+                return false;
+            }
+            if (bookingMonth > 12 || returninMonth > 12)
+            {
+                return false;
+            }
+            if (bookingYear > 2023 && bookingYear < 2022 || returningYear > 2023 && returningYear < 2022)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

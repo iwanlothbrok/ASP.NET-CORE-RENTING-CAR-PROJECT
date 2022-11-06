@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jXM3SjpjSkSIgR6O+flE6lA5DoC0wA5HRXmYK0NmNN4=",
+  "Hash": "fpqrv0R3aS1nmdDsinWnUm7oDuCFPP32nOC3l0YszOA=",
   "Source": "RentalCars",
   "BasePath": "_content/RentalCars",
   "Mode": "Default",
@@ -4333,6 +4333,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\boxed-bg.png"
+    },
+    {
+      "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\img\\CarRent.png",
+      "SourceId": "RentalCars",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\",
+      "BasePath": "_content/RentalCars",
+      "RelativePath": "img/CarRent.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\CarRent.png"
     },
     {
       "Identity": "C:\\GitHub\\ASP.NET-CORE-RENTING-CAR-PROJECT\\RentalCars\\RentalCars\\wwwroot\\img\\cars\\huinday.png",

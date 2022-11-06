@@ -20,7 +20,7 @@
         }
 
         public IActionResult Rent()
-        {
+       {
             var bookings = this.booking
                 .All()
                 .Bookings;
@@ -34,7 +34,7 @@
             this.booking.ChangeVisility(id);
 
 
-            return RedirectToAction("Index", "Home");
+            return Ok();
         }
     }
 }
