@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Services.Bookings;
     using RentalCars.Core.Services.Cars;
+    using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
 
     [Area(Constants.AreaName)]
@@ -20,7 +21,7 @@
         }
 
         public IActionResult Rent()
-       {
+        {
             var bookings = this.booking
                 .All()
                 .Bookings;
@@ -35,6 +36,19 @@
 
 
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var findBook = this.booking.Delete(id);
+
+            if (findBook == true)
+            {
+                TempData[GlobalMessageKey] = "You delete booking successfully!";
+            }
+
+            return View();
         }
     }
 }
