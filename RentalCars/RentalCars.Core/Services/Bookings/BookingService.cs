@@ -51,10 +51,10 @@
             string[] returningDate = dateOfReturning.Split(delimiterChars);
 
 
-            var bookingMonth = int.Parse(bookingDate[0]);
-            var returninMonth = int.Parse(returningDate[0]);
-            var bookingDay = int.Parse(bookingDate[1]);
-            var returningDay = int.Parse(returningDate[1]);
+            var bookingMonth = int.Parse(bookingDate[1]);
+            var returninMonth = int.Parse(returningDate[1]);
+            var bookingDay = int.Parse(bookingDate[0]);
+            var returningDay = int.Parse(returningDate[0]);
             var bookingYear = int.Parse(bookingDate[2]);
             var returningYear = int.Parse(returningDate[2]);
 
