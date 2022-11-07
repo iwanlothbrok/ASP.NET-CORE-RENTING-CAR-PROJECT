@@ -50,6 +50,7 @@
         /// <summary>
         /// status of the book
         /// </summary>
-        public bool IsConfirmed { get; set; } = false;
+        public bool IsConfirmedByAdmin { get; set; } = false;
+        public bool IsConfirmedByDealer{ get; set; } = false;
     }
 }

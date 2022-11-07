@@ -21,7 +21,14 @@
             this.car = car;
         }
 
-        public int CreateBooking(string firstName, string lastName, string userId, int dealerId, string bookingDate,decimal price, string returingDate, bool status, int carId)
+        public int CreateBooking(string firstName,
+            string lastName,
+            string userId,
+            int dealerId,
+            string bookingDate,
+            decimal price,
+            string returingDate,
+            int carId)
         {
             var booking = new Booking
             {
@@ -29,10 +36,11 @@
                 CustomerLastName = lastName,
                 CustomerId = userId,
                 DealerId = dealerId,
-                DailyPrice = GetCarPrice(bookingDate,returingDate,price),
+                DailyPrice = GetCarPrice(bookingDate, returingDate, price),
                 BookingDate = bookingDate,
                 ReturnDate = returingDate,
-                IsConfirmed = status,
+                IsConfirmedByAdmin = false,
+                IsConfirmedByDealer = false,
                 CarId = carId
             };
 
@@ -44,8 +52,6 @@
         public bool DateChecker(string dateOfBooking, string dateOfReturning)
         {
             char[] delimiterChars = { ' ', '-', '/', '\\', ',' };
-
-
 
             string[] bookingDate = dateOfBooking.Split(delimiterChars);
             string[] returningDate = dateOfReturning.Split(delimiterChars);
@@ -90,7 +96,7 @@
             return true;
         }
 
-       
+
 
         public decimal GetCarPrice(string bookingDate, string returningDate, decimal price)
         {
@@ -104,23 +110,31 @@
             return price;
         }
 
-        public void ChangeVisility(int id)
+        public void ChangeVisilityByAdmin(int id)
         {
             var booking = this.data.Bookings.Find(id);
-          
 
-            booking.IsConfirmed = true;
+
+            booking.IsConfirmedByAdmin = true;
 
             this.data.SaveChanges();
         }
 
+        public void ChangeVisilityByDealer(int id)
+        {
+            var booking = this.data.Bookings.Find(id);
 
+
+            booking.IsConfirmedByDealer = true;
+
+            this.data.SaveChanges();
+        }
 
         public BookingQueryModel All()
         {
 
             var bookingQuery = this.data.Bookings
-                                .Where(p => p.IsConfirmed == false);
+                                .Where(p => p.IsConfirmedByAdmin == false || p.IsConfirmedByDealer == false);
 
 
 

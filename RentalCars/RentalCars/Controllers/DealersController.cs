@@ -1,27 +1,29 @@
 ﻿namespace CarRentingSystem.Controllers
 {
-    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Controllers;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Dealers;
+    using RentalCars.Core.Models.Renting;
+    using RentalCars.Core.Services.Bookings;
+    using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
-    using RentalCars.Infrastructure.Data.Models;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
     public class DealersController : BaseController
     {
-        private readonly ApplicationDbContext data;
         private readonly IDealerService dealerService;
-        private readonly IMapper mapper;
+        private readonly IBookingService booking;
+        private readonly ICarService car;
+        private readonly ApplicationDbContext data;
 
-        public DealersController(ApplicationDbContext data, IDealerService dealer, IMapper mapper)
+        public DealersController(IDealerService dealerService, IBookingService booking, ICarService car, ApplicationDbContext data)
         {
-
+            this.dealerService = dealerService;
+            this.booking = booking;
+            this.car = car;
             this.data = data;
-            this.dealerService = dealer;
-            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -40,13 +42,28 @@
                 return View(dealer);
             }
 
-            dealerService.Become(dealer,userId: User.GetId());
+            dealerService.Become(dealer, userId: User.GetId());
 
             TempData[GlobalMessageKey] = "You become dealer successfully!";
 
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public IActionResult Rent()
+        {
+            var bookings = this.booking
+                .All()
+                .Bookings;
 
+            return View(bookings);
+        }
+        public IActionResult ChangeVisibility(int id)
+        {
+            this.booking.ChangeVisilityByDealer(id);
+
+
+            return Redirect("https://localhost:7163/");
+        }
 
     }
 }

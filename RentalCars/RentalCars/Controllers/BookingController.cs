@@ -78,7 +78,7 @@
             }
 
            
-            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, false, model.CarId);
+            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == 0)
             {

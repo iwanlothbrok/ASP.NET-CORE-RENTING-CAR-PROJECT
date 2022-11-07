@@ -32,10 +32,10 @@
 
         public IActionResult ChangeVisibility(int id)
         {
-            this.booking.ChangeVisility(id);
+            this.booking.ChangeVisilityByAdmin(id);
 
 
-            return Ok();
+            return Redirect("https://localhost:7163/");
         }
 
         [HttpGet]
