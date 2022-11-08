@@ -21,6 +21,13 @@
             this.car = car;
         }
 
+        public bool CheckUser(string id)
+            => data.Bookings.Any(c => c.CustomerId == id);
+
+
+        public bool CheckIfIsDealer(int id)
+            => data.Bookings.Any(c => c.DealerId == id);
+
         public int FindCar(int id)
         => data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).FirstOrDefault();
 
@@ -34,6 +41,13 @@
             string returingDate,
             int carId)
         {
+
+            var allPrice = GetCarPrice(bookingDate, returingDate, price);
+
+            if (allPrice <= 0)
+            {
+                return -1;
+            }
             var booking = new Booking
             {
                 CustomerFirstName = firstName,
@@ -108,9 +122,15 @@
             TimeSpan diff = DateTime.Parse(returningDate) - DateTime.Parse(bookingDate);
 
             var days = diff.Days;
+            if (days <= 0)
+            {
+                return 0;
+            }
+
 
             price = price * days;
 
+            
             return price;
         }
 
@@ -152,7 +172,7 @@
 
             if (bookings.IsConfirmedByDealer == true && bookings.IsConfirmedByAdmin == true)
             {
-                
+
                 searchingCar.IsPublic = false;
                 searchingCar.BookingId = id;
                 data.SaveChanges();
@@ -164,7 +184,7 @@
 
         public BookingQueryModel All()
         {
-
+            
             var bookingQuery = this.data.Bookings
                                 .Where(p => p.IsConfirmedByAdmin == false || p.IsConfirmedByDealer == false);
 

@@ -17,6 +17,8 @@
                    string returingDate,
                    int carId);
         int FindCar(int id);
+        bool CheckIfIsDealer(int id);
+        bool CheckUser(string id);
         void ChangeVisilityByDealer(int id);
         void ChangeVisilityByAdmin(int id);
         bool Delete(int id);

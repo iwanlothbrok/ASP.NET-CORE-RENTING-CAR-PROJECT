@@ -27,7 +27,7 @@
         [Required]
         public string ReturnDate { get; set; } = null!;
 
-        
+        [Range(0, int.MaxValue)]
         public decimal DailyPrice { get; set; }
         /// <summary>
         /// car id 

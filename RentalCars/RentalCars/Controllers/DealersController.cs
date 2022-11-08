@@ -51,6 +51,21 @@
         [HttpGet]
         public IActionResult Rent()
         {
+            var userId = User.GetId();
+
+            int dealerId = dealerService.IdByUser(userId);
+
+
+
+
+            if (this.booking.CheckIfIsDealer(dealerId) == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+           
+
+
+
             var bookings = this.booking
                 .All()
                 .Bookings;
@@ -59,8 +74,6 @@
         }
         public IActionResult ChangeVisibility(int id)
         {
-
-
             this.booking.ChangeVisilityByDealer(id);
 
             var carId = this.booking.FindCar(id);

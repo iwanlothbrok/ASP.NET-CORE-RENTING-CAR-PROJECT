@@ -40,6 +40,10 @@
             var userId = User.GetId();
             var dealer = dealerService.IdByUser(userId);
 
+            if (bookingService.CheckUser(userId))
+            {
+                return RedirectToAction("Error", "Home");
+            }
             if (dealer != 0)
             {
                 if (carService.IsByDealer(model.CarId, dealer))
@@ -77,7 +81,11 @@
                 return RedirectToAction("Error", "Home");
             }
 
-           
+            if (price > 0)
+            {
+                return RedirectToAction("Error", "Home");
+
+            }
             var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == 0)
@@ -91,6 +99,6 @@
 
             return RedirectToAction("Index", "Home");
         }
-       
+
     }
 }
