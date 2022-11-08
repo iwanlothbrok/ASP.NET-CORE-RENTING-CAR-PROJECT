@@ -8,6 +8,7 @@
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using System.Runtime.CompilerServices;
 
     public class CarService : ICarService
     {
@@ -22,6 +23,8 @@
         public Car FindCar(int id)
         =>  this.data.Cars.Find(id);
 
+
+        
 
         public IEnumerable<CarIndexModel> GetLastThreeCars()
          => data

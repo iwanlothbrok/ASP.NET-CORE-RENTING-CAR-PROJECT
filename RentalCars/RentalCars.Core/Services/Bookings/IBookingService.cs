@@ -5,6 +5,7 @@
 
     public interface IBookingService
     {
+        bool IsRented(int id, int carId);
         BookingQueryModel All();
         IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking);
         public int CreateBooking(string firstName,
@@ -15,7 +16,7 @@
                    decimal price,
                    string returingDate,
                    int carId);
-
+        int FindCar(int id);
         void ChangeVisilityByDealer(int id);
         void ChangeVisilityByAdmin(int id);
         bool Delete(int id);

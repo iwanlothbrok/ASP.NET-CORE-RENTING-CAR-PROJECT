@@ -34,6 +34,9 @@
         {
             this.booking.ChangeVisilityByAdmin(id);
 
+            var carId = this.booking.FindCar(id);
+
+            this.booking.IsRented(id, carId);
 
             return Redirect("https://localhost:7163/");
         }

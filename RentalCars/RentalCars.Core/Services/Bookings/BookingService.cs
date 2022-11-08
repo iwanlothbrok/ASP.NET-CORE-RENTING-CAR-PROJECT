@@ -21,6 +21,10 @@
             this.car = car;
         }
 
+        public int FindCar(int id)
+        => data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).FirstOrDefault();
+
+
         public int CreateBooking(string firstName,
             string lastName,
             string userId,
@@ -128,6 +132,34 @@
             booking.IsConfirmedByDealer = true;
 
             this.data.SaveChanges();
+        }
+
+        public bool IsRented(int id, int carId)
+        {
+            var searchingCar = car.FindCar(carId);
+
+            if (car == null)
+            {
+                return false;
+            }
+
+            var bookings = this.data.Bookings.Find(id);
+
+            if (bookings == null)
+            {
+                return false;
+            }
+
+            if (bookings.IsConfirmedByDealer == true && bookings.IsConfirmedByAdmin == true)
+            {
+                
+                searchingCar.IsPublic = false;
+                searchingCar.BookingId = id;
+                data.SaveChanges();
+            }
+
+
+            return true;
         }
 
         public BookingQueryModel All()

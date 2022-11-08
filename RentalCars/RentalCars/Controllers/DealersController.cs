@@ -59,8 +59,13 @@
         }
         public IActionResult ChangeVisibility(int id)
         {
+
+
             this.booking.ChangeVisilityByDealer(id);
 
+            var carId = this.booking.FindCar(id);
+
+            this.booking.IsRented(id, carId);
 
             return Redirect("https://localhost:7163/");
         }
