@@ -279,7 +279,7 @@ namespace RentalCars.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[DealerId] IS NOT NULL");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Car", b =>
@@ -333,7 +333,7 @@ namespace RentalCars.Infrastructure.Migrations
 
                     b.HasIndex("DealerId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Category", b =>
@@ -351,7 +351,7 @@ namespace RentalCars.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -418,7 +418,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Dealers");
+                    b.ToTable("Dealers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

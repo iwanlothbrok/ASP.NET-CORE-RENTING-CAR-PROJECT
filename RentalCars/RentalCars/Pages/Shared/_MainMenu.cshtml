@@ -17,8 +17,19 @@
 
 				if (userIsDealer)
 				{
-					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Mine">Mine</a>
+					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Mine">My Cars</a>
 					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Add">Add Car</a>
+					<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Rent">See Offers</a>
+				}
+				if (User.IsAdmin())
+				{
+					<a class="nav-link active" asp-area="Admin" asp-controller="Booking" asp-action="Rent">Accept Bookings</a>
+					<a class="nav-link active" asp-area="Admin" asp-controller="Cars" asp-action="All">Accept Cars</a>
+
+				}
+				if (userIsDealer == false)
+				{
+					<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Become">Become Dealer</a>
 				}
 			}
 		</li>

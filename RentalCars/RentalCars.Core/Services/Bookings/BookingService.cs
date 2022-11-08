@@ -174,6 +174,7 @@
             {
 
                 searchingCar.IsPublic = false;
+                searchingCar.IsBooked = true;
                 searchingCar.BookingId = id;
                 data.SaveChanges();
             }
