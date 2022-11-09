@@ -10,17 +10,17 @@
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
 
-        private AdminController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> CreateRolesandUsers()
         {
             bool x = await roleManager.RoleExistsAsync("Admin");
-            if (!x)
+            if (x)
             {
                 // first we create Admin rool    
                 var role = new IdentityRole();
@@ -34,7 +34,7 @@
                 //user.Email = "admin@admin.com";
                 //string userPWD = "Admin.1";
 
-                IdentityUser user = userManager.Users.FirstOrDefault(e => e.Email == "iwan@abv.bg");
+                IdentityUser user = userManager.Users.FirstOrDefault(e => e.Email == "admin@crs.com");
 
                 //IdentityResult chkUser = await userManager.CreateAsync(user, userPWD);
 
@@ -63,7 +63,7 @@
                 role.Name = "Employee";
                 await roleManager.CreateAsync(role);
             }
-            return RedirectToAction("Index", "Home");
+            return Redirect("https://localhost:7163/");
         }
     }
 }
