@@ -1,11 +1,10 @@
 ﻿namespace RentalCars.Core.Models.Cars
 {
-    using RentalCars.Core.Services.Cars.Models;
     using System.ComponentModel.DataAnnotations;
+    using RentalCars.Core.Services.Cars.Models;
 
     public class AllCarsQueryModel
     {
-
         public const int CarsPerPage = 3;
 
         public string Brand { get; init; }

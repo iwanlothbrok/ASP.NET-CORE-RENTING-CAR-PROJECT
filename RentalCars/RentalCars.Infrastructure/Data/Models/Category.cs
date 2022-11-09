@@ -2,7 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Category;
-
     public class Category
     {
         /// <summary>

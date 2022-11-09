@@ -2,16 +2,15 @@
 {
     using Microsoft.AspNetCore.Mvc.ModelBinding;
     using System.Globalization;
-
-
     public class DateTimeModelBinder : IModelBinder
     {
         private readonly string customDateFormat;
 
-        public DateTimeModelBinder(string _customDateFormat)
+        public DateTimeModelBinder(string customDateFormat)
         {
-            customDateFormat = _customDateFormat;
+            this.customDateFormat = customDateFormat;
         }
+
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             ValueProviderResult valueResult = bindingContext
@@ -26,7 +25,7 @@
 
                 try
                 {
-                    actualValue = DateTime.ParseExact(dateValue, customDateFormat, CultureInfo.InvariantCulture);
+                    actualValue = DateTime.ParseExact(dateValue, this.customDateFormat, CultureInfo.InvariantCulture);
                     success = true;
                 }
                 catch (FormatException)

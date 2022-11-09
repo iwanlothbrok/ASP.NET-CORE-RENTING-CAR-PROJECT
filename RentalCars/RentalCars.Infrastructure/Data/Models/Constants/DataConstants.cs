@@ -11,8 +11,8 @@
             public const int DescriptionMinLength = 10;
             public const int YearMinValue = 2000;
             public const int YearMaxValue = 2050;
-
         }
+
         public class User
         {
             public const int FullNameMinLength = 2;
@@ -24,7 +24,6 @@
         public static class Category
         {
             public const int NameMaxLenght = 30;
-
         }
 
         public static class Dealer
@@ -33,7 +32,6 @@
             public const int NameMinLength = 3;
             public const int PhoneNumberMaxLength = 30;
             public const int PhoneNumberMinLength = 6;
-
         }
 
         public class DateFormating

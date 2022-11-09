@@ -1,9 +1,8 @@
 ﻿namespace RentalCars.Core.Models.Cars
 {
-
-    using RentalCars.Core.Services.Cars.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using RentalCars.Core.Services.Cars.Models;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Car;
 
     public class CarFormModel

@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Services.Cars;
-
+    using RentalCars.Core.Services.Cars.Models;
 
     [Area(Constants.AreaName)]
     [Authorize(Roles = Constants.AreaName)]
@@ -18,9 +18,10 @@
 
         public IActionResult All()
         {
-            var cars = this.cars
+            IEnumerable<CarServiceModel> cars = this.cars
                 .All(publicOnly: false)
-                .Cars;
+                .Cars
+                .ToList();
 
             return View(cars);
         }
@@ -28,7 +29,6 @@
         public IActionResult ChangeVisibility(int id)
         {
             this.cars.ChangeVisility(id);
-
 
             return RedirectToAction(nameof(All));
         }

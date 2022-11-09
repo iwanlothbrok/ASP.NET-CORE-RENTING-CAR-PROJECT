@@ -1,6 +1,6 @@
 ﻿namespace RentalCars.Core.ModelBinders
 {
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     public class DecimalModelBinderProvider : IModelBinderProvider
     {

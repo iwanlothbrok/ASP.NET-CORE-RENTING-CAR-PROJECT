@@ -1,8 +1,6 @@
 ﻿namespace RentalCars.Infrastructure.Migrations
 {
-
     using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class CarsAndBookingColumnsAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -2,10 +2,10 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Bookings;
     using RentalCars.Core.Services.Cars;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
-
 
     [Area(Constants.AreaName)]
     [Authorize(Roles = Constants.AreaName)]
@@ -22,19 +22,19 @@
 
         public IActionResult Rent()
         {
-            var bookings = this.booking
+            IEnumerable<AdminBookingModel> bookings = this.booking
                 .All()
-                .Bookings;
+                .Bookings
+                .ToList();
 
             return View(bookings);
         }
-
 
         public IActionResult ChangeVisibility(int id)
         {
             this.booking.ChangeVisilityByAdmin(id);
 
-            var carId = this.booking.FindCar(id);
+            int carId = this.booking.FindCar(id);
 
             this.booking.IsRented(id, carId);
 
@@ -44,7 +44,7 @@
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var findBook = this.booking.Delete(id);
+            bool findBook = this.booking.Delete(id);
 
             if (findBook == true)
             {

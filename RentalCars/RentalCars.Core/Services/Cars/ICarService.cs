@@ -8,6 +8,7 @@
     public interface ICarService
     {
         bool Delete(int id, int dealerId);
+
         CarQueryServiceModel All(
            string brand = null,
            string searchTerm = null,
@@ -17,9 +18,11 @@
             bool publicOnly = true);
 
         public IEnumerable<CarIndexModel> GetLastThreeCars();
+
         public Car FindCar(int id);
 
         public void ChangeVisility(int carId);
+
         public bool Edit(int id,
             string brand,
             string model,
@@ -50,8 +53,8 @@
 
         IEnumerable<CarCategoryServiceModel> AllCategories();
 
-
         bool CarsExists(int carId);
+
         bool CategoryExists(int categoryId);
 
         IEnumerable<RentCarModel> AllCars();

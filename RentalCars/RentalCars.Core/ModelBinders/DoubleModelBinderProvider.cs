@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-
     public class DoubleModelBinderProvider : IModelBinderProvider
     {
         public IModelBinder? GetBinder(ModelBinderProviderContext context)

@@ -21,7 +21,6 @@
             return locations.Union(viewLocations);          //Add mvc default locations after ours
         }
 
-
         public void PopulateValues(ViewLocationExpanderContext context)
         {
             context.Values["customviewlocation"] = nameof(ViewLocationExpander);

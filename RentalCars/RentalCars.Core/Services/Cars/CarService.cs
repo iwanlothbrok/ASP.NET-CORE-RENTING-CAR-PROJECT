@@ -8,7 +8,6 @@
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using System.Runtime.CompilerServices;
 
     public class CarService : ICarService
     {
@@ -20,14 +19,11 @@
             this.data = data;
             this.mapper = mapper;
         }
-        public Car FindCar(int id)
-        =>  this.data.Cars.Find(id);
-
-
-        
+        public Car? FindCar(int id)
+        => this.data.Cars.Find(id);
 
         public IEnumerable<CarIndexModel> GetLastThreeCars()
-         => data
+         => this.data
             .Cars
             .OrderByDescending(i => i.Id)
             .Where(p => p.IsPublic == true && p.IsBooked == false)
@@ -37,19 +33,17 @@
                 Brand = m.Brand,
                 ImageUrl = m.ImageUrl
             }).Take(3)
-            .ToList();
-
-
+              .ToList();
 
         public bool Delete(int id, int dealerId)
         {
-            var carData = this.data.Cars.Find(id);
+            Car? carData = this.data.Cars.Find(id);
+
             bool isMyCar = true;
 
             if (carData == null)
             {
                 isMyCar = false;
-
             }
 
             if (dealerId == 0)
@@ -61,25 +55,25 @@
             {
                 isMyCar = false;
             }
+
             if (isMyCar)
             {
                 this.data.Cars.Remove(carData);
                 this.data.SaveChanges();
             }
 
-
             return isMyCar;
-
         }
-
 
         public void ChangeVisility(int carId)
         {
-            var car = this.data.Cars.Find(carId);
+            Car? car = this.data.Cars.Find(carId);
 
-            car.IsPublic = !car.IsPublic;
-
-            this.data.SaveChanges();
+            if (car != null)
+            {
+                car.IsPublic = !car.IsPublic;
+                this.data.SaveChanges();
+            }
         }
 
         public CarQueryServiceModel All(
@@ -90,7 +84,6 @@
            int carsPerPage = int.MaxValue,
             bool publicOnly = true)
         {
-
             var carsQuery = this.data.Cars
                                 .Where(p => p.IsPublic == publicOnly && p.IsBooked == false);
 
@@ -113,12 +106,12 @@
                 CarSorting.DateCreated or _ => carsQuery.OrderByDescending(c => c.Id)
             };
 
-            var totalCars = carsQuery.Count();
+            int totalCars = carsQuery.Count();
 
-            var cars = GetCars(carsQuery
+            IEnumerable<CarServiceModel> cars = GetCars(carsQuery
                 .Skip((currentPage - 1) * carsPerPage)
-                .Take(carsPerPage));
-
+                .Take(carsPerPage))
+                .ToList();
 
             return new CarQueryServiceModel
             {
@@ -129,7 +122,6 @@
             };
         }
 
-      
         public int Create(string brand, string model, string description, decimal price, string imageUrl, int year, int categoryId, int dealerId)
         {
             var carData = new Car
@@ -145,15 +137,15 @@
                 IsPublic = false
             };
 
-            data.Cars.Add(carData);
-            data.SaveChanges();
+            this.data.Cars.Add(carData);
+            this.data.SaveChanges();
 
             return carData.Id;
         }
 
         public bool Edit(int id, string brand, string model, decimal price, string description, string imageUrl, int year, int categoryId)
         {
-            var carData = this.data.Cars.Find(id);
+            Car? carData = this.data.Cars.Find(id);
 
             if (carData == null)
             {
@@ -189,7 +181,6 @@
                 .OrderBy(br => br)
                 .ToList();
 
-
         public IEnumerable<CarServiceModel> ByUser(string userId)
              => GetCars(this.data
                  .Cars
@@ -201,7 +192,7 @@
                 .Any(c => c.Id == carId && c.DealerId == dealerId);
 
         public IEnumerable<CarCategoryServiceModel> AllCategories()
-          => data
+          => this.data
                 .Categories
                 .Select(c => new CarCategoryServiceModel
                 {
@@ -209,26 +200,27 @@
                     Name = c.Name
                 })
                 .ToList();
+
         public IEnumerable<RentCarModel> AllCars()
-         => data
+         => this.data
                .Cars
                .Select(c => new RentCarModel
                {
                    Id = c.Id,
                    Brand = c.Brand,
                    Model = c.Model,
-                   Year= c.Year,
+                   Year = c.Year,
                    Price = c.Price
                })
                .ToList();
 
         public bool CarsExists(int carId)
-         => data
+         => this.data
              .Cars
              .Any(c => c.Id == carId);
 
         public bool CategoryExists(int categoryId)
-         => data
+         => this.data
              .Categories
              .Any(c => c.Id == categoryId);
 

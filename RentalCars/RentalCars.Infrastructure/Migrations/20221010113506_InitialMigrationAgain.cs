@@ -1,9 +1,7 @@
 ﻿namespace RentalCars.Infrastructure.Migrations
 {
-
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class InitialMigrationAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

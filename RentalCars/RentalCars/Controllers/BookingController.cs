@@ -7,16 +7,16 @@
     using RentalCars.Core.Services.Bookings;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Dealers;
+    using RentalCars.Infrastructure.Data.Models;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
-
 
     public class BookingController : BaseController
     {
-
         private readonly ICarService carService;
         private readonly IDealerService dealerService;
         private readonly IBookingService bookingService;
         private readonly IMapper mapper;
+
         public BookingController(IDealerService dealer, ICarService car, IBookingService bookingService, IMapper mapper)
         {
             this.carService = car;
@@ -27,7 +27,6 @@
 
         public IActionResult Rent()
         {
-
             return View(new RentFormModel
             {
                 Cars = this.carService.AllCars().ToList()
@@ -37,44 +36,50 @@
         [HttpPost]
         public IActionResult Rent(RentFormModel model)
         {
-            var userId = User.GetId();
-            var dealer = dealerService.IdByUser(userId);
+            string userId = this.User.GetId();
+            int dealer = this.dealerService.IdByUser(userId);
 
-            if (bookingService.CheckUser(userId))
+            if (this.bookingService.CheckUser(userId))
             {
                 return RedirectToAction("Error", "Home");
             }
+
             if (dealer != 0)
             {
-                if (carService.IsByDealer(model.CarId, dealer))
+                if (this.carService.IsByDealer(model.CarId, dealer))
                 {
                     return RedirectToAction("Error", "Home");
                 }
             }
-            if (bookingService.UserHasBookedCar(userId))
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            if (carService.CarsExists(model.CarId) == false)
+
+            if (this.bookingService.UserHasBookedCar(userId))
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            if (ModelState.IsValid == false)
+            if (this.carService.CarsExists(model.CarId) == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            if (this.ModelState.IsValid == false)
             {
                 model.Cars = this.carService.AllCars().ToList();
 
                 return View(model);
             }
-            var carId = model.CarId;
-            var car = carService.FindCar(carId);
+
+            int carId = model.CarId;
+            Car car = this.carService.FindCar(carId);
+
             if (car.IsBooked == true || car.IsPublic == false)
             {
                 return RedirectToAction("Error", "Home");
             }
-            var price = car.Price;
 
-            var isDateValid = bookingService.DateChecker(model.BookingDate, model.ReturningDate);
+            decimal price = car.Price;
+
+            bool isDateValid = this.bookingService.DateChecker(model.BookingDate, model.ReturningDate);
 
             if (isDateValid == false)
             {
@@ -86,7 +91,7 @@
                 return RedirectToAction("Error", "Home");
 
             }
-            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
+            int isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == 0)
             {

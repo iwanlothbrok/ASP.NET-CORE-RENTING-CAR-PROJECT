@@ -1,7 +1,7 @@
 ﻿namespace RentalCars.Core.ModelBinders
 {
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Globalization;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using System.Globalization;
     public class DoubleModelBinder : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)

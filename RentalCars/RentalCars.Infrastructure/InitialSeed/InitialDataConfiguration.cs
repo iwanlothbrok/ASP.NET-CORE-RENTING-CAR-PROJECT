@@ -1,6 +1,5 @@
 ﻿namespace RentalCars.Infrastructure.InitialSeed
 {
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using Newtonsoft.Json;
@@ -10,9 +9,9 @@
     {
         private readonly string filePath;
 
-        public InitialDataConfiguration(string _filePath)
+        public InitialDataConfiguration(string filePath)
         {
-            filePath = _filePath;
+            this.filePath = filePath;
         }
 
         public void Configure(EntityTypeBuilder<T> builder)

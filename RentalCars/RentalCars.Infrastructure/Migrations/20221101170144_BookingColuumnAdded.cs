@@ -2,7 +2,6 @@
 {
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class BookingColuumnAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

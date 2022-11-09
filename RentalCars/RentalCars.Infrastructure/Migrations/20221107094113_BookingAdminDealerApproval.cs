@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
-
-namespace RentalCars.Infrastructure.Migrations
+﻿namespace RentalCars.Infrastructure.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
     public partial class BookingAdminDealerApproval : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

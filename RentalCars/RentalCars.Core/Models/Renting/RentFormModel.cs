@@ -26,7 +26,5 @@
         public int CarId { get; init; }
 
         public IEnumerable<RentCarModel>? Cars { get; set; }
-
-
     }
 }

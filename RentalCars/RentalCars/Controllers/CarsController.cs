@@ -16,7 +16,6 @@
         private readonly IDealerService dealerService;
         private readonly IMapper mapper;
 
-
         public CarsController(IDealerService dealer, ICarService car, IMapper mapper)
         {
             this.carService = car;
@@ -26,7 +25,7 @@
         [HttpGet]
         public IActionResult Add()
         {
-            if (dealerService.IsDealer(User.GetId()) == false)
+            if (this.dealerService.IsDealer(User.GetId()) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
@@ -40,30 +39,29 @@
         [HttpPost]
         public IActionResult Add(CarFormModel car)
         {
-            var dealerId = dealerService.IdByUser(User.GetId());
+            int dealerId = this.dealerService.IdByUser(User.GetId());
 
             if (dealerId == 0)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
-            if (carService.CategoryExists(car.CategoryId) == false)
+            if (this.carService.CategoryExists(car.CategoryId) == false)
             {
-                ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
+                this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
 
             }
 
-            if (ModelState.IsValid == false)
+            if (this.ModelState.IsValid == false)
             {
                 car.Categories = this.carService.AllCategories();
 
                 return View(car);
             }
 
-            if (car.Price==0)
+            if (car.Price == 0)
             {
                 return RedirectToAction(nameof(Add));
-
             }
 
             this.carService.Create(car.Brand, car.Model, car.Description, car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
@@ -77,15 +75,16 @@
         [HttpGet]
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
-            var queryResult = this.carService.All(
+            CarQueryServiceModel queryResult = this.carService.All(
                  query.Brand,
                  query.SearchTerm,
                  query.Sorting,
                  query.CurrentPage,
                  AllCarsQueryModel.CarsPerPage);
 
-            var carBrands = this.carService.AllBrands();
-
+            IEnumerable<string> carBrands = this.carService
+                .AllBrands()
+                .ToList();
 
             query.Brands = carBrands;
             query.TotalCars = queryResult.TotalCars;
@@ -98,9 +97,9 @@
         [HttpGet]
         public IActionResult Details(int id, string information)
         {
-            var car = carService.Details(id);
+            CarDetailsServiceModel car = this.carService.Details(id);
 
-            if (ModelState.IsValid == false)
+            if (this.ModelState.IsValid == false)
             {
                 return RedirectToAction("Error", "Home");
             }
@@ -109,11 +108,9 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            var carForm = this.mapper.Map<CarDetailsServiceModel>(car);
-
+            CarDetailsServiceModel carForm = this.mapper.Map<CarDetailsServiceModel>(car);
 
             return View(carForm);
-
         }
         [HttpGet]
         public IActionResult Delete(int id)
@@ -122,26 +119,27 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-            var user = User.GetId();
+
+            var user = this.User.GetId();
 
             if (user == null)
             {
                 return RedirectToAction("Error", "Home");
             }
-            var dealerId = dealerService.IdByUser(user);
+
+            var dealerId = this.dealerService.IdByUser(user);
 
             if (dealerId == 0)
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            if (carService.Delete(id, dealerId) == false)
+            if (this.carService.Delete(id, dealerId) == false)
             {
                 return RedirectToAction("Error", "Home");
             }
 
             TempData[GlobalMessageKey] = "You delete your car successfully!";
-
 
             return RedirectToAction(nameof(All));
         }
@@ -149,22 +147,21 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var userId = User.GetId();
-           
+            string userId = this.User.GetId();
 
             if (dealerService.IsDealer(userId) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
-            var car = carService.Details(id);
+            CarDetailsServiceModel car = this.carService.Details(id);
 
             if (car.UserId != userId)
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            var carForm = this.mapper.Map<CarFormModel>(car);
+            CarFormModel carForm = this.mapper.Map<CarFormModel>(car);
             carForm.Categories = this.carService.AllCategories();
 
             return View(carForm);
@@ -173,19 +170,19 @@
         [HttpPost]
         public IActionResult Edit(int id, CarFormModel car)
         {
-            var dealerId = this.dealerService.IdByUser(this.User.GetId());
+            int dealerId = this.dealerService.IdByUser(this.User.GetId());
 
             if (dealerId == 0)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
-            if (!this.carService.CategoryExists(car.CategoryId))
+            if (this.carService.CategoryExists(car.CategoryId) == false)
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            if (!ModelState.IsValid)
+            if (this.ModelState.IsValid == false)
             {
                 car.Categories = this.carService.AllCategories();
 
@@ -215,7 +212,9 @@
         [HttpGet]
         public IActionResult Mine()
         {
-            var myCars = this.carService.ByUser(this.User.GetId());
+            IEnumerable<CarServiceModel> myCars = this.carService
+                .ByUser(this.User.GetId())
+                .ToList();
 
             return View(myCars);
         }

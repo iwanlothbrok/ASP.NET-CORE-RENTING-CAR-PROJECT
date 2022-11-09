@@ -2,7 +2,6 @@
 {
     using RentalCars.Core.Models.Renting;
     using RentalCars.Infrastructure.Data.Models;
-
     public interface IBookingService
     {
         bool IsRented(int id, int carId);

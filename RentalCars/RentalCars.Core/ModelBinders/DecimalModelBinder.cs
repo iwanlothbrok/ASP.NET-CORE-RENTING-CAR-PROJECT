@@ -1,7 +1,7 @@
 ﻿namespace RentalCars.Core.ModelBinders
 {
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Globalization;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using System.Globalization;
     public class DecimalModelBinder : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)
@@ -23,21 +23,16 @@ using System.Globalization;
 
                     actualValue = Convert.ToDecimal(decimalValue, CultureInfo.CurrentCulture);
                     succsess = true;
-
-
                 }
                 catch (FormatException fe)
                 {
                     bindingContext.ModelState.AddModelError(bindingContext.ModelName, fe, bindingContext.ModelMetadata);
-
                 }
 
                 if (succsess)
                 {
                     bindingContext.Result = ModelBindingResult.Success(actualValue);
-
                 }
-
             }
             return Task.CompletedTask;
         }

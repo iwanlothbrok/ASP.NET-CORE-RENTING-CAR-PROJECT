@@ -9,7 +9,6 @@
 
 	public class MappingProfile : Profile
 	{
-
 		public MappingProfile()
 		{
 			//Mappin for cars
@@ -20,12 +19,8 @@
 			this.CreateMap<Car, CarDetailsServiceModel>()
 				.ForMember(c => c.UserId, cfg => cfg.MapFrom(c => c.Dealer.UserId));
 
-
-
 			//Mappin for dealers
 			this.CreateMap<BecomeDealerFormModel, Dealer>();
-
-
 
 			//Mapping for bookings
 			this.CreateMap<Booking, AdminBookingModel>()

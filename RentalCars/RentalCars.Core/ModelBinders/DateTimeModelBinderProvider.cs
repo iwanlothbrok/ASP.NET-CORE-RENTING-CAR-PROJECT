@@ -1,15 +1,14 @@
 ﻿namespace RentalCars.Core.ModelBinders
 {
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     public class DateTimeModelBinderProvider : IModelBinderProvider
     {
         private readonly string customDateFormat;
 
-        public DateTimeModelBinderProvider(string _customDateFormat)
+        public DateTimeModelBinderProvider(string customDateFormat)
         {
-            customDateFormat = _customDateFormat;
+            this.customDateFormat = customDateFormat;
         }
 
         public IModelBinder? GetBinder(ModelBinderProviderContext context)
@@ -21,7 +20,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
             if (context.Metadata.ModelType == typeof(DateTime) || context.Metadata.ModelType == typeof(DateTime?))
             {
-                return new DateTimeModelBinder(customDateFormat);
+                return new DateTimeModelBinder(this.customDateFormat);
             }
 
             return null;

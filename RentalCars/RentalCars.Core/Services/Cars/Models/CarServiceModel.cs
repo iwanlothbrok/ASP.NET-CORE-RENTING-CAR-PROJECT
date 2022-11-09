@@ -15,6 +15,7 @@
         public int Year { get; init; }
 
         public bool IsPublic { get; init; }
+
         public bool IsBooked { get; init; }
 
         public string CategoryName { get; init; }

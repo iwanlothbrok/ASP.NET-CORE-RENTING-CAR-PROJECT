@@ -21,13 +21,16 @@
                 .Dealers
                 .Any(d => d.UserId == userId);
 
-        public void Become(BecomeDealerFormModel dealer,string userId)
-        {      
-            var dealerForm = this.mapper.Map<Dealer>(dealer);    
-            dealerForm.UserId = userId;
+        public void Become(BecomeDealerFormModel dealer, string userId)
+        {
+            var dealerForm = this.mapper.Map<Dealer>(dealer);
 
-             data.Dealers.AddAsync(dealerForm);
-             data.SaveChangesAsync();
+            if (dealerForm != null)
+            {
+                dealerForm.UserId = userId;
+                data.Dealers.AddAsync(dealerForm);
+                data.SaveChangesAsync();
+            }
         }
 
         public int IdByUser(string userId)

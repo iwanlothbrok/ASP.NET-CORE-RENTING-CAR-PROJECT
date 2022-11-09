@@ -6,24 +6,18 @@
     using RentalCars.Core.Models.Dealers;
     using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Bookings;
-    using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Dealers;
-    using RentalCars.Data;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
     public class DealersController : BaseController
     {
         private readonly IDealerService dealerService;
         private readonly IBookingService booking;
-        private readonly ICarService car;
-        private readonly ApplicationDbContext data;
 
-        public DealersController(IDealerService dealerService, IBookingService booking, ICarService car, ApplicationDbContext data)
+        public DealersController(IDealerService dealerService, IBookingService booking)
         {
             this.dealerService = dealerService;
             this.booking = booking;
-            this.car = car;
-            this.data = data;
         }
 
         [HttpGet]
@@ -32,17 +26,17 @@
         [HttpPost]
         public async Task<IActionResult> Become(BecomeDealerFormModel dealer)
         {
-            if (dealerService.IsDealer(User.GetId()))
+            if (this.dealerService.IsDealer(User.GetId()))
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            if (!ModelState.IsValid)
+            if (this.ModelState.IsValid == false)
             {
                 return View(dealer);
             }
 
-            dealerService.Become(dealer, userId: User.GetId());
+            this.dealerService.Become(dealer, userId: User.GetId());
 
             TempData[GlobalMessageKey] = "You become dealer successfully!";
 
@@ -51,24 +45,18 @@
         [HttpGet]
         public IActionResult Rent()
         {
-            var userId = User.GetId();
-
+            string userId = User.GetId();
             int dealerId = dealerService.IdByUser(userId);
-
-
-
 
             if (this.booking.CheckIfIsDealer(dealerId) == false)
             {
                 return RedirectToAction("Error", "Home");
             }
-           
 
-
-
-            var bookings = this.booking
+            IEnumerable<AdminBookingModel> bookings = this.booking
                 .All()
-                .Bookings;
+                .Bookings
+                .ToList();
 
             return View(bookings);
         }
@@ -76,7 +64,7 @@
         {
             this.booking.ChangeVisilityByDealer(id);
 
-            var carId = this.booking.FindCar(id);
+            int carId = this.booking.FindCar(id);
 
             this.booking.IsRented(id, carId);
 

@@ -8,8 +8,6 @@
 
     public class ApplicationDbContext : IdentityDbContext
     {
-
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -59,7 +57,6 @@
              .HasForeignKey<Booking>(d => d.DealerId)
              .OnDelete(DeleteBehavior.Restrict);
 
-
             builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
 
             base.OnModelCreating(builder);
@@ -69,6 +66,5 @@
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-
     }
 }
