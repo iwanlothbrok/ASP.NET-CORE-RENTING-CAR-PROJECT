@@ -150,11 +150,11 @@
         public IActionResult Edit(int id)
         {
             var userId = User.GetId();
+           
 
             if (dealerService.IsDealer(userId) == false)
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
-
             }
 
             var car = carService.Details(id);
@@ -219,8 +219,5 @@
 
             return View(myCars);
         }
-
-
-        
     }
 }
