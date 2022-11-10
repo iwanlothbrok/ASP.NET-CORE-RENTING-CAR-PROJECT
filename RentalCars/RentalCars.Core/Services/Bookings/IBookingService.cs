@@ -8,13 +8,14 @@
         BookingQueryModel All();
         IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking);
         public int CreateBooking(string firstName,
-                   string lastName,
-                   string userId,
-                   int dealerId,
-                   string bookingDate,
-                   decimal price,
-                   string returingDate,
-                   int carId);
+           string lastName,
+           string userId,
+           int dealerId,
+           string bookingDate,
+           decimal price,
+           string returingDate,
+           int carId);
+
         int FindCar(int id);
         bool CheckIfIsDealer(int id);
         bool CheckUser(string id);
@@ -23,6 +24,6 @@
         bool Delete(int id);
         bool DateChecker(string dateOfBooking, string dateOfReturning);
         bool UserHasBookedCar(string userId);
-        decimal GetCarPrice(string bookingDate, string returningDatem, decimal price);
+        decimal GetCarPrice(string bookingDate, string returningDate, decimal price);
     }
 }

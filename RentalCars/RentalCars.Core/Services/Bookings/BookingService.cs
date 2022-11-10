@@ -52,8 +52,8 @@
                 CustomerId = userId,
                 DealerId = dealerId,
                 DailyPrice = GetCarPrice(bookingDate, returingDate, price),
-                BookingDate = bookingDate,
-                ReturnDate = returingDate,
+                BookingDate = DateTime.Parse(bookingDate),
+                ReturnDate = DateTime.Parse(returingDate),
                 IsConfirmedByAdmin = false,
                 IsConfirmedByDealer = false,
                 CarId = carId
@@ -113,7 +113,7 @@
         public decimal GetCarPrice(string bookingDate, string returningDate, decimal price)
         {
             TimeSpan diff = DateTime.Parse(returningDate) - DateTime.Parse(bookingDate);
-
+            //TimeSpan diff = returningDate - bookingDate;
             int days = diff.Days;
 
             if (days <= 0)

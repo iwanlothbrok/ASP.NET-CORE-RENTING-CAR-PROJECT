@@ -165,7 +165,7 @@
             carForm.Categories = this.carService.AllCategories();
 
             return View(carForm);
-        }
+        }   
 
         [HttpPost]
         public IActionResult Edit(int id, CarFormModel car)

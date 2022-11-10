@@ -25,13 +25,13 @@
         /// date of the renting 
         /// </summary>
         [Required]
-        public string BookingDate { get; set; } = null!;
+        public DateTime BookingDate { get; set; } 
 
         /// <summary>
         /// date of returning the car 
         /// </summary>
         [Required]
-        public string ReturnDate { get; set; } = null!;
+        public DateTime ReturnDate { get; set; }
 
         /// <summary>
         /// price for 1 day

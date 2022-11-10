@@ -86,10 +86,9 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            if (price > 0)
+            if (price < 0)
             {
                 return RedirectToAction("Error", "Home");
-
             }
             int isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
 
