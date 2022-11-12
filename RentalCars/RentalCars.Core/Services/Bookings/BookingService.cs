@@ -128,7 +128,7 @@
 
         public void ChangeVisilityByAdmin(int id)
         {
-            Booking? booking = this.data.Bookings.Find(id);
+            Booking? booking = this.data.Bookings.Where(c=>c.Id == id).FirstOrDefault();
 
             if (booking != null)
             {

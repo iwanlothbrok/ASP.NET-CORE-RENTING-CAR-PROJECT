@@ -37,7 +37,7 @@
         /// photo of the car 
         /// </summary>
         [Required]
-        public string ImageUrl { get; set; }
+        public byte[] ImageUrl { get; set; }
 
         /// <summary>
         /// when the car is made

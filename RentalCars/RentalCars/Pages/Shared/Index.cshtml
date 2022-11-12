@@ -3,7 +3,7 @@
     ViewBag.Title = "Welcome!";
     var cars = Model.ToList();
 }
-@if (!Model.Any())
+@if (Model.Any() == false)
 {
     <div class="jumbotron">
         <h1 class="display-4">Welcome to the best place for renting cars!</h1>

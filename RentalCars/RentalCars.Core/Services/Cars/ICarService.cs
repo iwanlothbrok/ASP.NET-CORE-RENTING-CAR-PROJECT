@@ -1,5 +1,6 @@
 ﻿namespace RentalCars.Core.Services.Cars
 {
+    using Microsoft.AspNetCore.Http;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Cars.Models;
@@ -17,30 +18,29 @@
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
 
-        public IEnumerable<CarIndexModel> GetLastThreeCars();
+        IEnumerable<CarIndexModel> GetLastThreeCars();
 
         public Car FindCar(int id);
 
         public void ChangeVisility(int carId);
 
-        public bool Edit(int id,
-            string brand,
-            string model,
-            decimal price,
-            string description,
-            string imageUrl,
-            int year,
-            int categoryId);
+        //public bool Edit(int id,
+        //    string brand,
+        //    string model,
+        //    decimal price,
+        //    string description,
+        //    List<IFormFile> imageUrl,
+        //    int year,
+        //    int categoryId);
 
-        int Create(
-          string brand,
-          string model,
-          string description,
-          decimal price,
-          string imageUrl,
-          int year,
-          int categoryId,
-          int dealerId);
+          Task<int> Create(string brand,
+            string model,
+            string description,
+            decimal price,
+            List<IFormFile> imageUrl,
+            int year,
+            int categoryId,
+            int dealerId);
         CarDetailsServiceModel Details(int carId);
 
         public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery);

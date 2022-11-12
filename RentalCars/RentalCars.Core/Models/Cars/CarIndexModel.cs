@@ -6,6 +6,6 @@
 
 		public string Brand { get; set; } = null!;
 
-		public string ImageUrl { get; set; }=null!;
+		public byte[] ImageUrl { get; set; }=null!;
 	}
 }

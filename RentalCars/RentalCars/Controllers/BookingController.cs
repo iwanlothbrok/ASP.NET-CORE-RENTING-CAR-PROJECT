@@ -83,7 +83,9 @@
 
             if (isDateValid == false)
             {
-                return RedirectToAction("Error", "Home");
+                model.Cars = this.carService.AllCars().ToList();
+
+                return View(model);
             }
 
             if (price < 0)

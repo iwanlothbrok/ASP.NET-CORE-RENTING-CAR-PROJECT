@@ -26,9 +26,8 @@
         public string Description { get; init; }
 
         [Required]
-        [Url]
         [Display(Name = "Image URL")]
-        public string ImageUrl { get; init; }
+        public byte[] ImageUrl { get; init; }
 
         [Required]
         [Display(Name = "Daily price")]

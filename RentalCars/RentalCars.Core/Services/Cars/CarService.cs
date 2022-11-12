@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Models.Renting;
@@ -22,6 +23,7 @@
         public Car? FindCar(int id)
         => this.data.Cars.Find(id);
 
+
         public IEnumerable<CarIndexModel> GetLastThreeCars()
          => this.data
             .Cars
@@ -30,8 +32,8 @@
             .Select(m => new CarIndexModel
             {
                 Id = m.Id,
-                Brand = m.Brand,
-                ImageUrl = m.ImageUrl
+                Brand = m.Brand
+
             }).Take(3)
               .ToList();
 
@@ -122,49 +124,62 @@
             };
         }
 
-        public int Create(string brand, string model, string description, decimal price, string imageUrl, int year, int categoryId, int dealerId)
+        public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> imageUrl, int year, int categoryId, int dealerId)
         {
+            byte[] photo = new byte[8000];
+            foreach (var item in imageUrl)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        photo = stream.ToArray();
+                    }
+
+                }
+            }
             var carData = new Car
             {
                 Brand = brand,
                 Model = model,
                 Description = description,
                 Price = price,
-                ImageUrl = imageUrl,
+                ImageUrl = photo,
                 Year = year,
                 CategoryId = categoryId,
                 DealerId = dealerId,
                 IsPublic = false
             };
 
-            this.data.Cars.Add(carData);
-            this.data.SaveChanges();
+            await this.data.Cars.AddAsync(carData);
+            await this.data.SaveChangesAsync();
 
             return carData.Id;
         }
 
-        public bool Edit(int id, string brand, string model, decimal price, string description, string imageUrl, int year, int categoryId)
-        {
-            Car? carData = this.data.Cars.Find(id);
+        //public bool Edit(int id, string brand, string model, decimal price, string description, string imageUrl, int year, int categoryId)
+        //{
+        //    Car? carData = this.data.Cars.Find(id);
 
-            if (carData == null)
-            {
-                return false;
-            }
+        //    if (carData == null)
+        //    {
+        //        return false;
+        //    }
 
-            carData.Brand = brand;
-            carData.Model = model;
-            carData.Description = description;
-            carData.Price = price;
-            carData.ImageUrl = imageUrl;
-            carData.Year = year;
-            carData.CategoryId = categoryId;
-            carData.IsPublic = false;
+        //    carData.Brand = brand;
+        //    carData.Model = model;
+        //    carData.Description = description;
+        //    carData.Price = price;
+        //    carData.ImageUrl = imageUrl;
+        //    carData.Year = year;
+        //    carData.CategoryId = categoryId;
+        //    carData.IsPublic = false;
 
-            this.data.SaveChanges();
+        //    this.data.SaveChanges();
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public CarDetailsServiceModel? Details(int id)
             => this.data

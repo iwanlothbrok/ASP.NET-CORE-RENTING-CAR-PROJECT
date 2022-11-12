@@ -3,11 +3,13 @@
     using AutoMapper;
     using CarRentingSystem.Controllers;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
+    using System;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
     public class CarsController : BaseController
@@ -37,7 +39,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(CarFormModel car)
+        public async Task<IActionResult> Add(CarFormModel car, List<IFormFile> imageUrl)
         {
             int dealerId = this.dealerService.IdByUser(User.GetId());
 
@@ -52,19 +54,19 @@
 
             }
 
-            if (this.ModelState.IsValid == false)
-            {
-                car.Categories = this.carService.AllCategories();
+            //if (this.ModelState.IsValid == false)
+            //{
+            //    car.Categories = this.carService.AllCategories();
 
-                return View(car);
-            }
+            //    return View(car);
+            //}
 
             if (car.Price == 0)
             {
                 return RedirectToAction(nameof(Add));
             }
 
-            this.carService.Create(car.Brand, car.Model, car.Description, car.Price, car.ImageUrl, car.Year, car.CategoryId, dealerId);
+            await this.carService.Create(car.Brand, car.Model, car.Description, car.Price, imageUrl, car.Year, car.CategoryId, dealerId);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
@@ -165,7 +167,7 @@
             carForm.Categories = this.carService.AllCategories();
 
             return View(carForm);
-        }   
+        }
 
         [HttpPost]
         public IActionResult Edit(int id, CarFormModel car)
@@ -179,7 +181,9 @@
 
             if (this.carService.CategoryExists(car.CategoryId) == false)
             {
-                return RedirectToAction("Error", "Home");
+                car.Categories = this.carService.AllCategories();
+
+                return View(car);
             }
 
             if (this.ModelState.IsValid == false)
@@ -194,15 +198,15 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.carService.Edit(
-                id,
-                car.Brand,
-                car.Model,
-                car.Price,
-                car.Description,
-                car.ImageUrl,
-                car.Year,
-                car.CategoryId);
+            //this.carService.Edit(
+            //    id,
+            //    car.Brand,
+            //    car.Model,
+            //    car.Price,
+            //    car.Description,
+            //    car.ImageUrl,
+            //    car.Year,
+            //    car.CategoryId);
 
             TempData[GlobalMessageKey] = "You edit your car successfully!";
 
@@ -212,9 +216,17 @@
         [HttpGet]
         public IActionResult Mine()
         {
-            IEnumerable<CarServiceModel> myCars = this.carService
+            IEnumerable<CarServiceModel> myCars = (IEnumerable<CarServiceModel>)this.carService
                 .ByUser(this.User.GetId())
                 .ToList();
+
+            foreach (var car in myCars)
+            {
+                var bytes = Convert.ToBase64String(car.ImageUrl);
+               
+            }
+
+
 
             return View(myCars);
         }
