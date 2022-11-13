@@ -232,9 +232,8 @@ namespace RentalCars.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("BookingDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CarId")
                         .HasColumnType("int");
@@ -263,9 +262,8 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Property<bool>("IsConfirmedByDealer")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ReturnDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -307,9 +305,9 @@ namespace RentalCars.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<byte[]>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("IsBooked")
                         .HasColumnType("bit");

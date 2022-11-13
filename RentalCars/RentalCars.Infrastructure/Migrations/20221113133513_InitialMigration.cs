@@ -1,8 +1,9 @@
 ﻿namespace RentalCars.Infrastructure.Migrations
 {
-    using System;
+
     using Microsoft.EntityFrameworkCore.Migrations;
-    public partial class InitialMigrationAgain : Migration
+
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,10 +195,14 @@
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false),
+                    IsBooked = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    DealerId = table.Column<int>(type: "int", nullable: false)
+                    DealerId = table.Column<int>(type: "int", nullable: false),
+                    BookingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -210,6 +215,46 @@
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Cars_Dealers_DealerId",
+                        column: x => x.DealerId,
+                        principalTable: "Dealers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DailyPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    DealerId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsConfirmedByAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    IsConfirmedByDealer = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bookings_AspNetUsers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Dealers_DealerId",
                         column: x => x.DealerId,
                         principalTable: "Dealers",
                         principalColumn: "Id",
@@ -270,6 +315,25 @@
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_CarId",
+                table: "Bookings",
+                column: "CarId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_CustomerId",
+                table: "Bookings",
+                column: "CustomerId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_DealerId",
+                table: "Bookings",
+                column: "DealerId",
+                unique: true,
+                filter: "[DealerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cars_CategoryId",
                 table: "Cars",
                 column: "CategoryId");
@@ -304,10 +368,13 @@
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Cars");
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "Categories");

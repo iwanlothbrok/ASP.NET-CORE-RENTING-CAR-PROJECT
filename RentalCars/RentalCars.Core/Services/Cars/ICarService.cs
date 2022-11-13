@@ -33,18 +33,17 @@
         //    int year,
         //    int categoryId);
 
-          Task<int> Create(string brand,
-            string model,
-            string description,
-            decimal price,
-            List<IFormFile> imageUrl,
-            int year,
-            int categoryId,
-            int dealerId);
+        Task<int> Create(string brand,
+          string model,
+          string description,
+          decimal price,
+          List<IFormFile> imageUrl,
+          int year,
+          int categoryId,
+          int dealerId);
         CarDetailsServiceModel Details(int carId);
 
-        public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery);
-
+        IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery);
         IEnumerable<CarServiceModel> ByUser(string userId);
 
         bool IsByDealer(int carId, int dealerId);

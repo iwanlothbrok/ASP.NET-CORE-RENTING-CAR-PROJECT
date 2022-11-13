@@ -216,15 +216,15 @@
         [HttpGet]
         public IActionResult Mine()
         {
-            IEnumerable<CarServiceModel> myCars = (IEnumerable<CarServiceModel>)this.carService
+            IEnumerable<CarServiceModel> myCars = this.carService
                 .ByUser(this.User.GetId())
                 .ToList();
 
-            foreach (var car in myCars)
-            {
-                var bytes = Convert.ToBase64String(car.ImageUrl);
+            //foreach (var car in myCars)
+            //{
+            //    var bytes = Convert.ToBase64String(car.ImageUrl);
                
-            }
+            //}
 
 
 

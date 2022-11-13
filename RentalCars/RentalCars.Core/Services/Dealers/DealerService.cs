@@ -28,8 +28,8 @@
             if (dealerForm != null)
             {
                 dealerForm.UserId = userId;
-                data.Dealers.AddAsync(dealerForm);
-                data.SaveChangesAsync();
+                 data.Dealers.Add(dealerForm);
+                 data.SaveChanges();
             }
         }
 

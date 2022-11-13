@@ -9,6 +9,7 @@
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using System.Linq;
 
     public class CarService : ICarService
     {
@@ -240,8 +241,16 @@
              .Any(c => c.Id == categoryId);
 
         public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery)
-           => carQuery
-            .ProjectTo<CarServiceModel>(this.mapper.ConfigurationProvider)
-            .ToList();
+       => carQuery
+           .Select(c => new CarServiceModel
+           {
+               Id = c.Id,
+               Brand = c.Brand,
+               Model = c.Model,
+               Year = c.Year,
+               ImageUrl = c.ImageUrl,
+               CategoryName = c.Category.Name
+           })
+           .ToList();
     }
 }
