@@ -198,15 +198,15 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            //this.carService.Edit(
-            //    id,
-            //    car.Brand,
-            //    car.Model,
-            //    car.Price,
-            //    car.Description,
-            //    car.ImageUrl,
-            //    car.Year,
-            //    car.CategoryId);
+            this.carService.Edit(
+                id,
+                car.Brand,
+                car.Model,
+                car.Price,
+                car.Description,
+                car.ImageUrl,
+                car.Year,
+                car.CategoryId);
 
             TempData[GlobalMessageKey] = "You edit your car successfully!";
 
@@ -219,12 +219,6 @@
             IEnumerable<CarServiceModel> myCars = this.carService
                 .ByUser(this.User.GetId())
                 .ToList();
-
-            //foreach (var car in myCars)
-            //{
-            //    var bytes = Convert.ToBase64String(car.ImageUrl);
-               
-            //}
 
 
 

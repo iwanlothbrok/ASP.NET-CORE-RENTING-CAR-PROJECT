@@ -31,6 +31,7 @@
 
         [Required]
         [Display(Name = "Daily price")]
+        [Range(PriceMinValue, PriceMaxValue)]
         public decimal Price { get; init; }
 
         [Range(YearMinValue, YearMaxValue)]

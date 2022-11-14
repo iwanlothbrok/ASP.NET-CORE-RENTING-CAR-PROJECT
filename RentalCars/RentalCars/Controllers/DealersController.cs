@@ -24,7 +24,7 @@
         public IActionResult Become() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Become(BecomeDealerFormModel dealer)
+        public IActionResult Become(BecomeDealerFormModel dealer)
         {
             if (this.dealerService.IsDealer(User.GetId()))
             {

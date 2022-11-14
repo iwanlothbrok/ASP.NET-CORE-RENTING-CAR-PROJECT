@@ -11,6 +11,8 @@
             public const int DescriptionMinLength = 10;
             public const int YearMinValue = 2000;
             public const int YearMaxValue = 2050;
+            public const int PriceMinValue = 20;
+            public const int PriceMaxValue =5000;
         }
 
         public class User
@@ -48,7 +50,7 @@
         public class Web
         {
             public const string GlobalMessageKey = "GlobalMessage";
-            public const string AdministratorRoleName = "Admin";
+            public const string AdminRoleName = "Admin";
         }
     }
 }

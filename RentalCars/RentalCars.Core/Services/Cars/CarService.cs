@@ -33,8 +33,9 @@
             .Select(m => new CarIndexModel
             {
                 Id = m.Id,
-                Brand = m.Brand
-
+                Brand = m.Brand,
+                ImageUrl = m.ImageUrl
+                
             }).Take(3)
               .ToList();
 
@@ -159,28 +160,28 @@
             return carData.Id;
         }
 
-        //public bool Edit(int id, string brand, string model, decimal price, string description, string imageUrl, int year, int categoryId)
-        //{
-        //    Car? carData = this.data.Cars.Find(id);
+        public bool Edit(int id, string brand, string model, decimal price, string description, byte[] imageUrl, int year, int categoryId)
+        {
+            Car? carData = this.data.Cars.Find(id);
 
-        //    if (carData == null)
-        //    {
-        //        return false;
-        //    }
+            if (carData == null)
+            {
+                return false;
+            }
 
-        //    carData.Brand = brand;
-        //    carData.Model = model;
-        //    carData.Description = description;
-        //    carData.Price = price;
-        //    carData.ImageUrl = imageUrl;
-        //    carData.Year = year;
-        //    carData.CategoryId = categoryId;
-        //    carData.IsPublic = false;
+            carData.Brand = brand;
+            carData.Model = model;
+            carData.Description = description;
+            carData.Price = price;
+            carData.ImageUrl = imageUrl;
+            carData.Year = year;
+            carData.CategoryId = categoryId;
+            carData.IsPublic = false;
 
-        //    this.data.SaveChanges();
+            this.data.SaveChanges();
 
-        //    return true;
-        //}
+            return true;
+        }
 
         public CarDetailsServiceModel? Details(int id)
             => this.data

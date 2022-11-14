@@ -38,7 +38,7 @@
                 //Add default User to Role Admin    
                 if (user != null)
                 {
-                    IdentityResult result1 = await this.userManager.AddToRoleAsync(user, "Admin");
+                    IdentityResult result1 = await this.userManager.AddToRoleAsync(user, role.Name);
                 }
             }
 

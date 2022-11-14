@@ -58,6 +58,7 @@
         /// <summary>
         /// price for 1 day for the car 
         /// </summary>
+        [Range(PriceMinValue, PriceMaxValue)]
         public decimal Price { get; set; }
 
         /// <summary>

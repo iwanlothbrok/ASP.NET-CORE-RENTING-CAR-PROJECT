@@ -1,19 +1,21 @@
 ﻿@model CarDetailsServiceModel
 
 @{
-ViewData["Title"] = "Details of the cars";
+	ViewData["Title"] = "Details of the cars";
+	var base64 = Convert.ToBase64String(Model.ImageUrl);
+	var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 }
 
-	<div class="col-md-6">
-		<div class="card mb-3">
-			<h1 class="text-center">@Model.Brand @Model.Model </h1>
-			<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
-			<div class="card-body text-center">
-				<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
-			</div>
-			<h5 class="card-title ml-3">Description of the car: @Model.Description</h5>
+<div class="col-md-6">
+	<div class="card mb-3">
+		<h1 class="text-center">@Model.Brand @Model.Model </h1>
+		<img src="@imgSrc" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
+		<div class="card-body text-center">
+			<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
 		</div>
+		<h5 class="card-title ml-3">Description of the car: @Model.Description</h5>
 	</div>
+</div>
 
 <div>
 	<div>
