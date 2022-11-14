@@ -66,16 +66,16 @@
         }
         public bool DateChecker(string dateOfBooking, string dateOfReturning)
         {
-            char[] delimiterChars = { ' ', '-', '/', '\\', ',' };
+            char[] delimiterChars = { ' ', '-', '/', '\\', ',', '.' };
 
             string[] bookingDate = dateOfBooking.Split(delimiterChars);
             string[] returningDate = dateOfReturning.Split(delimiterChars);
 
 
-            int bookingMonth = int.Parse(bookingDate[1]);
-            int returninMonth = int.Parse(returningDate[1]);
             int bookingDay = int.Parse(bookingDate[0]);
             int returningDay = int.Parse(returningDate[0]);
+            int bookingMonth = int.Parse(bookingDate[1]);
+            int returninMonth = int.Parse(returningDate[1]);
             int bookingYear = int.Parse(bookingDate[2]);
             int returningYear = int.Parse(returningDate[2]);
 

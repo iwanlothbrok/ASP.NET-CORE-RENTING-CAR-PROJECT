@@ -34,7 +34,7 @@
             {
                 Id = m.Id,
                 Brand = m.Brand,
-                ImageUrl = m.ImageUrl
+                CarPhoto = m.CarPhoto
                 
             }).Take(3)
               .ToList();
@@ -126,10 +126,10 @@
             };
         }
 
-        public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> imageUrl, int year, int categoryId, int dealerId)
+        public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> carPhoto, int year, int categoryId, int dealerId)
         {
             byte[] photo = new byte[8000];
-            foreach (var item in imageUrl)
+            foreach (var item in carPhoto)
             {
                 if (item.Length > 0)
                 {
@@ -147,7 +147,7 @@
                 Model = model,
                 Description = description,
                 Price = price,
-                ImageUrl = photo,
+                CarPhoto = photo,
                 Year = year,
                 CategoryId = categoryId,
                 DealerId = dealerId,
@@ -160,7 +160,7 @@
             return carData.Id;
         }
 
-        public bool Edit(int id, string brand, string model, decimal price, string description, byte[] imageUrl, int year, int categoryId)
+        public async Task<bool> Edit(int id, string brand, string model, decimal price, string description, List<IFormFile> carPhoto, int year, int categoryId)
         {
             Car? carData = this.data.Cars.Find(id);
 
@@ -169,11 +169,25 @@
                 return false;
             }
 
+            byte[] photo = new byte[8000];
+            foreach (var item in carPhoto)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        photo = stream.ToArray();
+                    }
+
+                }
+            }
+
             carData.Brand = brand;
             carData.Model = model;
             carData.Description = description;
             carData.Price = price;
-            carData.ImageUrl = imageUrl;
+            carData.CarPhoto = photo;
             carData.Year = year;
             carData.CategoryId = categoryId;
             carData.IsPublic = false;
@@ -242,16 +256,8 @@
              .Any(c => c.Id == categoryId);
 
         public IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery)
-       => carQuery
-           .Select(c => new CarServiceModel
-           {
-               Id = c.Id,
-               Brand = c.Brand,
-               Model = c.Model,
-               Year = c.Year,
-               ImageUrl = c.ImageUrl,
-               CategoryName = c.Category.Name
-           })
-           .ToList();
+              => carQuery
+                  .ProjectTo<CarServiceModel>(this.mapper.ConfigurationProvider)
+                  .ToList();
     }
 }

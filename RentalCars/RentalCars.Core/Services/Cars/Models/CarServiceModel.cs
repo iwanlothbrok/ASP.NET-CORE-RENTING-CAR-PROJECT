@@ -8,7 +8,7 @@
 
         public string Model { get; init; }
 
-        public byte[] ImageUrl { get; set; }
+        public byte[] CarPhoto { get; set; }
 
         public decimal Price { get; set; }
 

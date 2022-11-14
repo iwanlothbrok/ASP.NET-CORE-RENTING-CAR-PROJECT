@@ -17,27 +17,27 @@
         /// </summary>
         [Required]
         [Range(BrandMinLength, BrandMaxLength)]
-        public string Brand { get; set; }
+        public string Brand { get; set; } = null!;
 
         /// <summary>
         /// car model 
         /// </summary>
         [Required]
         [Range(ModelMinLength, ModelMaxLength)]
-        public string Model { get; set; }
+        public string Model { get; set; } = null!;
 
         /// <summary>
         /// desctription of the car  
         /// </summary>
         [Required]
         [MinLength(DescriptionMinLength)]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         /// <summary>
         /// photo of the car 
         /// </summary>
         [Required]
-        public byte[] ImageUrl { get; set; }
+        public byte[] CarPhoto { get; set; } = null!;
 
         /// <summary>
         /// when the car is made
@@ -81,8 +81,8 @@
         /// dealer of the car 
         /// </summary>  
         [ForeignKey("DealerId")]
-        public Dealer Dealer { get; set; }
-        
+        public Dealer Dealer { get; set; } = null!;
+
         /// <summary>
         /// if car is booked this is the id of booking 
         /// </summary>

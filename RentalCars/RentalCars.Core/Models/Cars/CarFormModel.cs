@@ -12,22 +12,22 @@
             BrandMaxLength,
             MinimumLength = BrandMinLength,
             ErrorMessage = "The field Brand must be minumum {0} length and maximum {1} length! ")]
-        public string Brand { get; set; }
+        public string Brand { get; set; } = null!;
 
         [Required]
         [StringLength(ModelMaxLength, MinimumLength = ModelMinLength)]
-        public string Model { get; init; }
+        public string Model { get; init; } = null!;
 
         [Required]
         [StringLength(
             int.MaxValue,
             MinimumLength = DescriptionMinLength,
             ErrorMessage = "The field Description must be a string with a minimum length of {2}.")]
-        public string Description { get; init; }
+        public string Description { get; init; } = null!;
 
         [Required]
-        [Display(Name = "Image URL")]
-        public byte[] ImageUrl { get; init; }
+        [Display(Name = "Photo of the car")]
+        public byte[] CarPhoto { get; init; } = null!;
 
         [Required]
         [Display(Name = "Daily price")]

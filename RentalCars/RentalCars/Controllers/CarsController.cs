@@ -39,7 +39,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CarFormModel car, List<IFormFile> imageUrl)
+        public async Task<IActionResult> Add(CarFormModel car, List<IFormFile> carPhoto)
         {
             int dealerId = this.dealerService.IdByUser(User.GetId());
 
@@ -54,19 +54,19 @@
 
             }
 
-            //if (this.ModelState.IsValid == false)
-            //{
-            //    car.Categories = this.carService.AllCategories();
+            if (this.ModelState.IsValid == false)
+            {
+                car.Categories = this.carService.AllCategories();
 
-            //    return View(car);
-            //}
+                return View(car);
+            }
 
             if (car.Price == 0)
             {
                 return RedirectToAction(nameof(Add));
             }
 
-            await this.carService.Create(car.Brand, car.Model, car.Description, car.Price, imageUrl, car.Year, car.CategoryId, dealerId);
+            await this.carService.Create(car.Brand, car.Model, car.Description, car.Price, carPhoto, car.Year, car.CategoryId, dealerId);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
@@ -170,7 +170,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, CarFormModel car)
+        public IActionResult Edit(int id, CarFormModel car, List<IFormFile> carPhoto)
         {
             int dealerId = this.dealerService.IdByUser(this.User.GetId());
 
@@ -186,12 +186,12 @@
                 return View(car);
             }
 
-            if (this.ModelState.IsValid == false)
-            {
-                car.Categories = this.carService.AllCategories();
+            //if (this.ModelState.IsValid == false)
+            //{
+            //    car.Categories = this.carService.AllCategories();
 
-                return View(car);
-            }
+            //    return View(car);
+            //}
 
             if (!this.carService.IsByDealer(id, dealerId))
             {
@@ -204,7 +204,7 @@
                 car.Model,
                 car.Price,
                 car.Description,
-                car.ImageUrl,
+                carPhoto,
                 car.Year,
                 car.CategoryId);
 

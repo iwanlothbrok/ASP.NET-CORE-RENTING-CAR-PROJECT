@@ -24,12 +24,12 @@
 
         public void ChangeVisility(int carId);
 
-        public bool Edit(int id,
+        Task<bool> Edit(int id,
             string brand,
             string model,
             decimal price,
             string description,
-            byte[] imageUrl,
+            List<IFormFile> carPhoto,
             int year,
             int categoryId);
 
@@ -37,7 +37,7 @@
           string model,
           string description,
           decimal price,
-          List<IFormFile> imageUrl,
+          List<IFormFile> carPhoto,
           int year,
           int categoryId,
           int dealerId);

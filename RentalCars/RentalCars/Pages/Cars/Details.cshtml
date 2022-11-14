@@ -2,7 +2,7 @@
 
 @{
 	ViewData["Title"] = "Details of the cars";
-	var base64 = Convert.ToBase64String(Model.ImageUrl);
+	var base64 = Convert.ToBase64String(Model.CarPhoto);
 	var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 }
 

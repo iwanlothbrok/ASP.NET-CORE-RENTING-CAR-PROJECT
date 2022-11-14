@@ -15,14 +15,12 @@
         private readonly ICarService carService;
         private readonly IDealerService dealerService;
         private readonly IBookingService bookingService;
-        private readonly IMapper mapper;
 
-        public BookingController(IDealerService dealer, ICarService car, IBookingService bookingService, IMapper mapper)
+        public BookingController(IDealerService dealer, ICarService car, IBookingService bookingService)
         {
             this.carService = car;
             this.dealerService = dealer;
             this.bookingService = bookingService;
-            this.mapper = mapper;
         }
 
         public IActionResult Rent()
@@ -92,7 +90,7 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-            int isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, dealer, model.BookingDate, price, model.ReturningDate, model.CarId);
+            int isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == 0)
             {
