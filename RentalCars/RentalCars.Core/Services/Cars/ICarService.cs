@@ -18,7 +18,7 @@
            int carsPerPage = int.MaxValue,
             bool publicOnly = true);
 
-        IEnumerable<CarIndexModel> GetLastThreeCars();
+        IEnumerable<CarServiceModel> GetLastThreeCars();
 
         public Car FindCar(int id);
 

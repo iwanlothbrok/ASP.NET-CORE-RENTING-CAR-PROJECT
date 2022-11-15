@@ -30,7 +30,7 @@
         {
             this.cars.ChangeVisility(id);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToActionPermanent("", "/");
         }
     }
 }

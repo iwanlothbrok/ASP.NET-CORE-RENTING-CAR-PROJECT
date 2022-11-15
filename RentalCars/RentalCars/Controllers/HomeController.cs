@@ -3,6 +3,8 @@
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
+
     public class HomeController : Controller
     {
         public ICarService carService;
@@ -13,7 +15,7 @@
 
         public IActionResult Index()
         {
-            IEnumerable<CarIndexModel> cars = this.carService
+            IEnumerable<CarServiceModel> cars = this.carService
                                     .GetLastThreeCars()
                                     .ToList();
             return View(cars);

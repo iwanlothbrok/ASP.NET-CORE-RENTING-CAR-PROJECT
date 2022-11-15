@@ -1,6 +1,5 @@
 ﻿namespace RentalCars.Controllers
 {
-    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Renting;

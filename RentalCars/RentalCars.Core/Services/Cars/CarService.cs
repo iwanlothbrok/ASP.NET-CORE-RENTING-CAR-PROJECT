@@ -25,17 +25,18 @@
         => this.data.Cars.Find(id);
 
 
-        public IEnumerable<CarIndexModel> GetLastThreeCars()
+        public IEnumerable<CarServiceModel> GetLastThreeCars()
          => this.data
             .Cars
             .OrderByDescending(i => i.Id)
             .Where(p => p.IsPublic == true && p.IsBooked == false)
-            .Select(m => new CarIndexModel
+            .Select(m => new CarServiceModel
             {
                 Id = m.Id,
                 Brand = m.Brand,
-                CarPhoto = m.CarPhoto
-                
+                CarPhoto = m.CarPhoto,
+                Model = m.Model,
+                Year = m.Year
             }).Take(3)
               .ToList();
 

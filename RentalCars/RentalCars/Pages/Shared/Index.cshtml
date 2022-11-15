@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CarIndexModel>
+﻿@model IEnumerable<CarServiceModel>
 @{
 	ViewBag.Title = "Welcome!";
 	var cars = Model.ToList();
@@ -31,7 +31,7 @@
 			<div class="carousel-item @(i == 0 ? "active" : string.Empty)">
 				<img class="d-block w-100 p-3" src="@imgSrc" alt="@car.Brand ">
 				<div class="carousel-caption d-none d-md-block">
-					<h5><a class="btn btn-primary" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">@car.Brand</a></h5>
+					<h5><a class="btn btn-primary" asp-controller="Cars" asp-action="Details" asp-route-information="@car.GetInformationUrl()" asp-route-id="@car.Id">@car.Brand</a></h5>
 				</div>
 			</div>
 		}

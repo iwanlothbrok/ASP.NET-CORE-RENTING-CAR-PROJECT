@@ -3,13 +3,11 @@
     using AutoMapper;
     using CarRentingSystem.Controllers;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Core.Services.Dealers;
-    using System;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
     public class CarsController : BaseController

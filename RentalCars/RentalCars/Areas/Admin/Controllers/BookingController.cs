@@ -38,7 +38,7 @@
 
             this.booking.IsRented(id, carId);
 
-            return Redirect("https://localhost:7163/");
+            return RedirectToActionPermanent("", "/");
         }
 
         [HttpGet]
