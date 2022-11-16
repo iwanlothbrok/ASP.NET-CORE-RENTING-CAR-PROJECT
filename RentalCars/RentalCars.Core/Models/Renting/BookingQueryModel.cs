@@ -2,6 +2,6 @@
 {
     public class BookingQueryModel
     {
-        public IEnumerable<AdminBookingModel> Bookings { get; set; }
+        public IEnumerable<AdminBookingModel> Bookings { get; set; } = new List<AdminBookingModel>();
     }
 }

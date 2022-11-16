@@ -1,6 +1,7 @@
 ﻿namespace RentalCars.Core.Services.Bookings
 {
     using System;
+    using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using RentalCars.Core.Models.Renting;
@@ -128,7 +129,7 @@
 
         public void ChangeVisilityByAdmin(int id)
         {
-            Booking? booking = this.data.Bookings.Where(c=>c.Id == id).FirstOrDefault();
+            Booking? booking = this.data.Bookings.Where(c => c.Id == id).FirstOrDefault();
 
             if (booking != null)
             {
@@ -176,10 +177,10 @@
             return true;
         }
 
-        public BookingQueryModel All()
+        public BookingQueryModel All(bool confirmByAdmin, bool confirmByDealer)
         {
-            var bookingQuery = this.data.Bookings
-                                .Where(p => p.IsConfirmedByAdmin == false || p.IsConfirmedByDealer == false);
+            IQueryable<Booking> bookingQuery = this.data.Bookings
+                                .Where(p => p.IsConfirmedByAdmin == confirmByAdmin || p.IsConfirmedByDealer == confirmByDealer);
 
             IEnumerable<AdminBookingModel> bookings = GetBookings(bookingQuery)
                                                                  .ToList();
@@ -189,6 +190,7 @@
                 Bookings = bookings
             };
         }
+
         public bool Delete(int id)
         {
             Booking? bookingData = this.data.Bookings.Find(id);
@@ -211,7 +213,7 @@
         }
 
         public IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking)
-        =>   booking
+        => booking
             .ProjectTo<AdminBookingModel>(this.mapper.ConfigurationProvider)
             .ToList();
     }

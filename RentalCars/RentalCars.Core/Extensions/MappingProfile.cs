@@ -24,7 +24,7 @@
 
 			//Mapping for bookings
 			this.CreateMap<Booking, AdminBookingModel>()
-                .ForMember(c => c.Price, cfg => cfg.MapFrom(c => c.DailyPrice));
+				.ForMember(c => c.Price, cfg => cfg.MapFrom(c => c.DailyPrice));
         }
-	}
+    }
 }

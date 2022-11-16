@@ -9,6 +9,7 @@
     using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class CarService : ICarService
@@ -87,10 +88,11 @@
            CarSorting sorting = CarSorting.DateCreated,
            int currentPage = 1,
            int carsPerPage = int.MaxValue,
-            bool publicOnly = true)
+            bool publicOnly = true,
+            bool isBooked = false)
         {
             var carsQuery = this.data.Cars
-                                .Where(p => p.IsPublic == publicOnly && p.IsBooked == false);
+                                .Where(p => p.IsPublic == publicOnly && p.IsBooked == isBooked);
 
             if (!string.IsNullOrWhiteSpace(brand))
             {
@@ -126,6 +128,8 @@
                 Cars = cars
             };
         }
+
+       
 
         public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> carPhoto, int year, int categoryId, int dealerId)
         {
@@ -260,5 +264,7 @@
               => carQuery
                   .ProjectTo<CarServiceModel>(this.mapper.ConfigurationProvider)
                   .ToList();
+
+       
     }
 }

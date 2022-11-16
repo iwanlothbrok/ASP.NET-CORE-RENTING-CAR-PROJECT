@@ -2,11 +2,11 @@
 {
     public class AdminBookingModel
     {
+        public int Id { get; set; }
+
         public string CustomerFirstName { get; set; } = null!;
 
         public string CustomerLastName { get; set; } = null!;
-
-        public int Id { get; set; }
 
         public string BookingDate { get; set; }
 

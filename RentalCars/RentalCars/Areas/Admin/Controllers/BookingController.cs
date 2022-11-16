@@ -11,21 +11,41 @@
     [Authorize(Roles = Constants.AreaName)]
     public class BookingController : Controller
     {
-        private readonly ICarService cars;
         private readonly IBookingService booking;
+        private readonly ICarService carService;
 
-        public BookingController(ICarService cars, IBookingService booking)
+        public BookingController(IBookingService booking, ICarService carService)
         {
-            this.cars = cars;
             this.booking = booking;
+            this.carService = carService;
         }
 
         public IActionResult Rent()
         {
             IEnumerable<AdminBookingModel> bookings = this.booking
-                .All()
+                .All(confirmByAdmin: false, confirmByDealer: false)
                 .Bookings
                 .ToList();
+
+            return View(bookings);
+        }
+
+        public IActionResult GetOfferts()
+        {
+            IEnumerable<AdminBookingModel> bookings = this.booking
+                .All(confirmByAdmin: true, confirmByDealer: true)
+                .Bookings
+                .ToList();
+
+            foreach (var book in bookings)
+            {
+                DateTime returningDate = DateTime.Parse(book.ReturnDate);
+
+                if (DateTime.Compare(returningDate, DateTime.UtcNow) >= 0)
+                {
+                    return Delete(book.Id);
+                }
+            }
 
             return View(bookings);
         }

@@ -54,12 +54,28 @@
             }
 
             IEnumerable<AdminBookingModel> bookings = this.booking
-                .All()
+                .All(confirmByAdmin: false, confirmByDealer: false)
                 .Bookings
                 .ToList();
 
             return View(bookings);
         }
+
+        public IActionResult GetRentedCars()
+        {
+            string userId = User.GetId();
+            int dealerId = dealerService.IdByUser(userId);
+
+            IEnumerable<AdminBookingModel> bookings = this.booking
+                .All(confirmByAdmin: true, confirmByDealer: true)
+                .Bookings
+                .Where(c => c.DealerId == dealerId)
+                .ToList();               
+                        
+            return View(bookings);
+        }
+
+
         public IActionResult ChangeVisibility(int id)
         {
             this.booking.ChangeVisilityByDealer(id);

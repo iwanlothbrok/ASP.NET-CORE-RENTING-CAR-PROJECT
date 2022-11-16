@@ -5,7 +5,7 @@
     public interface IBookingService
     {
         bool IsRented(int id, int carId);
-        BookingQueryModel All();
+        BookingQueryModel All(bool confirmByAdmin, bool confirmByDealer);
         IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking);
         public int CreateBooking(string firstName,
            string lastName,

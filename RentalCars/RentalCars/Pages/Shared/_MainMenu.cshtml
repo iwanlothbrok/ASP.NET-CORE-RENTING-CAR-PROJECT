@@ -14,22 +14,25 @@
 				var userId = User.GetId();
 				var userIsDealer = Dealers.IsDealer(userId);
 
-
-				if (userIsDealer)
-				{
-					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Mine">My Cars</a>
-					<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Add">Add Car</a>
-					<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Rent">See Offers</a>
-				}
 				if (User.IsAdmin())
 				{
 					<a class="nav-link active" asp-area="Admin" asp-controller="Booking" asp-action="Rent">Accept Bookings</a>
 					<a class="nav-link active" asp-area="Admin" asp-controller="Cars" asp-action="All">Accept Cars</a>
-
+					<a class="nav-link" asp-area="Admin" asp-controller="Booking" asp-action="GetOfferts">Approved bookings<i class="nav-link"></i></a>
 				}
-				if (userIsDealer == false)
+				if (User.IsAdmin() == false)
 				{
-					<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Become">Become Dealer</a>
+					if (userIsDealer)
+					{
+						<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Mine">My Cars</a>
+						<a class="nav-link active" asp-area="" asp-controller="Cars" asp-action="Add">Add Car</a>
+						<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Rent">Offers</a>
+						<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="GetRentedCars">Booking Contract</a>
+					}
+					if (userIsDealer == false)
+					{
+						<a class="nav-link active" asp-area="" asp-controller="Dealers" asp-action="Become">Become Dealer</a>
+					}
 				}
 			}
 		</li>

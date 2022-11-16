@@ -16,7 +16,9 @@
            CarSorting sorting = CarSorting.DateCreated,
            int currentPage = 1,
            int carsPerPage = int.MaxValue,
-            bool publicOnly = true);
+            bool publicOnly = true,
+            bool isBooked = false);
+
 
         IEnumerable<CarServiceModel> GetLastThreeCars();
 
@@ -57,5 +59,7 @@
         bool CategoryExists(int categoryId);
 
         IEnumerable<RentCarModel> AllCars();
+
+        
     }
 }

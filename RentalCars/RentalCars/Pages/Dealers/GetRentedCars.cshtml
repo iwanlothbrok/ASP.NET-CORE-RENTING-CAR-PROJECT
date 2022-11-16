@@ -3,14 +3,14 @@
 @model IEnumerable<AdminBookingModel>
 
 @{
-	ViewData["Title"] = "Booking Offerts";
+	 ViewData["Title"] = "Rented cars";
 }
 
 @{
 	Layout = "~/Pages/Shared/_layout.cshtml";
 }
 
-<h1>Booking Offerts</h1>
+<h1>Rented Cars</h1>
 
 <table class="table table-striped">
 	<thead class="thead-dark">
@@ -46,7 +46,7 @@
 				<td scope="col">@(booking.IsConfirmedByDealer ? "Yes" : "No")</td>
 				<td scope="col">
 					<a asp-area="Admin" asp-controller="Booking" asp-action="Delete" asp-route-id="@booking.Id" asp-route-id="@booking.CarId" class="btn btn-danger float-right ml-3">Delete</a>
-					<a asp-area="Admin" asp-controller="Booking" asp-action="ChangeVisibility" asp-route-id="@booking.Id" class="btn btn-info float-right ml-3">@(booking.IsConfirmedByAdmin ? "Hide" : "Accept")</a>
+					<a asp-area="Admin" asp-controller="Booking" asp-action="ChangeVisibility" asp-route-id="@booking.Id"  class="btn btn-info float-right ml-3">@(booking.IsConfirmedByAdmin ? "Hide" : "Accept")</a>
 				</td>
 			</tr>
 		}

@@ -54,19 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<li class="nav-item">
 					<a href="/" class="nav-link">Home</a>					
 				</li>
-				@if (userIsDealer)
-					{
-					<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Add">Add Car<i class="nav-link"></i></a>
-					</li>
-					<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Mine">Mine<i class="nav-link"></i></a>
-					</li>	
-					<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Dealers" asp-action="Rent">Renting Approval<i class="nav-link"></i></a>
-					</li>
-					}
-			    @if (User.IsAdmin())
+				 @if (User.IsAdmin())
 					{
 						<li class="nav-item">
 						 <a class="nav-link" asp-area="Admin" asp-controller="Cars" asp-action="All">Cars approvals<i class="nav-link"></i></a>
@@ -74,16 +62,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li class="nav-item">
 						 <a class="nav-link" asp-area="Admin" asp-controller="Booking" asp-action="Rent">Rent approvals<i class="nav-link"></i></a>
 						</li>
-						
+						<li class="nav-item">
+						 <a class="nav-link" asp-area="Admin" asp-controller="Booking" asp-action="GetOfferts">Approved bookings<i class="nav-link"></i></a>
+						</li>
 					}
-				<li class="nav-item">
-				    <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="All">Avaible Cars<i class="nav-link"></i></a>
-				</li>	
-				<li class="nav-item">
-				    <a class="nav-link" asp-area="" asp-controller="Booking" asp-action="Rent">Rent Car<i class="nav-link"></i></a>
-				</li>	
-			</ul>
-			}
+					@if (User.IsAdmin() == false)
+					{
+						@if (userIsDealer)
+						{
+							<li class="nav-item">
+								<a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Add">Add Car<i class="nav-link"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Mine">Mine<i class="nav-link"></i></a>
+							</li>	
+							<li class="nav-item">
+								<a class="nav-link" asp-area="" asp-controller="Dealers" asp-action="Rent">Offerts<i class="nav-link"></i></a>
+							</li>
+						}
+
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Cars" asp-action="All">Avaible Cars<i class="nav-link"></i></a>
+						</li>	
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Booking" asp-action="Rent">Rent Car<i class="nav-link"></i></a>
+						</li>
+						}
+				</ul>
+				}
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
