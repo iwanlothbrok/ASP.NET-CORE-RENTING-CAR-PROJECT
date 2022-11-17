@@ -31,6 +31,20 @@
         public int FindCar(int id)
         => this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).FirstOrDefault();
 
+        public void ReturningDateChecker(IEnumerable<AdminBookingModel> bookings)
+        {
+            foreach (var book in bookings)
+            {
+                DateTime returningDate = DateTime.Parse(book.ReturnDate);
+
+                int a = DateTime.Compare(returningDate, DateTime.UtcNow);
+
+                if (DateTime.Compare(returningDate, DateTime.UtcNow) <= 0)
+                {
+                    Delete(book.Id);
+                }
+            }
+        }
         public int CreateBooking(string firstName,
             string lastName,
             string userId,

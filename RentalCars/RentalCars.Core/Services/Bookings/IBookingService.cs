@@ -16,6 +16,7 @@
            string returingDate,
            int carId);
 
+        void ReturningDateChecker(IEnumerable<AdminBookingModel> bookings);
         int FindCar(int id);
         bool CheckIfIsDealer(int id);
         bool CheckUser(string id);

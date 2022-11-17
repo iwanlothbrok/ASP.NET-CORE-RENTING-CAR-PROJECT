@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using CarRentingSystem.Controllers;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Cars;
@@ -73,6 +74,7 @@
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult All([FromQuery] AllCarsQueryModel query)
         {
             CarQueryServiceModel queryResult = this.carService.All(
@@ -95,6 +97,7 @@
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Details(int id, string information)
         {
             CarDetailsServiceModel car = this.carService.Details(id);
