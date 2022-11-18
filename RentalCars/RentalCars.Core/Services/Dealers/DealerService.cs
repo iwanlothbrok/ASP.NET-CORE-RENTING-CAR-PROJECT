@@ -23,7 +23,7 @@
 
         public void Become(BecomeDealerFormModel dealer, string userId)
         {
-            var dealerForm = this.mapper.Map<Dealer>(dealer);
+            Dealer dealerForm = this.mapper.Map<Dealer>(dealer);
 
             if (dealerForm != null)
             {
