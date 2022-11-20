@@ -10,6 +10,8 @@
 
         public string DealerName { get; init; }
 
+        public string DealerPhoneNumber { get; init; }
+
         public string UserId { get; init; }
     }
 }

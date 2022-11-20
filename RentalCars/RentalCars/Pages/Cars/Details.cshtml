@@ -1,25 +1,54 @@
 ﻿@model CarDetailsServiceModel
 
 @{
-	ViewData["Title"] = "Details of the cars";
-	var base64 = Convert.ToBase64String(Model.CarPhoto);
-	var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    ViewBag.Title = "House Details";
 }
 
-<div class="col-md-6">
-	<div class="card mb-3">
-		<h1 class="text-center">@Model.Brand @Model.Model </h1>
-		<img src="@imgSrc" alt="@Model.Brand @Model.Model - @Model.Year (@Model.CategoryName)">
-		<div class="card-body text-center">
-			<h5 class="card-title text-center">@Model.Year  @Model.Brand @Model.Model (@Model.CategoryName)</h5>
-		</div>
-		<h5 class="card-title ml-3">Description of the car: @Model.Description</h5>
-	</div>
-</div>
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+@{
+    var userId = User.GetId();
 
-<div>
-	<div>
-		<a asp-controller="Booking" asp-action="Rent" asp-route-id="@Model.Id" class="btn btn-primary ml-5 md-5">Rent it</a>
-	</div>
+    var base64 = Convert.ToBase64String(Model.CarPhoto);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+}
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 35rem;"
+            src="@imgSrc" alt="House Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Brand @Model.Model</u></p>
+            <p>
+                Price Per Day:
+                <b>@String.Format("{0:f2}", Model.Price) BGN</b>
+            </p>
+            <p>@Model.Description</p>
+            <p>Category: <b>@Model.CategoryName</b></p>
+            <p><i>(@(Model.IsBooked ? "Rented" : "Not Rented"))</i></p>
+            <div class="form-inline">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-warning" asp-controller="Cars" asp-action="Edit"
+                       asp-route-id="@Model.Id">Edit</a>
+                    <a class="ml-2 btn btn-danger" asp-controller="Cars" asp-action="Delete"
+                       asp-route-id="@Model.Id">Delete</a>
+                    @if (!Model.IsBooked)
+                    {
+                        <a asp-controller="Booking" asp-action="Rent" class="btn btn-primary ml-5 md-5">Rent</a>
+                    }
+                   
+                }
+            </div>
+            <p></p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Agent Info:</h5>
+                    <p class="card-text">Name: @Model.DealerName</p>
+                    <p class="card-text">Phone Number: @Model.DealerPhoneNumber</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
