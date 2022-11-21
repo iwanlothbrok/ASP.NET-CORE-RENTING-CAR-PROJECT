@@ -22,7 +22,6 @@
             this.bookingService = bookingService;
         }
 
-        [HttpGet]
         public IActionResult Rent()
         {
             return View(new RentFormModel
@@ -90,8 +89,8 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-             this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
-           
+           this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
+
             TempData[GlobalMessageKey] = "Thank you for renting our car, your request is on the waitlist!";
 
             return RedirectToAction("Index", "Home");

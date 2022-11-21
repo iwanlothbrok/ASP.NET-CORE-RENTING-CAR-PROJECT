@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Core", "RentalCars.Core\RentalCars.Core.csproj", "{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Test", "RentalCars.Test\RentalCars.Test.csproj", "{106A4134-FDA4-43AD-9318-CA68667FB7B6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862FF6C9-8C48-4F84-AAEB-53B9FC57F6B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{106A4134-FDA4-43AD-9318-CA68667FB7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{106A4134-FDA4-43AD-9318-CA68667FB7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{106A4134-FDA4-43AD-9318-CA68667FB7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{106A4134-FDA4-43AD-9318-CA68667FB7B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
