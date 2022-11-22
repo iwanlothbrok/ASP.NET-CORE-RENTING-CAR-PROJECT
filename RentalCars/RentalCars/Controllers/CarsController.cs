@@ -53,12 +53,12 @@
 
             }
 
-            if (this.ModelState.IsValid == false)
-            {
-                car.Categories = this.carService.AllCategories();
+            //if (this.ModelState.IsValid == false)
+            //{
+            //    car.Categories = this.carService.AllCategories();
 
-                return View(car);
-            }
+            //    return View(car);
+            //}
 
             if (car.Price == 0)
             {
@@ -220,8 +220,6 @@
             IEnumerable<CarServiceModel> myCars = this.carService
                 .ByUser(this.User.GetId())
                 .ToList();
-
-
 
             return View(myCars);
         }

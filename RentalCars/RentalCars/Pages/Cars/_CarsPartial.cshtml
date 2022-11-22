@@ -5,58 +5,62 @@
 
 <div class="row">
 
-@if (SignInManager.IsSignedIn(User))
-    {
-        var userId = User.GetId();
-        var userIsDealer = Dealers.IsDealer(userId);
+	@if (SignInManager.IsSignedIn(User))
+	{
+		var userId = User.GetId();
+		var userIsDealer = Dealers.IsDealer(userId);
 
-        @foreach (var car in Model)
-        {
-            var base64 = Convert.ToBase64String(car.CarPhoto);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+		@foreach (var car in Model)
+		{
+			var base64 = Convert.ToBase64String(car.CarPhoto);
+			var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
 
-            <div class="col-md-4">
-                <div class="card mb-3">
-                   <img src="@imgSrc" alt="@car.Brand @car.Model - @car.Year (@car.CategoryName)">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>
-                        <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" asp-route-information="@car.GetInformationUrl()" class="btn btn-primary">View</a>
-                        @if (userIsDealer || User.IsAdmin())
-                        {
-                            <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-warning">Edit</a>
-                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
+			<div class="col-md-4">
+				<div class="card mb-3">
+					<img src="@imgSrc" alt="@car.Brand @car.Model - @car.Year (@car.CategoryName)">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>
+						<a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" asp-route-information="@car.GetInformationUrl()" class="btn btn-primary">View</a>
+						@if (userIsDealer || User.IsAdmin())
+						{
+							<a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-warning">Edit</a>
+							<a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
+						}
+					</div>
+				</div>
+			</div>
+		}
 
-    }
-    else
-    {
-          @foreach (var car in Model)
-        {
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <img class="card-img-top" src="@car.CarPhoto" alt="@car.Brand @car.Model - @car.Year (@car.CategoryName)">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>   
-                    </div>
-                </div>
-            </div>
-        }  
-    }
+	}
+	else
+	{
+		@foreach (var car in Model)
+		{
+
+		var base64 = Convert.ToBase64String(car.CarPhoto);
+		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+			<div class="col-md-4">
+				<div class="card mb-3">
+					<img src="@imgSrc" alt="@car.Brand @car.Model - @car.Year (@car.CategoryName)">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>
+					</div>
+				</div>
+			</div>
+		}
+	}
 </div>
 
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
 }
 
 
-<script>
-    function myFunction() {
-        confirm("Are you sure you want to remove the car?");
-    }
-</script>
+	<script>
+		function myFunction() {
+			confirm("Are you sure you want to remove the car?");
+		}
+	</script>
