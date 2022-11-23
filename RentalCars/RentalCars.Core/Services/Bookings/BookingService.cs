@@ -29,7 +29,7 @@
             => this.data.Bookings.Any(c => c.DealerId == id);
 
         public int FindCar(int id)
-        => this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).FirstOrDefault();
+        => (int)this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).First();
 
         public void ReturningDateChecker(IEnumerable<AdminBookingModel> bookings)
         {
@@ -67,7 +67,7 @@
                 CustomerId = userId,
                 DealerId = dealerId,
                 DailyPrice = GetCarPrice(bookingDate, returingDate, price),
-                BookingDate = DateTime.Parse(bookingDate),
+                BookingDate =DateTime.Parse(bookingDate),
                 ReturnDate = DateTime.Parse(returingDate),
                 IsConfirmedByAdmin = false,
                 IsConfirmedByDealer = false,
@@ -81,18 +81,18 @@
         }
         public bool DateChecker(string dateOfBooking, string dateOfReturning)
         {
-            char[] delimiterChars = { ' ', '-', '/', '\\', ',', '.' };
+            char[] delimiterChars = { ' ', '-', '/', '\\', ',', '.','T' };
 
             string[] bookingDate = dateOfBooking.Split(delimiterChars);
             string[] returningDate = dateOfReturning.Split(delimiterChars);
 
 
-            int bookingDay = int.Parse(bookingDate[0]);
-            int returningDay = int.Parse(returningDate[0]);
+            int bookingYear = int.Parse(bookingDate[0]);
+            int returningYear = int.Parse(returningDate[0]);
             int bookingMonth = int.Parse(bookingDate[1]);
             int returninMonth = int.Parse(returningDate[1]);
-            int bookingYear = int.Parse(bookingDate[2]);
-            int returningYear = int.Parse(returningDate[2]);
+            int bookingDay = int.Parse(bookingDate[2]);
+            int returningDay = int.Parse(returningDate[2]);
 
             if (bookingDay > 31 || returningDay > 31)
             {

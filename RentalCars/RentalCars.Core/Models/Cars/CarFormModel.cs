@@ -27,7 +27,7 @@
 
         [Required]
         [Display(Name = "Photo of the car")]
-        public byte[] CarPhoto { get; init; } = null!;
+        public byte[] CarPhoto { get; set; } = null!;
 
         [Required]
         [Display(Name = "Daily price")]

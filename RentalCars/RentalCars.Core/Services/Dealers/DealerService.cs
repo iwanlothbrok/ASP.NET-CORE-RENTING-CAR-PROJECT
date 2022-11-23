@@ -23,13 +23,13 @@
 
         public void Become(BecomeDealerFormModel dealer, string userId)
         {
-            var dealerForm = this.mapper.Map<Dealer>(dealer);
+            Dealer dealerForm = this.mapper.Map<Dealer>(dealer);
 
             if (dealerForm != null)
             {
                 dealerForm.UserId = userId;
-                 data.Dealers.Add(dealerForm);
-                 data.SaveChanges();
+                data.Dealers.Add(dealerForm);
+                data.SaveChanges();
             }
         }
 

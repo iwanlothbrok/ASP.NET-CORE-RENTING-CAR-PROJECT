@@ -11,10 +11,10 @@
 
         public InMemoryDbContext()
         {
-            this.connection = new SqliteConnection("Filename=:memory");
+            connection = new SqliteConnection("Filename=:memory:");
             connection.Open();
 
-            this.dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+            dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlite(connection)
                 .Options;
 

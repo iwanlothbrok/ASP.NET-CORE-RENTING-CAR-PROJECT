@@ -42,7 +42,7 @@
         /// <summary>
         /// car id 
         /// </summary>
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
 
         /// <summary>
         /// dealer id 
