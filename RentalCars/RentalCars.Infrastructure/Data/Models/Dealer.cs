@@ -30,6 +30,6 @@
         [Required]
         public string UserId { get; set; }
 
-        public IEnumerable<Car> Cars { get; init; } = new List<Car>();
+        public IEnumerable<Car>? Cars { get; init; } = new List<Car>();
     }
 }

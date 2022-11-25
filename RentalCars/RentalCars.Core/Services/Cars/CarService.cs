@@ -25,7 +25,6 @@
         public Car? FindCar(int id)
         => this.data.Cars.Find(id);
 
-
         public IEnumerable<CarServiceModel> GetLastThreeCars()
          => this.data
             .Cars
@@ -128,8 +127,6 @@
                 Cars = cars
             };
         }
-
-       
 
         public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> carPhoto, int year, int categoryId, int dealerId)
         {
@@ -265,6 +262,6 @@
                   .ProjectTo<CarServiceModel>(this.mapper.ConfigurationProvider)
                   .ToList();
 
-       
+
     }
 }
