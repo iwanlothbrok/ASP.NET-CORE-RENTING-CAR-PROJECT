@@ -38,7 +38,7 @@
 
             rentalCarsDb = serviceProvider.GetService<ApplicationDbContext>()!;
 
-            SeedDb();
+            SeedDatabase();
         }
 
         [Test]
@@ -58,7 +58,7 @@
         public void FindCarShouldReturnCar()
         {
             //Arrange
-            int carId = 1;
+            var carId = 1;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
@@ -67,13 +67,71 @@
             Assert.That(service.FindCar(carId), Is.Not.Null);
         }
 
+        [Test]
+        public void GetLastThreeCarsShouldBeEmpty()
+        {
+            //Arrange
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+
+            //Assert
+            Assert.That(service.GetLastThreeCars(), Is.Empty);
+        }
+
+        [Test]
+        public void GetLastThreeCarsShouldReturnThreeCars()
+        {
+            //Arrange
+            var carCount = 3;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            
+            Assert.That(service.GetLastThreeCars().Count, Is.EqualTo(carCount));
+            Assert.That(service.GetLastThreeCars(), Is.Not.Empty);
+        }
+
+        [Test]
+        public void DeleteShouldReturnFalseDealerIdIssue()
+        {
+            //Arrange
+            var carId = 2;
+            var dealerId = 0;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.That(service.Delete(carId, dealerId), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void DeleteShouldDeletCarCorrectly()
+        {
+            //Arrange
+            var carId = 2;
+            var dealerId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.That(service.Delete(carId, dealerId), Is.EqualTo(true));
+        }
+
         [TearDown]
         public void TearDown()
         {
             dbContext.Dispose();
         }
 
-        private void SeedDb()
+        private void SeedDatabase()
         {
             var category = new Category()
             {
@@ -95,7 +153,7 @@
 
             var dealer = new Dealer()
             {
-                Id = 2,
+                Id = 1,
                 Name = "Iwan",
                 PhoneNumber = "0000999",
                 UserId = user.Id
@@ -117,11 +175,43 @@
                 Category = category,
                 Dealer = dealer,
             };
+            var car1 = new Car()
+            {
+                Brand = "bmw",
+                Model = "m3",
+                CarPhoto = new byte[23123],
+                DealerId = dealer.Id,
+                Id = 2,
+                Price = 50,
+                Description = "asdasdasdasdadasda",
+                IsBooked = false,
+                IsPublic = false,
+                Year = 2022,
+                CategoryId = category.Id,
+                Category = category,
+                Dealer = dealer,
+            };
+            var car2 = new Car()
+            {
+                Brand = "bmw",
+                Model = "m3",
+                CarPhoto = new byte[23123],
+                DealerId = dealer.Id,
+                Id = 3,
+                Price = 50,
+                Description = "asdasdasdasdadasda",
+                IsBooked = false,
+                IsPublic = false,
+                Year = 2022,
+                CategoryId = category.Id,
+                Category = category,
+                Dealer = dealer,
+            };
 
             rentalCarsDb.Users.Add(user);
             rentalCarsDb.Categories.Add(category);
             rentalCarsDb.Dealers.Add(dealer);
-            rentalCarsDb.Cars.Add(car);
+            rentalCarsDb.Cars.AddRange(car,car1,car2);
 
             rentalCarsDb.SaveChanges();
         }
