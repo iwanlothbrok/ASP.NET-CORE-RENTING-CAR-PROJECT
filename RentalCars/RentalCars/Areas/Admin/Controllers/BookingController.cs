@@ -34,8 +34,6 @@
                 .Bookings
                 .ToList();
 
-            this.booking.ReturningDateChecker(bookings);
-
             return View(bookings);
         }
 

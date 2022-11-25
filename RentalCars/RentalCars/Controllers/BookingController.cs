@@ -20,6 +20,8 @@
             this.carService = car;
             this.dealerService = dealer;
             this.bookingService = bookingService;
+
+            bookingService.ReturningDateChecker(bookingService.GetBookingsAll());
         }
 
         public IActionResult Rent()
@@ -95,6 +97,5 @@
 
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

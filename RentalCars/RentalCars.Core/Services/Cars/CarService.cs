@@ -243,7 +243,9 @@
                    Brand = c.Brand,
                    Model = c.Model,
                    Year = c.Year,
-                   Price = c.Price
+                   Price = c.Price,
+                   IsBooked = c.IsBooked,
+                   IsPublic = c.IsPublic,
                })
                .ToList();
 

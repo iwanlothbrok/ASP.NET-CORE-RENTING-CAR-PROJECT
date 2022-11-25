@@ -13,13 +13,13 @@
     {
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
-        private readonly ICarService car;
+        private readonly ICarService carService;
 
-        public BookingService(ApplicationDbContext data, IMapper mapper, ICarService car)
+        public BookingService(ApplicationDbContext data, IMapper mapper, ICarService carService)
         {
             this.data = data;
             this.mapper = mapper;
-            this.car = car;
+            this.carService = carService;
         }
 
         public bool CheckUser(string id)
@@ -31,20 +31,33 @@
         public int FindCar(int id)
         => (int)this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).First();
 
-        public void ReturningDateChecker(IEnumerable<AdminBookingModel> bookings)
+        public IEnumerable<Booking> GetBookingsAll()
+           => data.Bookings.ToList();
+
+        public void ReturningDateChecker(IEnumerable<Booking> bookings)
         {
             foreach (var book in bookings)
             {
-                DateTime returningDate = DateTime.Parse(book.ReturnDate);
+                //DateTime returningDate = DateTime.Parse(book.ReturnDate);
 
-                int a = DateTime.Compare(returningDate, DateTime.UtcNow);
-
-                if (DateTime.Compare(returningDate, DateTime.UtcNow) <= 0)
+                if (DateTime.Compare(book.ReturnDate, DateTime.UtcNow) <= 0)
                 {
+                    Car car = carService.FindCar((int)book.CarId);
+
+                    if (car is null)
+                    {
+                        Delete(book.Id);
+                        continue;
+                    }
+
+                    car.IsBooked = false;
+                    car.IsPublic = false;
+                    
                     Delete(book.Id);
                 }
             }
         }
+
         public int CreateBooking(string firstName,
             string lastName,
             string userId,
@@ -85,7 +98,6 @@
 
             string[] bookingDate = dateOfBooking.Split(delimiterChars);
             string[] returningDate = dateOfReturning.Split(delimiterChars);
-
 
             int bookingYear = int.Parse(bookingDate[0]);
             int returningYear = int.Parse(returningDate[0]);
@@ -128,7 +140,6 @@
         public decimal GetCarPrice(string bookingDate, string returningDate, decimal price)
         {
             TimeSpan diff = DateTime.Parse(returningDate) - DateTime.Parse(bookingDate);
-            //TimeSpan diff = returningDate - bookingDate;
             int days = diff.Days;
 
             if (days <= 0)
@@ -165,9 +176,9 @@
 
         public bool IsRented(int id, int carId)
         {
-            Car searchingCar = this.car.FindCar(carId);
+            Car searchingCar = this.carService.FindCar(carId);
 
-            if (car == null)
+            if (carService == null)
             {
                 return false;
             }

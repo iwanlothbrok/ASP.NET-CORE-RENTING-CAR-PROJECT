@@ -48,14 +48,15 @@
             string userId = User.GetId();
             int dealerId = dealerService.IdByUser(userId);
 
-            if (this.booking.CheckIfIsDealer(dealerId) == false)
-            {
-                return RedirectToAction("Error", "Home");
-            }
+            //if (this.booking.CheckIfIsDealer(dealerId) == false)
+            //{
+            //    return RedirectToAction("Error", "Home");
+            //}
 
             IEnumerable<AdminBookingModel> bookings = this.booking
                 .All(confirmByAdmin: false, confirmByDealer: false)
                 .Bookings
+                .Where(d => d.DealerId == dealerId)
                 .ToList();
 
             return View(bookings);
@@ -70,8 +71,8 @@
                 .All(confirmByAdmin: true, confirmByDealer: true)
                 .Bookings
                 .Where(c => c.DealerId == dealerId)
-                .ToList();               
-                        
+                .ToList();
+
             return View(bookings);
         }
 

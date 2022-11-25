@@ -16,7 +16,7 @@
            string returingDate,
            int carId);
 
-        void ReturningDateChecker(IEnumerable<AdminBookingModel> bookings);
+        void ReturningDateChecker(IEnumerable<Booking> bookings);
         int FindCar(int id);
         bool CheckIfIsDealer(int id);
         bool CheckUser(string id);
@@ -26,5 +26,6 @@
         bool DateChecker(string dateOfBooking, string dateOfReturning);
         bool UserHasBookedCar(string userId);
         decimal GetCarPrice(string bookingDate, string returningDate, decimal price);
+        IEnumerable<Booking> GetBookingsAll();
     }
 }
