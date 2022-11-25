@@ -20,6 +20,6 @@
         /// <summary>
         /// relation of the tables 
         /// </summary>
-        public IEnumerable<Car> Cars { get; init; } = new List<Car>();
+        public IEnumerable<Car>? Cars { get; init; } = new List<Car>();
     }
 }

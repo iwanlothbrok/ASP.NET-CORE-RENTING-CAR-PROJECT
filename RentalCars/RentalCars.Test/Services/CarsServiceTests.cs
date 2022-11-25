@@ -1,15 +1,16 @@
 ﻿namespace RentalCars.Test.Services
 {
     using AutoMapper;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using Moq;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
-    using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
-    using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
+    using Car = Infrastructure.Data.Models.Car;
+    using Category = Infrastructure.Data.Models.Category;
+    using Dealer = Infrastructure.Data.Models.Dealer;
 
     public class CarsServiceTests
     {
@@ -37,7 +38,7 @@
 
             rentalCarsDb = serviceProvider.GetService<ApplicationDbContext>()!;
 
-            //await SeedDatabaseAsync(repo);
+            SeedDb();
         }
 
         [Test]
@@ -57,24 +58,47 @@
         public void FindCarShouldReturnCar()
         {
             //Arrange
-            int carId = 111;
+            int carId = 1;
 
-            //rentalCarsDb = IMock<ApplicationDbContext>();
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
 
+            //Assert
+            Assert.That(service.FindCar(carId), Is.Not.Null);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            dbContext.Dispose();
+        }
+
+        private void SeedDb()
+        {
             var category = new Category()
             {
                 Id = 13,
-                Cars = new List<Car>(),
                 Name = "Lux"
             };
+
+            var user = new IdentityUser()
+            {
+                Id = "249b1fe6-3667-43d5-9ac9-4de6a92d923a",
+                PasswordHash = "1234",
+                Email = "2123@abv.bg",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                TwoFactorEnabled = true,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            };
+
             var dealer = new Dealer()
             {
                 Id = 2,
-                Cars = new List<Car>(),
                 Name = "Iwan",
                 PhoneNumber = "0000999",
-                UserId = "FAKEid1"
-
+                UserId = user.Id
             };
 
             var car = new Car()
@@ -82,8 +106,8 @@
                 Brand = "bmw",
                 Model = "m3",
                 CarPhoto = new byte[23123],
-                DealerId = 1,
-                Id = carId,
+                DealerId = dealer.Id,
+                Id = 1,
                 Price = 50,
                 Description = "asdasdasdasdadasda",
                 IsBooked = false,
@@ -94,23 +118,12 @@
                 Dealer = dealer,
             };
 
-            rentalCarsDb.Add(car);
-            rentalCarsDb.Add(dealer);
-            rentalCarsDb.Add(category);
+            rentalCarsDb.Users.Add(user);
+            rentalCarsDb.Categories.Add(category);
+            rentalCarsDb.Dealers.Add(dealer);
+            rentalCarsDb.Cars.Add(car);
 
             rentalCarsDb.SaveChanges();
-
-            //Act
-            var service = new CarService(rentalCarsDb, mapper);
-
-            //Assert
-            Assert.That(service.FindCar(car.Id), Is.EqualTo(car));
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            dbContext.Dispose();
         }
     }
 }
