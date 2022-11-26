@@ -8,6 +8,7 @@
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
+    using System.Runtime.InteropServices;
     using Car = Infrastructure.Data.Models.Car;
     using Category = Infrastructure.Data.Models.Category;
     using Dealer = Infrastructure.Data.Models.Dealer;
@@ -90,7 +91,7 @@
             var service = new CarService(rentalCarsDb, mapper);
 
             //Assert
-            
+
             Assert.That(service.GetLastThreeCars().Count, Is.EqualTo(carCount));
             Assert.That(service.GetLastThreeCars(), Is.Not.Empty);
         }
@@ -111,7 +112,7 @@
         }
 
         [Test]
-        public void DeleteShouldDeletCarCorrectly()
+        public void DeleteShouldDeleteCarCorrectly()
         {
             //Arrange
             var carId = 2;
@@ -123,6 +124,267 @@
             //Assert
 
             Assert.That(service.Delete(carId, dealerId), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void DeleteShouldReturnFalseCarIssue()
+        {
+            //Arrange
+            var carId = 0;
+            var dealerId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.IsFalse(service.Delete(carId, dealerId));
+        }
+
+        [Test]
+        public void ChangeVisilityShouldChangeCorrectly()
+        {
+            //Arrange
+            var carId = 2;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.IsTrue(service.ChangeVisility(carId));
+        }
+
+        [Test]
+        public void ChangeVisilityShouldReturnFalse()
+        {
+            //Arrange
+            var carId = 1111;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.IsFalse(service.ChangeVisility(carId));
+        }
+
+        [Test]
+        public void DetailsShouldBeNull()
+        {
+            //Arrange
+            var carId = 1111;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.IsNull(service.Details(carId));
+
+        }
+
+        [Test]
+        public void DetailsShouldReturnTrueInfo()
+        {
+            //Arrange
+            var carId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.NotNull(service.Details(carId));
+        }
+
+        [Test]
+        public void AllBrandsShouldReturnCorrectly()
+        {
+            //Arrange
+            var brandCount = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.That(brandCount, Is.EqualTo(service.AllBrands().Count()));
+        }
+
+        [Test]
+        public void AllBrandsShouldBeIncorrect()
+        {
+            //Arrange
+            var brandCount = 10;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+
+            Assert.That(brandCount, Is.Not.EqualTo(service.AllBrands().Count()));
+        }
+
+        [Test]
+        public void ByUserShouldBeEmpty()
+        {
+            //Arrange
+            var userId = "falseId";
+            var carsCount = 0;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.ByUser(userId).Count(), Is.EqualTo(carsCount));
+            Assert.IsEmpty(service.ByUser(userId));
+        }
+
+        [Test]
+        public void ByUserShouldReturnThreeCars()
+        {
+            //Arrange
+            var userId = "249b1fe6-3667-43d5-9ac9-4de6a92d923a";
+            var carsCount = 3;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.ByUser(userId).Count(), Is.EqualTo(carsCount));
+            Assert.That(service.ByUser(userId), Is.Not.Empty);
+        }
+        [Test]
+        public void IsByDealerShouldFalse()
+        {
+            //Arrange
+            var dealerId = 777;
+            var carId = 0;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.IsByDealer(carId, dealerId), Is.False);
+        }
+
+        [Test]
+        public void IsByDealerShouldTrue()
+        {
+            //Arrange
+            var dealerId = 1;
+            var carId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.IsByDealer(carId, dealerId), Is.True);
+        }
+
+        [Test]
+        public void AllCategoriesShouldBeNine()
+        {
+            //Arrange
+            var categoriesCount = 9;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.AllCategories().Count(), Is.EqualTo(categoriesCount));
+        }
+
+        [Test]
+        public void AllCategoriesShouldBeEmpty()
+        {
+            //Arrange
+            var categoryId = 77;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsEmpty(service.AllCategories().Where(c => c.Id == categoryId));
+        }
+
+        [Test]
+        public void AllCarsShouldThree()
+        {
+            //Arrange
+            var carsCount = 3;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.That(service.AllCars().Count(), Is.EqualTo(carsCount));
+        }
+
+        [Test]
+        public void AllCarsShouldBeEmpty()
+        {
+            //Arrange
+            var carId = 77;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsEmpty(service.AllCars().Where(c => c.Id == carId));
+        }
+
+        [Test]
+        public void CarExistsShouldReturnFalse()
+        {
+            //Arrange
+            int carId = 77;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsFalse(service.CarsExists(carId));
+        }
+
+        [Test]
+        public void CarExistsShouldReturnTrue()
+        {
+            //Arrange
+            int carId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsTrue(service.CarsExists(carId));
+        }
+
+        [Test]
+        public void CategoryExistsShouldReturnFalse()
+        {
+            //Arrange
+            int categoryId = 77;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsFalse(service.CategoryExists(categoryId));
+        }
+
+        [Test]
+        public void CategoryExistsShouldReturnTrue()
+        {
+            //Arrange
+            int categoryId = 13;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            //Assert
+            Assert.IsTrue(service.CategoryExists(categoryId));
         }
 
         [TearDown]
@@ -137,6 +399,12 @@
             {
                 Id = 13,
                 Name = "Lux"
+            };
+
+            var category1 = new Category()
+            {
+                Id = 53,
+                Name = "Fresh"
             };
 
             var user = new IdentityUser()
@@ -209,9 +477,9 @@
             };
 
             rentalCarsDb.Users.Add(user);
-            rentalCarsDb.Categories.Add(category);
+            rentalCarsDb.Categories.AddRange(category, category1);
             rentalCarsDb.Dealers.Add(dealer);
-            rentalCarsDb.Cars.AddRange(car,car1,car2);
+            rentalCarsDb.Cars.AddRange(car, car1, car2);
 
             rentalCarsDb.SaveChanges();
         }

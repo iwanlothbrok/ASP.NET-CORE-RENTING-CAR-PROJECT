@@ -42,6 +42,10 @@
 
         public bool Delete(int id, int dealerId)
         {
+            if (this.data.Cars.Find(id) == null)
+            {
+                return false;
+            }
             Car? carData = this.data.Cars.Find(id);
 
             bool isMyCar = true;
@@ -70,15 +74,21 @@
             return isMyCar;
         }
 
-        public void ChangeVisility(int carId)
+        public bool ChangeVisility(int carId)
         {
+            if (this.data.Cars.Find(carId) == null)
+            {
+                return false;
+            }
             Car? car = this.data.Cars.Find(carId);
 
             if (car != null)
             {
                 car.IsPublic = !car.IsPublic;
                 this.data.SaveChanges();
+                return true;
             }
+            return false;
         }
 
         public CarQueryServiceModel All(

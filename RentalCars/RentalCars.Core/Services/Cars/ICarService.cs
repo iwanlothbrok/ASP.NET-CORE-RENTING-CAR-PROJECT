@@ -24,7 +24,7 @@
 
         public Car FindCar(int id);
 
-        public void ChangeVisility(int carId);
+        public bool ChangeVisility(int carId);
 
         Task<bool> Edit(int id,
             string brand,

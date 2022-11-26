@@ -53,12 +53,12 @@
 
             }
 
-            //if (this.ModelState.IsValid == false)
-            //{
-            //    car.Categories = this.carService.AllCategories();
+            if (this.ModelState.IsValid == false)
+            {
+                car.Categories = this.carService.AllCategories();
 
-            //    return View(car);
-            //}
+                return View(car);
+            }
 
             if (car.Price == 0)
             {
@@ -171,7 +171,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, CarFormModel car, List<IFormFile> carPhoto)
+        public async Task<IActionResult> Edit(int id, CarFormModel car, List<IFormFile> carPhoto)
         {
             int dealerId = this.dealerService.IdByUser(this.User.GetId());
 
@@ -199,7 +199,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.carService.Edit(
+            await this.carService.Edit(
                 id,
                 car.Brand,
                 car.Model,
