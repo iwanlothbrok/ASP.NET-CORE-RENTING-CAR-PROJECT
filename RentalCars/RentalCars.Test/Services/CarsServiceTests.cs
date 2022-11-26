@@ -1,6 +1,7 @@
 ﻿namespace RentalCars.Test.Services
 {
     using AutoMapper;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +9,6 @@
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
-    using System.Runtime.InteropServices;
     using Car = Infrastructure.Data.Models.Car;
     using Category = Infrastructure.Data.Models.Category;
     using Dealer = Infrastructure.Data.Models.Dealer;
@@ -82,15 +82,16 @@
         }
 
         [Test]
-        public void GetLastThreeCarsShouldReturnThreeCars()
+        public void GetLastThreeCarsShouldReturnCorrectly()
         {
             //Arrange
-            var carCount = 3;
+            var carCount = 1;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
 
             //Assert
+            var carsCount = service.GetLastThreeCars();
 
             Assert.That(service.GetLastThreeCars().Count, Is.EqualTo(carCount));
             Assert.That(service.GetLastThreeCars(), Is.Not.Empty);
@@ -387,6 +388,81 @@
             Assert.IsTrue(service.CategoryExists(categoryId));
         }
 
+        [Test]
+        public async Task CreateShouldReturnZeroAndShouldNotWork()
+        {
+            //Arrange
+            var carId = 0;
+
+            var Brand = "bmw";
+            var Model = "m3";
+            List<IFormFile> CarPhoto = new List<IFormFile>();
+            var DealerId = 1;
+            var Price = 50;
+            var Description = "asdasdasdasdadasda";
+            var Year = 2022;
+            var CategoryId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+            int a = await service.Create(
+                    Brand,
+                    Model,
+                    Description,
+                    Price,
+                    CarPhoto,
+                    Year,
+                    CategoryId,
+                    DealerId);
+            //Assert
+            Assert.That(a, Is.EqualTo(carId));
+        }
+
+        [Test]
+        public async Task EditShouldReturnFalseWithFakeCarId()
+        {
+            //Arrange
+            var carId = 777;
+
+            var Brand = "bmw";
+            var Model = "m3";
+            List<IFormFile> CarPhoto = new List<IFormFile>();
+            var Price = 50;
+            var Description = "asdasdasdasdadasda";
+            var Year = 2022;
+            var CategoryId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+
+            //Assert
+            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId));
+        }
+
+        [Test]
+        public async Task EditShouldReturnFalseWithEmptyCarPhoto()
+        {
+            //Arrange
+            var carId = 1;
+
+            var Brand = "bmw";
+            var Model = "m3";
+            List<IFormFile> CarPhoto = new List<IFormFile>();
+            var Price = 50;
+            var Description = "asdasdasdasdadasda";
+            var Year = 2022;
+            var CategoryId = 1;
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+
+            //Assert
+            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId));
+        }
+
         [TearDown]
         public void TearDown()
         {
@@ -425,6 +501,23 @@
                 Name = "Iwan",
                 PhoneNumber = "0000999",
                 UserId = user.Id
+            };
+
+            var car3 = new Car()
+            {
+                Brand = "bmw",
+                Model = "m3",
+                CarPhoto = new byte[23123],
+                DealerId = dealer.Id,
+                Id =55,
+                Price = 50,
+                Description = "asdasdasdasdadasda",
+                IsBooked = false,
+                IsPublic = true,
+                Year = 2022,
+                CategoryId = category.Id,
+                Category = category,
+                Dealer = dealer,
             };
 
             var car = new Car()
@@ -479,7 +572,7 @@
             rentalCarsDb.Users.Add(user);
             rentalCarsDb.Categories.AddRange(category, category1);
             rentalCarsDb.Dealers.Add(dealer);
-            rentalCarsDb.Cars.AddRange(car, car1, car2);
+            rentalCarsDb.Cars.AddRange(car, car1, car2, car3);
 
             rentalCarsDb.SaveChanges();
         }

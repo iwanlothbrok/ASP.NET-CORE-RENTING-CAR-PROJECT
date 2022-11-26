@@ -47,10 +47,16 @@
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
+            if (carPhoto == null || carPhoto.Count == 0)
+            {
+                car.Categories = this.carService.AllCategories();
+
+                return View(car);
+            }
+
             if (this.carService.CategoryExists(car.CategoryId) == false)
             {
                 this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
-
             }
 
             if (this.ModelState.IsValid == false)
@@ -180,6 +186,13 @@
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
+            if (carPhoto == null || carPhoto.Count == 0)
+            {
+                car.Categories = this.carService.AllCategories();
+
+                return View(car);
+            }
+
             if (this.carService.CategoryExists(car.CategoryId) == false)
             {
                 car.Categories = this.carService.AllCategories();
@@ -187,12 +200,12 @@
                 return View(car);
             }
 
-            //if (this.ModelState.IsValid == false)
-            //{
-            //    car.Categories = this.carService.AllCategories();
+            if (this.ModelState.IsValid == false)
+            {
+                car.Categories = this.carService.AllCategories();
 
-            //    return View(car);
-            //}
+                return View(car);
+            }
 
             if (!this.carService.IsByDealer(id, dealerId))
             {

@@ -153,6 +153,12 @@
 
                 }
             }
+
+            if (carPhoto.Count <= 0)
+            {
+                return 0;
+            }
+
             var carData = new Car
             {
                 Brand = brand,
@@ -174,7 +180,13 @@
 
         public async Task<bool> Edit(int id, string brand, string model, decimal price, string description, List<IFormFile> carPhoto, int year, int categoryId)
         {
+            if (this.data.Cars.Find(id) == null)
+            {
+                return false;
+            }
+
             Car? carData = this.data.Cars.Find(id);
+
 
             if (carData == null)
             {
@@ -193,6 +205,10 @@
                     }
 
                 }
+            }
+            if (carPhoto.Count <= 0)
+            {
+                return false;
             }
 
             carData.Brand = brand;
