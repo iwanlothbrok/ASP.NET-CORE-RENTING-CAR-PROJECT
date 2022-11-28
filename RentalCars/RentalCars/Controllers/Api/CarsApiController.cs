@@ -5,7 +5,7 @@
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Models.Cars.Api;
 
-    [Route("api/[controller]")]
+    [Route("api/cars")]
     [ApiController]
     public class CarsApiController : ControllerBase
     {

@@ -3,9 +3,7 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using Nest;
     using RentalCars.Core.Extensions;
-    using RentalCars.Core.Models.Dealers;
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;

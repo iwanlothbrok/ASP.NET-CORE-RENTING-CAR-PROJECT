@@ -76,7 +76,6 @@
             return View(bookings);
         }
 
-
         public IActionResult ChangeVisibility(int id)
         {
             this.booking.ChangeVisilityByDealer(id);
@@ -87,6 +86,5 @@
 
             return Redirect("https://localhost:7163/");
         }
-
     }
 }

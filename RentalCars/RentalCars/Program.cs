@@ -6,6 +6,7 @@ using RentalCars.Core.ModelBinders;
 using RentalCars.Core.Services.Bookings;
 using RentalCars.Core.Services.Cars;
 using RentalCars.Core.Services.Dealers;
+using RentalCars.Core.Services.Statistics;
 using RentalCars.Data;
 using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants;
 
@@ -40,6 +41,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IDealerService, DealerService>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>

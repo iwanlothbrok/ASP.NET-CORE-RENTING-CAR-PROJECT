@@ -509,7 +509,7 @@
                 Model = "m3",
                 CarPhoto = new byte[23123],
                 DealerId = dealer.Id,
-                Id =55,
+                Id = 55,
                 Price = 50,
                 Description = "asdasdasdasdadasda",
                 IsBooked = false,

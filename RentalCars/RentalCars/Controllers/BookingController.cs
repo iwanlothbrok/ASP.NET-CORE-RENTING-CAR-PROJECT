@@ -1,4 +1,4 @@
-﻿    namespace RentalCars.Controllers
+﻿namespace RentalCars.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Extensions;

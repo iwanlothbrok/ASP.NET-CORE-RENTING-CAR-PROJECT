@@ -242,8 +242,6 @@
             //Assert
             Assert.That(bookingService.IsRented(correctBookingId, correctCarId), Is.EqualTo(true));
         }
-
-
         [Test]
         public void AllShouldBeEmpty()
         {
