@@ -17,9 +17,7 @@
            int carId);
 
         void ReturningDateChecker(IEnumerable<Booking> bookings);
-        int FindCar(int id);
-        bool CheckIfIsDealer(int id);
-        bool CheckUser(string id);
+        int FindCarBookingId(int id);
         void ChangeVisilityByDealer(int id);
         void ChangeVisilityByAdmin(int id);
         bool Delete(int id);

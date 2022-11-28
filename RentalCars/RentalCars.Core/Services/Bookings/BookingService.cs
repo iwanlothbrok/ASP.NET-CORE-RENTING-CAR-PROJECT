@@ -22,14 +22,15 @@
             this.carService = carService;
         }
 
-        public bool CheckUser(string id)
-            => this.data.Bookings.Any(c => c.CustomerId == id);
+        public int FindCarBookingId(int id)
+        {
+            if (this.data.Bookings.Where(c => c.Id == id).Count() == 0)
+            {
+                return 0;
+            }
 
-        public bool CheckIfIsDealer(int id)
-            => this.data.Bookings.Any(c => c.DealerId == id);
-
-        public int FindCar(int id)
-        => (int)this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).First();
+            return (int)this.data.Bookings.Where(c => c.Id == id).Select(c => c.CarId).FirstOrDefault();
+        }
 
         public IEnumerable<Booking> GetBookingsAll()
            => data.Bookings.ToList();
@@ -38,8 +39,6 @@
         {
             foreach (var book in bookings)
             {
-                //DateTime returningDate = DateTime.Parse(book.ReturnDate);
-
                 if (DateTime.Compare(book.ReturnDate, DateTime.UtcNow) <= 0)
                 {
                     Car car = carService.FindCar((int)book.CarId);
@@ -52,7 +51,7 @@
 
                     car.IsBooked = false;
                     car.IsPublic = false;
-                    
+
                     Delete(book.Id);
                 }
             }
@@ -80,12 +79,13 @@
                 CustomerId = userId,
                 DealerId = dealerId,
                 DailyPrice = GetCarPrice(bookingDate, returingDate, price),
-                BookingDate =DateTime.Parse(bookingDate),
+                BookingDate = DateTime.Parse(bookingDate),
                 ReturnDate = DateTime.Parse(returingDate),
                 IsConfirmedByAdmin = false,
                 IsConfirmedByDealer = false,
                 CarId = carId
             };
+
 
             this.data.Bookings.Add(booking);
             this.data.SaveChanges();
@@ -94,7 +94,7 @@
         }
         public bool DateChecker(string dateOfBooking, string dateOfReturning)
         {
-            char[] delimiterChars = { ' ', '-', '/', '\\', ',', '.','T' };
+            char[] delimiterChars = { ' ', '-', '/', '\\', ',', '.', 'T' };
 
             string[] bookingDate = dateOfBooking.Split(delimiterChars);
             string[] returningDate = dateOfReturning.Split(delimiterChars);
@@ -149,7 +149,7 @@
 
             decimal totalPrice = price * days;
 
-            return totalPrice;
+            return totalPrice + price;
         }
 
         public void ChangeVisilityByAdmin(int id)
@@ -178,7 +178,7 @@
         {
             Car searchingCar = this.carService.FindCar(carId);
 
-            if (carService == null)
+            if (searchingCar == null)
             {
                 return false;
             }
@@ -207,6 +207,7 @@
             IQueryable<Booking> bookingQuery = this.data.Bookings
                                 .Where(p => p.IsConfirmedByAdmin == confirmByAdmin || p.IsConfirmedByDealer == confirmByDealer);
 
+
             IEnumerable<AdminBookingModel> bookings = GetBookings(bookingQuery)
                                                                  .ToList();
 
@@ -225,7 +226,6 @@
             if (bookingData == null)
             {
                 isValid = false;
-
             }
 
             if (isValid == true)

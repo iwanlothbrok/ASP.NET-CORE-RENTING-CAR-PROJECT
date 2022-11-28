@@ -59,7 +59,5 @@
         bool CategoryExists(int categoryId);
 
         IEnumerable<RentCarModel> AllCars();
-
-        
     }
 }

@@ -81,7 +81,7 @@
         {
             this.booking.ChangeVisilityByDealer(id);
 
-            int carId = this.booking.FindCar(id);
+            int carId = this.booking.FindCarBookingId(id);
 
             this.booking.IsRented(id, carId);
 

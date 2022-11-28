@@ -38,11 +38,6 @@
             string userId = this.User.GetId();
             int dealer = this.dealerService.IdByUser(userId);
 
-            if (this.bookingService.CheckUser(userId))
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
             if (dealer != 0)
             {
                 if (this.carService.IsByDealer(model.CarId, dealer))
