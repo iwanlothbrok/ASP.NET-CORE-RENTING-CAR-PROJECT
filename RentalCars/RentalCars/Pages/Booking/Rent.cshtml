@@ -20,6 +20,11 @@ ViewData["Title"] = "Renting cars";
                 <span asp-validation-for="CustomerLastName" class="small text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="CustomerPhoneNumber"></label>
+                <input asp-for="CustomerPhoneNumber" class="form-control" placeholder="088 234 ...">
+                <span asp-validation-for="CustomerPhoneNumber" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="BookingDate"></label>
                 <input asp-for="BookingDate" type="datetime-local" value="@DateTime.UtcNow.Date">
                 <span asp-validation-for="BookingDate" class="date"></span>

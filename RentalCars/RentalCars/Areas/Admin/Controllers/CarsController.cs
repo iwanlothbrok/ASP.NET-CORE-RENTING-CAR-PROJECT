@@ -30,7 +30,7 @@
         {
             this.cars.ChangeVisility(id);
 
-            return RedirectToActionPermanent("", "/");
+            return Redirect("https://localhost:7163/");
         }
     }
 }

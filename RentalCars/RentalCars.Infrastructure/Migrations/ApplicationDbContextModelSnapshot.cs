@@ -235,7 +235,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CarId")
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerFirstName")
@@ -247,6 +247,10 @@ namespace RentalCars.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CustomerLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -268,7 +272,8 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CarId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CarId] IS NOT NULL");
 
                     b.HasIndex("CustomerId")
                         .IsUnique();
@@ -475,8 +480,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasOne("RentalCars.Infrastructure.Data.Models.Car", null)
                         .WithOne()
                         .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "CarId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithOne()

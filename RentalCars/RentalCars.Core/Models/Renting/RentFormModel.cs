@@ -16,6 +16,11 @@
         [Required]
         public string CustomerLastName { get; set; } = null!;
 
+        [Required]
+        [Display(Name = "Phone Number")]
+        [Phone]
+        public string CustomerPhoneNumber { get; set; }
+
         [Display(Name = "Date of booking the car")]
         public string BookingDate { get; set; }
 

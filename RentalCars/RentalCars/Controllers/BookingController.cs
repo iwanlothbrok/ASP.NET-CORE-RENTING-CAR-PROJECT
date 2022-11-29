@@ -46,6 +46,14 @@
                 }
             }
 
+            var dateOfBooking = DateTime.Parse(model.BookingDate);
+            var dateOfReturning = DateTime.Parse(model.ReturningDate);
+
+            if (DateTime.Compare(dateOfBooking, dateOfReturning) > 0)
+            {
+                ModelState.AddModelError(model.BookingDate, "The given date is not correct!");
+            }
+
             if (this.bookingService.UserHasBookedCar(userId))
             {
                 return RedirectToAction("Error", "Home");
@@ -86,8 +94,12 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-            this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
+            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
 
+            if (isValid == -1)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             TempData[GlobalMessageKey] = "Thank you for renting our car, your request is on the waitlist!";
 
             return RedirectToAction("Index", "Home");

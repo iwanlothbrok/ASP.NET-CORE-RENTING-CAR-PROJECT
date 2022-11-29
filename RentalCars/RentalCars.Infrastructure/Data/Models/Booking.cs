@@ -15,6 +15,10 @@
         [Required]
         public string CustomerLastName { get; set; } = null!;
 
+        [Required]
+        [Phone]
+        public string CustomerPhoneNumber { get; set; } = null!;
+
         /// <summary>
         /// id of the booking
         /// </summary>

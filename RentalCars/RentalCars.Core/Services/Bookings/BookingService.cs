@@ -68,6 +68,7 @@
         {
             decimal allPrice = GetCarPrice(bookingDate, returingDate, price);
 
+
             if (allPrice <= 0)
             {
                 return -1;
@@ -139,17 +140,24 @@
 
         public decimal GetCarPrice(string bookingDate, string returningDate, decimal price)
         {
-            TimeSpan diff = DateTime.Parse(returningDate) - DateTime.Parse(bookingDate);
+            var dateOfBooking = DateTime.Parse(bookingDate);
+            var dateOfReturning = DateTime.Parse(returningDate);
+
+            if (DateTime.Compare(dateOfBooking, dateOfReturning) > 0)
+            {
+                return -1;
+            }
+            TimeSpan diff = dateOfReturning - dateOfBooking;
             int days = diff.Days;
 
             if (days <= 0)
             {
-                return 0;
+                return -1;
             }
 
             decimal totalPrice = price * days;
 
-            return totalPrice + price;
+            return totalPrice;
         }
 
         public void ChangeVisilityByAdmin(int id)
