@@ -1,15 +1,15 @@
 ﻿namespace RentalCars.Infrastructure.Repositories
 {
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public abstract  class Repository : IRepository
-	{
+    public abstract class Repository : IRepository
+    {
         /// <summary>
         /// Entity framework DB context holding connection information and properties
         /// and tracking entity states 

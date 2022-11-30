@@ -12,7 +12,7 @@
             public const int YearMinValue = 2000;
             public const int YearMaxValue = 2050;
             public const int PriceMinValue = 20;
-            public const int PriceMaxValue =5000;
+            public const int PriceMaxValue = 5000;
         }
 
         public class User

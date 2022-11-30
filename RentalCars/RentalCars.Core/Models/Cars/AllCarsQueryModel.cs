@@ -1,7 +1,7 @@
 ﻿namespace RentalCars.Core.Models.Cars
 {
-    using System.ComponentModel.DataAnnotations;
     using RentalCars.Core.Services.Cars.Models;
+    using System.ComponentModel.DataAnnotations;
 
     public class AllCarsQueryModel
     {

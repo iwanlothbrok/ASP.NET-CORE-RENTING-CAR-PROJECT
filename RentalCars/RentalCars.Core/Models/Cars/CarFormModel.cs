@@ -1,8 +1,8 @@
 ﻿namespace RentalCars.Core.Models.Cars
 {
+    using RentalCars.Core.Services.Cars.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using RentalCars.Core.Services.Cars.Models;
     using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Car;
 
     public class CarFormModel
@@ -26,7 +26,7 @@
         public string Description { get; init; } = null!;
 
         [Display(Name = "Photo of the car")]
-        public byte[] CarPhoto { get; set; } = null!;
+        public byte[]? CarPhoto { get; set; } = null!;
 
         [Required]
         [Display(Name = "Daily price")]

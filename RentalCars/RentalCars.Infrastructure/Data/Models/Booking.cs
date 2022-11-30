@@ -29,7 +29,7 @@
         /// date of the renting 
         /// </summary>
         [Required]
-        public DateTime BookingDate { get; set; } 
+        public DateTime BookingDate { get; set; }
 
         /// <summary>
         /// date of returning the car 

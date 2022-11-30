@@ -4,10 +4,10 @@
 
     public interface IDealerService
     {
-         bool IsDealer(string userId);
+        bool IsDealer(string userId);
 
-         int IdByUser(string userId);
+        int IdByUser(string userId);
 
-         void Become(BecomeDealerFormModel dealer, string userId);
+        void Become(BecomeDealerFormModel dealer, string userId);
     }
 }

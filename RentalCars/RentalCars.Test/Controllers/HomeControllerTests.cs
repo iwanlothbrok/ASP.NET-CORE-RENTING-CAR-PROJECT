@@ -1,13 +1,14 @@
 ﻿namespace RentalCars.Test.Controllers
 {
     using AutoMapper;
+    using FluentAssertions;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Controllers;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
@@ -40,19 +41,44 @@
         }
 
         [Test]
-        public void Test1()
+        public void IndexShouldReturnViewWithCorrectModel()
         {
-            var service = new CarService(rentalCarsDb, mapper);
-            var controller = new HomeController(service);
+            // Arrange
 
+            var carService = new CarService(rentalCarsDb, mapper);
 
-            var result = controller.Index() as ViewResult;
+            var homeController = new HomeController(carService);
 
-            
+            // Act
+            var result = homeController.Index();
 
-            Assert.AreEqual("Index", result?.ViewName);  
+            // Assert
+            result
+                .Should()
+                .NotBeNull()
+                .And
+                .BeAssignableTo<ViewResult>()
+                .Which
+                .Model
+                .As<CarServiceModel>();
         }
 
+        [Test]
+        public void HomeControllerErrorMethod()
+        {
+            // Arrange
+            var service = new CarService(rentalCarsDb, mapper);
+
+            var homeController = new HomeController(
+                service);
+
+            // Act
+            var result = homeController.Error();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.That(result, Is.TypeOf(typeof(ViewResult)));
+        }
 
         [TearDown]
         public void TearDown()

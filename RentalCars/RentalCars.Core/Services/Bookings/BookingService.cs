@@ -1,13 +1,13 @@
 ﻿namespace RentalCars.Core.Services.Bookings
 {
-    using System;
-    using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using RentalCars.Core.Models.Renting;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
+    using System;
+    using System.Collections.Generic;
 
     public class BookingService : IBookingService
     {

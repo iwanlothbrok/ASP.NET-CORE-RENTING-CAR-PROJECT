@@ -1,9 +1,9 @@
 ﻿namespace RentalCars.Controllers.Api
 {
     using Microsoft.AspNetCore.Mvc;
-    using RentalCars.Core.Services.Cars.Models;
-    using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Models.Cars.Api;
+    using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
 
     [Route("api/cars")]
     [ApiController]

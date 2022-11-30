@@ -3,7 +3,7 @@
     using System.Linq.Expressions;
 
     public interface IRepository : IDisposable
-	{
+    {
         /// <summary>
         /// All records in a table
         /// </summary>

@@ -14,7 +14,7 @@
             => this.statistics = statistics;
 
         [HttpGet]
-        public StatisticsServiceModel GetStatistics() 
+        public StatisticsServiceModel GetStatistics()
             => this.statistics.Total();
     }
 }

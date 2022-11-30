@@ -1,7 +1,6 @@
 ﻿namespace RentalCars.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
 
