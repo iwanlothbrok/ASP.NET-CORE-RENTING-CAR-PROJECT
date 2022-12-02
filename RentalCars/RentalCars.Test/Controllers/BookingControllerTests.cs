@@ -52,10 +52,10 @@
 
             var carService = new CarService(rentalCarsDb, mapper);
             var dealersService = new DealerService(rentalCarsDb, mapper);
-            var bookingService = new BookingService(rentalCarsDb,mapper,carService);
+            var bookingService = new BookingService(rentalCarsDb, mapper, carService);
 
-          
-            var bookingController = new BookingController(dealersService,carService,bookingService);
+
+            var bookingController = new BookingController(dealersService, carService, bookingService);
 
             // Act
             var result = bookingController.Rent();

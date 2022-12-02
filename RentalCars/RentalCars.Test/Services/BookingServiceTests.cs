@@ -187,7 +187,7 @@
             var bookingService = new BookingService(rentalCarsDb, mapper, service);
 
             //Assert
-            Assert.That(bookingService.GetCarPrice(bookingDate, returningDate, price), Is.EqualTo(0));
+            Assert.That(bookingService.GetCarPrice(bookingDate, returningDate, price), Is.EqualTo(-1));
         }
 
         [Test]
@@ -198,7 +198,7 @@
             var returningDate = "22/5/2022";
             var price = 100;
 
-            var expectedPrice = 200;
+            var expectedPrice = 100;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
@@ -323,7 +323,6 @@
                 Name = "Fresh"
             };
 
-
             var buyer = new IdentityUser()
             {
                 Id = "aeab5bc9-86c6-49ef-8f4f-faf8667d78b7",
@@ -335,7 +334,6 @@
                 LockoutEnabled = true,
                 AccessFailedCount = 0
             };
-
 
             var user = new IdentityUser()
             {
@@ -399,6 +397,7 @@
                 IsConfirmedByAdmin = false,
                 CustomerFirstName = "Iwo",
                 CustomerLastName = "Iwanow",
+                CustomerPhoneNumber = "121231231231",
                 CustomerId = buyer.Id,
                 DealerId = dealer.Id,
                 BookingDate = DateTime.Now,

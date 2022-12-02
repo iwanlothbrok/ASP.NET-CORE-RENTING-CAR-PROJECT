@@ -78,14 +78,14 @@
 
 
             //Assert
-            Assert.That(service.GetLastThreeCars(), Is.Empty);
+            Assert.That(service.GetLastThreeCars().Where(c=>c.IsBooked == true), Is.Empty);
         }
 
         [Test]
         public void GetLastThreeCarsShouldReturnCorrectly()
         {
             //Arrange
-            var carCount = 1;
+            var carCount = 3;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
@@ -247,7 +247,7 @@
         {
             //Arrange
             var userId = "249b1fe6-3667-43d5-9ac9-4de6a92d923a";
-            var carsCount = 3;
+            var carsCount = 4;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
@@ -311,10 +311,10 @@
         }
 
         [Test]
-        public void AllCarsShouldThree()
+        public void AllCarsShouldReturnCorrectCount()
         {
             //Arrange
-            var carsCount = 3;
+            var carsCount = 4;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);

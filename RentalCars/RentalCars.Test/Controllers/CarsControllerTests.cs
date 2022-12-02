@@ -1,11 +1,17 @@
 ﻿namespace RentalCars.Test.Controllers
 {
     using AutoMapper;
+    using FluentAssertions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
+    using RentalCars.Controllers;
     using RentalCars.Core.Extensions;
+    using RentalCars.Core.Models.Cars;
     using RentalCars.Core.Services.Cars;
+    using RentalCars.Core.Services.Cars.Models;
+    using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
@@ -39,29 +45,61 @@
             SeedDatabase();
         }
 
-        //[Test]
-        //public void IndexShouldReturnViewWithCorrectModel()
-        //{
-        //    // Arrange
+        [Test]
+        public void DetailsShouldReturnViewResult()
+        {
+            // Arrange
+            var carService = new CarService(rentalCarsDb, mapper);
+            var dealersService = new DealerService(rentalCarsDb, mapper);
 
-        //    var carService = new CarService(rentalCarsDb, mapper);
-        //    var dealersService = new DealerService(rentalCarsDb, mapper);
+            var carsController = new CarsController(dealersService, carService, mapper);
+            var info = "bmw" + " " + "m3" + " " + 2022;
+            // Act 
+            var result = carsController.Details(1, info);
 
-        //    var carsController = new CarsController(dealersService,carService,mapper);
+            // Assert
+            // Assert
+            result
+                .Should()
+                .NotBeNull()
+                .And
+                .BeAssignableTo<ViewResult>()
+                .Which
+                .Model
+                .As<CarDetailsServiceModel>();
+        }
+        [Test]
+        public void AllShouldReturnCorrectView()
+        {
+            // Arrange
+            var carService = new CarService(rentalCarsDb, mapper);
+            var dealersService = new DealerService(rentalCarsDb, mapper);
+            var carsController = new CarsController(dealersService, carService, mapper);
+            var model = new AllCarsQueryModel()
+            {
+                Brand = null,
+                SearchTerm = null,
+                Sorting = CarSorting.DateCreated,
+                CurrentPage = 1,
+                Cars = null,
+                Brands = carService.AllBrands(),
+                TotalCars = 3,
+            };
 
-        //    // Act
-        //    var result = carsController.Add();
+            // Act 
+            var result = carsController.All(model);
 
-        //    // Assert
-        //    result
-        //        .Should()
-        //        .NotBeNull()
-        //        .And
-        //        .BeAssignableTo<ViewResult>()
-        //        .Which
-        //        .Model
-        //        .As<CarFormModel>();
-        //}
+            // Assert
+            result
+                .Should()
+                .NotBeNull()
+                .And
+                .BeAssignableTo<ViewResult>()
+                .Which
+                .Model
+                .As<AllCarsQueryModel>();
+
+        }
 
         [TearDown]
         public void TearDown()
