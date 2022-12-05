@@ -59,6 +59,7 @@
 
         public int CreateBooking(string firstName,
             string lastName,
+            string phoneNumber,
             string userId,
             int dealerId,
             string bookingDate,
@@ -77,6 +78,7 @@
             {
                 CustomerFirstName = firstName,
                 CustomerLastName = lastName,
+                CustomerPhoneNumber = phoneNumber,
                 CustomerId = userId,
                 DealerId = dealerId,
                 DailyPrice = GetCarPrice(bookingDate, returingDate, price),

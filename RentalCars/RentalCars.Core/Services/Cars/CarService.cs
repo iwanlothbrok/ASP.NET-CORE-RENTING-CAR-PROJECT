@@ -150,7 +150,6 @@
                         await item.CopyToAsync(stream);
                         photo = stream.ToArray();
                     }
-
                 }
             }
 
@@ -289,7 +288,5 @@
               => carQuery
                   .ProjectTo<CarServiceModel>(this.mapper.ConfigurationProvider)
                   .ToList();
-
-
     }
 }

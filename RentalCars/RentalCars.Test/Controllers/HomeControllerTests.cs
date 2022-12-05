@@ -1,14 +1,13 @@
 ﻿namespace RentalCars.Test.Controllers
 {
     using AutoMapper;
-    using FluentAssertions;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Controllers;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
-    using RentalCars.Core.Services.Cars.Models;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
@@ -17,6 +16,7 @@
         private ServiceProvider serviceProvider;
         private InMemoryDbContext dbContext;
         private IMapper mapper;
+        private IMemoryCache cache;
         private ApplicationDbContext rentalCarsDb;
 
         [SetUp]
@@ -41,36 +41,12 @@
         }
 
         [Test]
-        public void IndexShouldReturnViewWithCorrectModel()
-        {
-            // Arrange
-
-            var carService = new CarService(rentalCarsDb, mapper);
-
-            var homeController = new HomeController(carService);
-
-            // Act
-            var result = homeController.Index();
-
-            // Assert
-            result
-                .Should()
-                .NotBeNull()
-                .And
-                .BeAssignableTo<ViewResult>()
-                .Which
-                .Model
-                .As<CarServiceModel>();
-        }
-
-        [Test]
         public void HomeControllerErrorMethod()
         {
             // Arrange
             var service = new CarService(rentalCarsDb, mapper);
 
-            var homeController = new HomeController(
-                service);
+            var homeController = new HomeController(service, cache);
 
             // Act
             var result = homeController.Error();

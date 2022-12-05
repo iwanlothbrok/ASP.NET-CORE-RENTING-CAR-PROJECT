@@ -94,7 +94,7 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
+            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName,model.CustomerPhoneNumber, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == -1)
             {

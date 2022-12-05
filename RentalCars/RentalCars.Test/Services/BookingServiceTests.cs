@@ -116,7 +116,7 @@
             var bookingService = new BookingService(rentalCarsDb, mapper, service);
 
             //Assert
-            Assert.That(bookingService.CreateBooking("iwo", "iw", userId, 1, "20/1/2022", 0, "20/1/2022", 1), Is.EqualTo(-1));
+            Assert.That(bookingService.CreateBooking("iwo", "iw","0889100848", userId, 1, "20/1/2022", 0, "20/1/2022", 1), Is.EqualTo(-1));
         }
 
         [Test]

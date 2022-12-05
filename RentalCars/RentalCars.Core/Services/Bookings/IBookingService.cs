@@ -9,6 +9,7 @@
         IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking);
         public int CreateBooking(string firstName,
            string lastName,
+           string phoneNumber,
            string userId,
            int dealerId,
            string bookingDate,
