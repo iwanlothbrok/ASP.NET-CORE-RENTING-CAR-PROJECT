@@ -1,0 +1,35 @@
+﻿[
+  {
+    "Id": "249b1fe6-3667-43d5-9ac9-4de6a92d923a",
+    "Email": "user1@abv.bg",
+    "Password": "User.1",
+    "PasswordHash": "2342342",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true,
+    "TwoFactorEnabled": true,
+    "LockoutEnabled": true,
+    "AccessFailedCount": 0
+  },
+  {
+    "Id": "f124axfb124-12441-23123-aWE12-f124aw41",
+    "Email": "user2@abv.bg",
+    "Password": "User.2",
+    "PasswordHash": "12323134",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true,
+    "TwoFactorEnabled": true,
+    "LockoutEnabled": true,
+    "AccessFailedCount": 0
+  },
+  {
+    "Id": "ag124vas-1523-g3213-axzf-124aeg4",
+    "Email": "admin@abv.bg",
+    "Password": "Admin.1",
+    "PasswordHash": "2351325",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true,
+    "TwoFactorEnabled": true,
+    "LockoutEnabled": true,
+    "AccessFailedCount": 0
+  }
+]

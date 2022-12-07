@@ -21,6 +21,7 @@
         /// phone number of the dealer 
         /// </summary>
         [Required]
+        [Phone]
         [StringLength(PhoneNumberMaxLength, MinimumLength = PhoneNumberMinLength)]
         public string PhoneNumber { get; set; }
 

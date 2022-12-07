@@ -57,7 +57,12 @@
              .HasForeignKey<Booking>(d => d.DealerId)
              .OnDelete(DeleteBehavior.Restrict);
 
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/category.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/identityUser.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/aspNetRoles.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/aspNetUserRoles.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/dealers.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/cars.json"));
 
             base.OnModelCreating(builder);
         }
