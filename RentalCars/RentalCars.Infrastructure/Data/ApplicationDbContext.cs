@@ -57,19 +57,88 @@
              .HasForeignKey<Booking>(d => d.DealerId)
              .OnDelete(DeleteBehavior.Restrict);
 
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/category.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/identityUser.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/aspNetRoles.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/aspNetUserRoles.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/dealers.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/cars.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityUser>(@"InitialSeed/identityUsers.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityRole>(@"InitialSeed/aspNetRoles.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityUserRole<string>>(@"InitialSeed/aspNetUserRoles.json"));
+            builder.ApplyConfiguration(new InitialDataConfiguration<Dealer>(@"InitialSeed/dealers.json"));
+
+            SeedCars(builder);
 
             base.OnModelCreating(builder);
+        }
+
+        private static void SeedCars(ModelBuilder builder)
+        {
+            string mercPath = "wwwroot/img/1MercedesGleCoupe.png";
+            var mercedesPhotoPath = Path.GetFullPath(mercPath);
+
+            string lamboPath = "wwwroot/img/1Lambo.jpg";
+            var lamboPhotoPath = Path.GetFullPath(lamboPath);
+
+
+            builder.Entity<Car>().HasData(
+             new Car
+             {
+                 Id = 1,
+                 Brand = "Lamborghini",
+                 Model = "Aventador",
+                 Description = "The removable roof consists of two carbon fibre panels, weighing 6 kg (13 lb) each, which required the reinforcement of the rear pillar to compensate for the loss of structural integrity as well as to accommodate the rollover protection and ventilation systems for the engine. The panels are easily removable and are stored in the front luggage compartment. The Aventador Roadster has a unique engine cover design and an attachable wind deflector to improve cabin airflow at super high speeds as well as a gloss black finish on the A-pillars, windshield header, roof panels, and rear window area. With a total weight of 1,625 kg (3,583 lb) it is only 50 kg (110 lb) heavier than the coupé (the weight of the roof, plus additional stiffening in the sills and A-pillars).",
+                 CarPhoto = ReadFile(lamboPhotoPath),
+                 Year = 2020,
+                 IsPublic = true,
+                 IsBooked = false,
+                 Price = 400,
+                 CategoryId = 7,
+                 DealerId = 78
+             });
+
+
+            builder.Entity<Car>().HasData(
+             new Car
+             {
+                 Id = 80,
+                 Brand = "Mercedes",
+                 Model = "GLE Coupe",
+                 Description = "The GLE Coupe isn't the quickest in the class, but it handles very well and is exceptionally easy" +
+                 " to drive in every situation. It also boasts a modern and luxurious interior. Our main complaint centers on the stiff ride and compromised cargo capacity.",
+                 CarPhoto = ReadFile(mercedesPhotoPath),
+                 Year = 2022,
+                 IsPublic = true,
+                 IsBooked = false,
+                 Price = 450,
+                 CategoryId = 7,
+                 DealerId = 77
+             });
         }
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+
+        public static byte[] ReadFile(string sPath)
+        {
+            //Initialize byte array with a null value initially.
+            byte[] data = null;
+
+            //Use FileInfo object to get file size.
+            FileInfo fInfo = new FileInfo(sPath);
+            long numBytes = fInfo.Length;
+
+            //Open FileStream to read file
+            FileStream fStream = new FileStream(sPath, FileMode.Open, FileAccess.Read);
+
+            //Use BinaryReader to read file stream into byte array.
+            BinaryReader br = new BinaryReader(fStream);
+
+            //When you use BinaryReader, you need to supply number of bytes 
+            //to read from file.
+            //In this case we want to read entire file. 
+            //So supplying total number of bytes.
+            data = br.ReadBytes((int)numBytes);
+
+            return data;
+        }
     }
 }

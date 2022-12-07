@@ -14,7 +14,6 @@
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
     public class BookingControllerTests
     {
@@ -31,7 +30,6 @@
 
             serviceProvider = serviceCollection
                 .AddSingleton(sp => dbContext.CreateContext())
-                .AddSingleton<IApplicatioDbRepository, ApplicatioDbRepository>()
             .AddSingleton<IdentityDbContext, ApplicationDbContext>()
                 .AddSingleton<ICarService, CarService>()
                 .BuildServiceProvider();
@@ -92,7 +90,7 @@
 
             var user = new IdentityUser()
             {
-                Id = "249b1fe6-3667-43d5-9ac9-4de6a92d923a",
+                Id = "249b1fe6-gsdgsdgweg-43d5-9ac9-4de6a92d923a",
                 PasswordHash = "1234",
                 Email = "2123@abv.bg",
                 EmailConfirmed = true,

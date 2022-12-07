@@ -9,7 +9,6 @@
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
     public class HomeControllerTests
     {
@@ -27,7 +26,6 @@
 
             serviceProvider = serviceCollection
                 .AddSingleton(sp => dbContext.CreateContext())
-                .AddSingleton<IApplicatioDbRepository, ApplicatioDbRepository>()
                 .AddSingleton<IdentityDbContext, ApplicationDbContext>()
                 .AddSingleton<ICarService, CarService>()
                 .BuildServiceProvider();

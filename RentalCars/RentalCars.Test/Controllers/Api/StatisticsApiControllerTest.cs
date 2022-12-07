@@ -10,7 +10,6 @@
     using RentalCars.Core.Services.Statistics;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
     public class StatisticsApiControllerTest
     {
@@ -27,7 +26,6 @@
 
             serviceProvider = serviceCollection
                 .AddSingleton(sp => dbContext.CreateContext())
-                .AddSingleton<IApplicatioDbRepository, ApplicatioDbRepository>()
                 .AddSingleton<IdentityDbContext, ApplicationDbContext>()
                 .AddSingleton<ICarService, CarService>()
                 .BuildServiceProvider();
@@ -55,7 +53,7 @@
             Assert.NotNull(result);
             Assert.That(result.TotalCars, Is.EqualTo(4));
             Assert.That(result.TotalRents, Is.EqualTo(0));
-            Assert.That(result.TotalUsers, Is.EqualTo(1));
+            Assert.That(result.TotalUsers, Is.EqualTo(4));
         }
 
         [TearDown]
@@ -79,7 +77,7 @@
 
             var user = new IdentityUser()
             {
-                Id = "249b1fe6-3667-43d5-9ac9-4de6a92d923a",
+                Id = "249b1fe6-3667gsdgsdgsdgsdg43d5-9ac9-4de6a92d923a",
                 PasswordHash = "1234",
                 Email = "2123@abv.bg",
                 EmailConfirmed = true,

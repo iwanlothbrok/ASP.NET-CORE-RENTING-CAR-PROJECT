@@ -84,7 +84,22 @@
 
             this.booking.IsRented(id, carId);
 
+            TempData[GlobalMessageKey] = "You change visibility successfully!";
+
             return Redirect("https://localhost:7163/");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            bool findBook = this.booking.Delete(id);
+
+            if (findBook == true)
+            {
+                TempData[GlobalMessageKey] = "You delete booking successfully!";
+            }
+
+            return RedirectToAction("Index","Home");
         }
     }
 }

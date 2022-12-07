@@ -45,6 +45,9 @@
 
             this.booking.IsRented(id, carId);
 
+            TempData[GlobalMessageKey] = "You change visibility successfully!";
+
+
             return Redirect("https://localhost:7163/");
         }
 
@@ -58,7 +61,7 @@
                 TempData[GlobalMessageKey] = "You delete booking successfully!";
             }
 
-            return View();
+            return Redirect("https://localhost:7163/");
         }
     }
 }

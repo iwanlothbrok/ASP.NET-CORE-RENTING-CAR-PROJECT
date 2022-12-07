@@ -1,15 +1,11 @@
 ﻿namespace RentalCars.Test.Services
 {
-    using AutoMapper;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using RentalCars.Core.Extensions;
-    using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Core.Services.Statistics;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
 
     public class StatisticsServiceTests
     {
@@ -29,7 +25,6 @@
                 .BuildServiceProvider();
 
             rentalCarsDb = serviceProvider.GetService<ApplicationDbContext>()!;
-            var repo = serviceProvider.GetService<IApplicatioDbRepository>();
 
             SeedDb();
         }
@@ -44,7 +39,7 @@
             var result = service.Total();
 
             //Assert
-            Assert.That(result.TotalUsers, Is.EqualTo(1));
+            Assert.That(result.TotalUsers, Is.EqualTo(4));
             Assert.That(result.TotalCars, Is.EqualTo(2));
         }
 

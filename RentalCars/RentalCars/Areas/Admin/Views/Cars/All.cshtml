@@ -46,3 +46,7 @@
 		}
 	</tbody>
 </table>
+@if (Model.Any() == false)
+{
+	<h2 class="text-center">There are no cars for approving!</h2>
+}

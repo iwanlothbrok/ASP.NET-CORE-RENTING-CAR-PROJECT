@@ -17,32 +17,34 @@ A simple ASP.NET Core MVC Web App which I created to exercise what I've learned 
 
 **When you run the project for the first time sample data will be seeded as well as these test accounts:**
 
-- User 1 -> email: **user1@library.bg** / password: **123456**
-- User 2 -> email: **user2@library.bg** / password: **123456**
-- Admin -> email: **admin@library.bg** / password: **123456**
+- User 1 -> email: **user1@library.bg** / password: **User.1**
+- User 2 -> email: **user2@library.bg** / password: **User.2**
+- Admin -> email: **admin@library.bg** / password: **Admin.1**
 
 **[Here](https://imgur.com/a/7eTIQQG) is a screenshot of the project's database diagram**
 
 ## :hammer_and_pick: Built With
 - ASP.NET Core 6
-- Entity Framework Core 5.0.12
+- Entity Framework Core 6.0.8
 - Microsoft SQL Server Express
 - ASP.NET Identity System
+- AutoMapper
 - MVC Areas
 - Razor Pages + Partial Views
-- Customized Blazor Log in and Resiter pages
 - Dependency Injection
 - Paging with EF Core
 - Data Validation, both Client-side, and Server-side
 - Data Validation in the Input View Models
 - Responsive Design
 - Bootstrap
+- AdminLTE
 - jQuery
 - HtmlSanitizer 
-- MyTested.AspNetCore.Mvc 
-- Shouldly 
-- xunit
-- Microsoft.NET.Test.Sdk
+- NUnit
+- Facebook Authentication 
+- Fluent Assertions
+- Caching
+- AJAX
  
  ## License
 

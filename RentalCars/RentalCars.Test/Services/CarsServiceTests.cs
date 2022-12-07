@@ -8,7 +8,6 @@
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
     using Car = Infrastructure.Data.Models.Car;
     using Category = Infrastructure.Data.Models.Category;
     using Dealer = Infrastructure.Data.Models.Dealer;
@@ -28,7 +27,6 @@
 
             serviceProvider = serviceCollection
                 .AddSingleton(sp => dbContext.CreateContext())
-                .AddSingleton<IApplicatioDbRepository, ApplicatioDbRepository>()
                 .AddSingleton<IdentityDbContext, ApplicationDbContext>()
                 .AddSingleton<ICarService, CarService>()
                 .BuildServiceProvider();

@@ -20,12 +20,12 @@
 
             if (jsonData != null)
             {
+
                 List<T> data = JsonConvert.DeserializeObject<List<T>>(jsonData);
 
                 builder.HasData(data);
             }
         }
-
         private string? GetFromFile()
         {
             string? result = null;

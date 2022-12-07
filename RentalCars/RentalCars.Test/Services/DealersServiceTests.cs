@@ -7,7 +7,6 @@
     using RentalCars.Core.Services.Dealers;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
-    using RentalCars.Infrastructure.Repositories.DatabaseRepositories;
     using Car = Infrastructure.Data.Models.Car;
     using Dealer = Infrastructure.Data.Models.Dealer;
 
@@ -26,7 +25,6 @@
 
             serviceProvider = serviceCollection
                 .AddSingleton(sp => dbContext.CreateContext())
-                .AddSingleton<IApplicatioDbRepository, ApplicatioDbRepository>()
                 .AddSingleton<IDealerService, DealerService>()
                 .BuildServiceProvider();
 
@@ -35,7 +33,6 @@
             mapper = new Mapper(configuration);
 
             rentalCarsDb = serviceProvider.GetService<ApplicationDbContext>()!;
-            var repo = serviceProvider.GetService<IApplicatioDbRepository>();
 
             SeedDb();
         }
