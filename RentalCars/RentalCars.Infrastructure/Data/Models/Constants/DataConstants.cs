@@ -14,7 +14,13 @@
             public const int PriceMinValue = 20;
             public const int PriceMaxValue = 5000;
         }
-
+        public class UserSeeding
+        {
+            public const string userOneEmail = "user1@abv.bg";
+            public const string userOnePassword = "User.1";
+            public const string userTwoEmail = "user2@abv.bg";
+            public const string userTwoPassword = "User.2";
+        }
         public class User
         {
             public const int FullNameMinLength = 2;

@@ -6,12 +6,14 @@
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.InitialSeed;
 
+
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -58,19 +60,20 @@
              .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityUser>(@"InitialSeed/identityUsers.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityRole>(@"InitialSeed/aspNetRoles.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<IdentityUserRole<string>>(@"InitialSeed/aspNetUserRoles.json"));
-            builder.ApplyConfiguration(new InitialDataConfiguration<Dealer>(@"InitialSeed/dealers.json"));
 
-            SeedCars(builder);
+           // SeedCars(builder);
 
             base.OnModelCreating(builder);
         }
 
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Dealer> Dealers { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+
         private static void SeedCars(ModelBuilder builder)
         {
-            string mercPath = "wwwroot/img/1MercedesGleCoupe.png";
+            string mercPath = "wwwroot/img/GleAmg.jpg";
             var mercedesPhotoPath = Path.GetFullPath(mercPath);
 
             string lamboPath = "wwwroot/img/1Lambo.jpg";
@@ -80,7 +83,7 @@
             builder.Entity<Car>().HasData(
              new Car
              {
-                 Id = 1,
+                 Id = 81,
                  Brand = "Lamborghini",
                  Model = "Aventador",
                  Description = "The removable roof consists of two carbon fibre panels, weighing 6 kg (13 lb) each, which required the reinforcement of the rear pillar to compensate for the loss of structural integrity as well as to accommodate the rollover protection and ventilation systems for the engine. The panels are easily removable and are stored in the front luggage compartment. The Aventador Roadster has a unique engine cover design and an attachable wind deflector to improve cabin airflow at super high speeds as well as a gloss black finish on the A-pillars, windshield header, roof panels, and rear window area. With a total weight of 1,625 kg (3,583 lb) it is only 50 kg (110 lb) heavier than the coupé (the weight of the roof, plus additional stiffening in the sills and A-pillars).",
@@ -99,8 +102,8 @@
              {
                  Id = 80,
                  Brand = "Mercedes",
-                 Model = "GLE Coupe",
-                 Description = "The GLE Coupe isn't the quickest in the class, but it handles very well and is exceptionally easy" +
+                 Model = "GLE Amg",
+                 Description = "The GLE isn't the quickest in the class, but it handles very well and is exceptionally easy" +
                  " to drive in every situation. It also boasts a modern and luxurious interior. Our main complaint centers on the stiff ride and compromised cargo capacity.",
                  CarPhoto = ReadFile(mercedesPhotoPath),
                  Year = 2022,
@@ -111,12 +114,6 @@
                  DealerId = 77
              });
         }
-
-        public DbSet<Car> Cars { get; set; }
-        public DbSet<Dealer> Dealers { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-
         public static byte[] ReadFile(string sPath)
         {
             //Initialize byte array with a null value initially.
