@@ -1,0 +1,67 @@
+﻿@using RentalCars.Core.Models.Home
+@using RentalCars.Core.Services.Bookings
+@inject ICarService carService
+@inject IBookingService bookingService
+
+@model PaymentsModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Pages/Shared/_layout.cshtml";
+}
+    <link rel="stylesheet" href="~/css/payment.css" />
+
+ <form method="post">
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+     <div class="row">
+          <div class="col-50">
+            <h3>Payment</h3>
+           <div class="form-group">
+                            <label asp-for="FullName"></label>
+                            <input asp-for="FullName" class="form-control" placeholder="Top Auto, Best Car, etc...">
+                            <span asp-validation-for="FullName" class="small text-danger"></span>
+            </div>
+                        <div class="form-group">
+                            <label asp-for="CreditCardNumber"></label>
+                            <input asp-for="CreditCardNumber" class="form-control" placeholder="1111-2222-3333-4444">
+                            <span asp-validation-for="CreditCardNumber" class="small text-danger"></span>
+                        </div>
+              <div class="form-group">
+                            <label asp-for="ExpMonth"></label>
+                            <input asp-for="ExpMonth" class="form-control" placeholder="September">
+                            <span asp-validation-for="ExpMonth" class="small text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ExpYear"></label>
+                            <input asp-for="ExpYear" class="form-control" placeholder="2022">
+                            <span asp-validation-for="ExpYear" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CVV"></label>
+                            <input asp-for="CVV" class="form-control" placeholder="362">
+                            <span asp-validation-for="CVV" class="small text-danger"></span>
+                        </div>
+            </div>
+          </div>
+        </div>
+ 
+        <input type="submit" value="Pay" class="btn">
+    </div>
+  </div>
+      </form>
+  
+@*  <div class="col-25">
+    <div class="container">
+      <h4>Cart
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i>
+          <b>4</b>
+        </span>
+      </h4>
+      <p><a href="#"></a> <span class="Price"></span></p>
+      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+    </div>
+  </div>
+</div>*@

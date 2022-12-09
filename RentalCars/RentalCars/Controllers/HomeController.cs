@@ -40,6 +40,8 @@
         public IActionResult Error()
        => View();
 
+        public IActionResult Pay()
+                => View();  
     }
 }
 

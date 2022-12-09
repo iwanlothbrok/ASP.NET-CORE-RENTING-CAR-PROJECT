@@ -8,6 +8,7 @@
     using RentalCars.Infrastructure.Data.Models;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class BookingService : IBookingService
     {
@@ -22,6 +23,10 @@
             this.carService = carService;
         }
 
+        public IQueryable<Booking> GetBook(string userId, int carId)
+        => this.data.Bookings.Where(c => c.CustomerId == userId && c.CarId == carId);
+            
+        
         public int FindCarBookingId(int id)
         {
             if (this.data.Bookings.Where(c => c.Id == id).Count() == 0)

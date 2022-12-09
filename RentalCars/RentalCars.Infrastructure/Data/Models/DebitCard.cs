@@ -9,7 +9,7 @@
         public int Id { get; set; }
         [Required]
         [StringLength(CardNumberLength, MinimumLength = CardNumberLength)]
-        public int CreditCarNumber { get; set; }
+        public int CreditCardNumber { get; set; }
 
         [Required]
         [StringLength(CVVLength, MinimumLength = CVVLength)]
