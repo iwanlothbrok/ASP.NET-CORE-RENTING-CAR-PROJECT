@@ -99,7 +99,9 @@
                 TempData[GlobalMessageKey] = "You delete booking successfully!";
             }
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
+            public IActionResult DebitCard()
+         => View();
     }
 }

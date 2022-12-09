@@ -41,7 +41,15 @@
             public const int PhoneNumberMaxLength = 30;
             public const int PhoneNumberMinLength = 6;
         }
-
+        public static class DebitCard
+        {
+            public const int CardNumberLength = 16;
+            public const int CVVLength = 3;
+            public const int MaxFullNameLenght = 100;
+            public const int MinFullNameLenght = 6;
+            public const int ExpYearMin = 2022;
+            public const int ExpYearMax= 2030;
+        }
         public class DateFormating
         {
             public const string NormalDateFormat = "dd.mm.yyyy";

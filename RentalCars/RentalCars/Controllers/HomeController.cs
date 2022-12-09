@@ -18,7 +18,7 @@
 
         public IActionResult Index()
         {
-           const string latestCarsCacheKey = "LatestCarsCacheKey";
+            const string latestCarsCacheKey = "LatestCarsCacheKey";
 
             var latestCars = this.cache.Get<List<CarServiceModel>>(latestCarsCacheKey);
 
@@ -39,7 +39,7 @@
 
         public IActionResult Error()
        => View();
-    }
 
+    }
 }
 
