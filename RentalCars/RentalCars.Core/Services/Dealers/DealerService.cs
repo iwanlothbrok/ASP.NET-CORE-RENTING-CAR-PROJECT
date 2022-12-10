@@ -16,6 +16,9 @@
             this.mapper = mapper;
         }
 
+        public Dealer? GetDealer(int id)
+        => this.data.Dealers.Where(c => c.Id == id).FirstOrDefault();
+
         public bool IsDealer(string userId)
             => this.data
                 .Dealers

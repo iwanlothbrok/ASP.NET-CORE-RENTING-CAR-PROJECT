@@ -4,7 +4,7 @@
     using RentalCars.Infrastructure.Data.Models;
     public interface IBookingService
     {
-        public IQueryable<Booking> GetBook(string userId, int carId);
+        Booking? GetBookByUserId(string userId);
         bool IsRented(int id, int carId);
         BookingQueryModel All(bool confirmByAdmin, bool confirmByDealer);
         IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking);

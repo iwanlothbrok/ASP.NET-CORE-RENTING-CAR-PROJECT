@@ -9,6 +9,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Car = Infrastructure.Data.Models.Car;
 
     public class BookingService : IBookingService
     {
@@ -23,10 +24,9 @@
             this.carService = carService;
         }
 
-        public IQueryable<Booking> GetBook(string userId, int carId)
-        => this.data.Bookings.Where(c => c.CustomerId == userId && c.CarId == carId);
-            
-        
+        public Booking? GetBookByUserId(string userId)
+        => data.Bookings.Where(c => c.CustomerId == userId && c.IsConfirmedByAdmin == true && c.IsConfirmedByDealer == true).FirstOrDefault();
+
         public int FindCarBookingId(int id)
         {
             if (this.data.Bookings.Where(c => c.Id == id).Count() == 0)
@@ -255,6 +255,6 @@
         public IEnumerable<AdminBookingModel> GetBookings(IQueryable<Booking> booking)
         => booking
             .ProjectTo<AdminBookingModel>(this.mapper.ConfigurationProvider)
-            .ToList();
+        .ToList();
     }
 }
