@@ -2,10 +2,8 @@
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
     using Microsoft.Extensions.DependencyInjection;
-    using RentalCars.Controllers;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Data;
@@ -38,21 +36,21 @@
 
         }
 
-        [Test]
-        public void HomeControllerErrorMethod()
-        {
-            // Arrange
-            var service = new CarService(rentalCarsDb, mapper);
+        //[Test]
+        //public void HomeControllerErrorMethod()
+        //{
+        //    // Arrange
+        //    var service = new CarService(rentalCarsDb, mapper);
 
-            var homeController = new HomeController(service, cache);
+        //    var homeController = new HomeController(service, cache);
 
-            // Act
-            var result = homeController.Error();
+        //    // Act
+        //    var result = homeController.Error();
 
-            // Assert
-            Assert.NotNull(result);
-            Assert.That(result, Is.TypeOf(typeof(ViewResult)));
-        }
+        //    // Assert
+        //    Assert.NotNull(result);
+        //    Assert.That(result, Is.TypeOf(typeof(ViewResult)));
+        //}
 
         [TearDown]
         public void TearDown()

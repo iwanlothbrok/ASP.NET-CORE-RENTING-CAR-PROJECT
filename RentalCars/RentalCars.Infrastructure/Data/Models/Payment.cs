@@ -11,11 +11,11 @@
 
         [Required]
         public int BookingId { get; set; }
-        public Booking Booking { get; set; } 
+        public Booking? Booking { get; set; } 
 
         [Required]
         public int DebitCardId{ get; set; }
-        public DebitCard DebitCard { get; set; } 
+        public DebitCard? DebitCard { get; set; } 
 
         [Required]
         public bool IsValid { get; set; }

@@ -43,7 +43,7 @@
         }
         public static class DebitCard
         {
-            public const int CardNumberLength = 16;
+            public const int CardNumberLength = 19;
             public const int CVVLength = 3;
             public const int MaxFullNameLenght = 100;
             public const int MinFullNameLenght = 6;

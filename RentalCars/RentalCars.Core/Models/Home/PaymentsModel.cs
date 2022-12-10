@@ -6,12 +6,10 @@
 
     public class PaymentsModel
     {
-        public int Id { get; set; }
-
         [Required]
         [Display(Name = "Credit card number")]
         [StringLength(CardNumberLength, MinimumLength = CardNumberLength)]
-        public int CreditCardNumber { get; set; }
+        public string CreditCardNumber { get; set; }
 
         [Required]
         [StringLength(CVVLength, MinimumLength = CVVLength)]
@@ -20,11 +18,11 @@
         [Required]
         [Display(Name = "Name on Card")]
         [StringLength(MaxFullNameLenght, MinimumLength = MinFullNameLenght)]
-        public string FullName { get; set; } = null!;
+        public string NameOnCard { get; set; } 
 
         [Display(Name = "Exp Month")]
         [Required]
-        public string ExpMonth { get; set; } = null!;
+        public string ExpMonth { get; set; } 
 
         [Required]
         [Display(Name = "Exp Year")]
