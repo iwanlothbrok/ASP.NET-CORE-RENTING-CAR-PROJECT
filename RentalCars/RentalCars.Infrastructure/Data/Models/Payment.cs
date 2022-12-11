@@ -15,7 +15,10 @@
 
         [Required]
         public int DebitCardId{ get; set; }
-        public DebitCard? DebitCard { get; set; } 
+        public FakeDebitCard? DebitCard { get; set; }
+
+        [Required]
+        public int CarId { get; set; }
 
         [Required]
         public bool IsValid { get; set; }

@@ -43,12 +43,12 @@
         }
         public static class DebitCard
         {
-            public const int CardNumberLength = 19;
+            public const int CardNumberLength = 16;
             public const int CVVLength = 3;
             public const int MaxFullNameLenght = 100;
             public const int MinFullNameLenght = 6;
             public const int ExpYearMin = 2022;
-            public const int ExpYearMax= 2030;
+            public const int ExpYearMax= 2050;
         }
         public class DateFormating
         {

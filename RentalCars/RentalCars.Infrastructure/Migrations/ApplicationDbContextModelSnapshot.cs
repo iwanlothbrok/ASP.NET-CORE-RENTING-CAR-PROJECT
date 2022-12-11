@@ -266,6 +266,9 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Property<bool>("IsConfirmedByDealer")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
@@ -424,7 +427,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.ToTable("Dealers");
                 });
 
-            modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.DebitCard", b =>
+            modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.FakeDebitCard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -433,12 +436,10 @@ namespace RentalCars.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CVV")
-                        .HasMaxLength(3)
                         .HasColumnType("int");
 
-                    b.Property<int>("CreditCarNumber")
-                        .HasMaxLength(16)
-                        .HasColumnType("int");
+                    b.Property<long>("CreditCardNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("ExpMonth")
                         .IsRequired()
@@ -454,7 +455,7 @@ namespace RentalCars.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DebitCards");
+                    b.ToTable("FakeDebitCards");
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Payment", b =>
@@ -466,6 +467,9 @@ namespace RentalCars.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarId")
                         .HasColumnType("int");
 
                     b.Property<int>("DebitCardId")
@@ -589,7 +593,7 @@ namespace RentalCars.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentalCars.Infrastructure.Data.Models.DebitCard", "DebitCard")
+                    b.HasOne("RentalCars.Infrastructure.Data.Models.FakeDebitCard", "DebitCard")
                         .WithMany()
                         .HasForeignKey("DebitCardId")
                         .OnDelete(DeleteBehavior.Cascade)

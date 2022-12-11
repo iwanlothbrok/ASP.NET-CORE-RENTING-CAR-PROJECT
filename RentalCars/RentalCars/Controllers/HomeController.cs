@@ -1,7 +1,9 @@
 ﻿namespace RentalCars.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Caching.Memory;
+    using Nest;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Home;
     using RentalCars.Core.Services.Bookings;
@@ -69,39 +71,10 @@
         {
             PaymentsModel model = new PaymentsModel();
 
-            Booking? bookInfo = this.bookingService.GetBookByUserId(User.GetId());
-
-            if (bookInfo is null)
+            if (GetBookingAndCarInfo(model) == -1)
             {
                 return RedirectToAction("Error", "Home");
-            }
-
-            int carId = this.bookingService.FindCarBookingId(bookInfo.Id);
-
-            if (carId is 0)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            Car? car = carService.FindCar(carId);
-
-            if (car is null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            Dealer? dealer = dealerService.GetDealer(car.DealerId);
-
-            if (dealer is null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            model.BookingId = bookInfo.Id;
-            model.Book = bookInfo;
-            model.CarId = carId;
-            model.Car = car;
-            model.Dealer = dealer;
+            } 
 
             return View(model);
         }
@@ -109,25 +82,41 @@
         [HttpPost]
         public IActionResult Pay(PaymentsModel model)
         {
-            int debitCardId = debitCardService.CreateDebitCard(int.Parse(model.CreditCardNumber), model.CVV, model.NameOnCard, model.ExpMonth, model.ExpYear);
+            var userId = User.GetId();
+            if (model.CreditCardNumber.ToString().Length != 16 || model.CVV.ToString().Length != 3)
+            {
+                ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with payment, try again!");
+            }
+            try
+            {
+                if (Enum.IsDefined(typeof(Months), model.ExpMonth.ToLower()) == false)
+                {
+                    ModelState.AddModelError(model.ExpMonth.ToString(), "Problem with payment, try again!");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with card month, try again!");
+            }
+            
+            if (this.ModelState.IsValid == false)
+            {
+                return RedirectToAction(nameof(Pay));
+            }
+
+            int debitCardId = debitCardService.CreateDebitCard(model.CreditCardNumber, model.CVV, model.NameOnCard, model.ExpMonth, model.ExpYear);
 
             if (debitCardId == -1)
             {
                 ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with payment, try again!");
             }
 
-            if (this.ModelState.IsValid == false)
+            if (GetBookingAndCarInfo(model) == -1)
             {
-                model.BookingId = model.BookingId;
-                model.Book = model.Book;
-                model.CarId = model.CarId;
-                model.Car = model.Car;
-                model.Dealer = model.Dealer;
-
-                return View(model);
+                return RedirectToAction("Error", "Home");
             }
 
-            int payment = paymentService.CreatePaymentInfo((int)model.BookingId, (int)model.CarId, true);
+            int payment = paymentService.CreatePaymentInfo((int)model.BookingId, (int)model.CarId, debitCardId, true, userId);
 
             if (payment == -1)
             {
@@ -137,6 +126,44 @@
             TempData[GlobalMessageKey] = "Thank you for renting your car, the dealer will call you soon! Best Regards!";
 
             return RedirectToAction(nameof(Index));
+        }
+        public int GetBookingAndCarInfo(PaymentsModel model)
+        {
+            Booking? bookInfo = this.bookingService.GetBookByUserId(User.GetId());
+
+            if (bookInfo is null)
+            {
+                return -1;
+            }
+
+            int carId = this.bookingService.FindCarBookingId(bookInfo.Id);
+
+            if (carId is 0)
+            {
+                return -1;
+            }
+
+            Car? car = carService.FindCar(carId);
+
+            if (car is null)
+            {
+                return -1;
+            }
+
+            Dealer? dealer = dealerService.GetDealer(car.DealerId);
+
+            if (dealer is null)
+            {
+                return -1;
+            }
+
+            model.BookingId = bookInfo.Id;
+            model.Book = bookInfo;
+            model.CarId = carId;
+            model.Car = car;
+            model.Dealer = dealer;
+
+            return 1;
         }
 
     }

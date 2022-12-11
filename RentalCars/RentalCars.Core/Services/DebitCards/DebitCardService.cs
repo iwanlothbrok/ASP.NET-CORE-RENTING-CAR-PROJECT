@@ -1,17 +1,25 @@
-﻿using RentalCars.Infrastructure.Data.Models;
+﻿using RentalCars.Data;
+using RentalCars.Infrastructure.Data.Models;
 
 namespace RentalCars.Core.Services.DebitCards
 {
     public class DebitCardService : IDebitCardService
     {
-        public int CreateDebitCard(int creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear)
+        private readonly ApplicationDbContext data;
+
+        public DebitCardService(ApplicationDbContext data)
+        {
+            this.data = data;
+        }
+
+        public int CreateDebitCard(long creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear)
         {
             if (cvv == 0 || expYear == 0)
             {
                 return -1;
             }
 
-            DebitCard card = new DebitCard
+            FakeDebitCard card = new FakeDebitCard
             {
                 CVV = cvv,
                 CreditCardNumber = creditCardNumber,
@@ -24,6 +32,9 @@ namespace RentalCars.Core.Services.DebitCards
             {
                 return -1;
             }
+
+            this.data.FakeDebitCards.Add(card);
+            this.data.SaveChanges();
 
             return card.Id;
         }

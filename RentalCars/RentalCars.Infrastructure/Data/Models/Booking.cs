@@ -65,8 +65,13 @@
         public bool IsConfirmedByAdmin { get; set; } = false;
 
         /// <summary>
-        /// is it confirmed by dealer
+        ///is it confirmed by dealer
         /// </summary>
         public bool IsConfirmedByDealer { get; set; } = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsPaid { get; set; } = false;
     }
 }

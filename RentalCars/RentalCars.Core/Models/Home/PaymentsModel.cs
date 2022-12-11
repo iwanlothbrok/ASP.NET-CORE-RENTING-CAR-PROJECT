@@ -8,11 +8,9 @@
     {
         [Required]
         [Display(Name = "Credit card number")]
-        [StringLength(CardNumberLength, MinimumLength = CardNumberLength)]
-        public string CreditCardNumber { get; set; }
+        public long CreditCardNumber { get; set; }
 
         [Required]
-        [StringLength(CVVLength, MinimumLength = CVVLength)]
         public int CVV { get; set; }
 
         [Required]

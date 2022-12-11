@@ -2,6 +2,6 @@
 {
     public interface IDebitCardService
     {
-        int CreateDebitCard(int creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear);
+        int CreateDebitCard(long creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear);
     }
 }

@@ -68,7 +68,7 @@
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<DebitCard> DebitCards { get; set; }
+        public DbSet<FakeDebitCard> FakeDebitCards { get; set; }
         public DbSet<Payment> Payments { get; set; }
     }
 }
