@@ -7,8 +7,7 @@
     public class PaymentService : IPaymentService
     {
         private readonly ApplicationDbContext data;
-        private readonly IBookingService booking;
-        
+        private readonly IBookingService booking;        
 
         public PaymentService(ApplicationDbContext data, IBookingService booking)
         {
@@ -35,14 +34,15 @@
                 BookingId = bookingId,
                 DebitCardId = debitCardId,
                 IsValid = IsValid,
-                PaymentTime = DateTime.Now
+                PaymentTime = DateTime.Now,
+                UserId = userId
             };
 
             if (payment is null)
             {
                 return -1;
             }
-            var book = this.booking.GetBookByUserId(userId);
+            Booking? book = this.booking.GetBookByUserId(userId);
 
             book.IsPaid = true;
 

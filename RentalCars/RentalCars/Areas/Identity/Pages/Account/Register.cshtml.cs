@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.User;
+using static RentalCars.Infrastructure.Data.Models.Constants.DataConstants.Web;
 
 namespace RentalCars.Areas.Identity.Pages.Account
 {
@@ -112,7 +113,7 @@ namespace RentalCars.Areas.Identity.Pages.Account
             {
                 return RedirectToPage("Home", "Error", new { area = "/" });
             }
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/Identity/Account/Login");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -144,6 +145,9 @@ namespace RentalCars.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+
+                        TempData[GlobalMessageKey] = "Welcome to Rental Cars! Thank you for your registration on our site!";
+
                         return LocalRedirect(returnUrl);
                     }
                 }

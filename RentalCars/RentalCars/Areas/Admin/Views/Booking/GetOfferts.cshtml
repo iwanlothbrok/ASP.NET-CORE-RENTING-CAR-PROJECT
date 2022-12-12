@@ -26,6 +26,7 @@
 			<th scope="col">Dealer Id</th>
 			<th scope="col">Approved by Dealer</th>
 			<th scope="col">Approved by Admin</th>
+			<th scope="col">Is Paid</th>
 			<th scope="col"></th>
 		</tr>
 	</thead>
@@ -44,8 +45,8 @@
 				<td scope="col">@booking.DealerId</td>
 				<td scope="col">@(booking.IsConfirmedByAdmin ? "Yes" : "No")</td>
 				<td scope="col">@(booking.IsConfirmedByDealer ? "Yes" : "No")</td>
+				<td scope="col">@(booking.IsPaid ? "Yes" : "No")</td>
 				<td scope="col">
-					<a asp-area="Admin" asp-controller="Booking" asp-action="Delete" asp-route-id="@booking.Id" asp-route-id="@booking.CarId" class="btn btn-danger float-right ml-3">Delete</a>
 					<a asp-area="Admin" asp-controller="Booking" asp-action="ChangeVisibility" asp-route-id="@booking.Id"  class="btn btn-info float-right ml-3">@(booking.IsConfirmedByAdmin ? "Hide" : "Accept")</a>
 				</td>
 			</tr>

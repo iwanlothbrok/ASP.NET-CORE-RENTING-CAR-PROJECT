@@ -46,8 +46,8 @@
                 }
             }
 
-            var dateOfBooking = DateTime.Parse(model.BookingDate);
-            var dateOfReturning = DateTime.Parse(model.ReturningDate);
+            DateTime dateOfBooking = DateTime.Parse(model.BookingDate);
+            DateTime dateOfReturning = DateTime.Parse(model.ReturningDate);
 
             if (DateTime.Compare(dateOfBooking, dateOfReturning) > 0)
             {
@@ -94,7 +94,7 @@
             {
                 return RedirectToAction("Error", "Home");
             }
-            var isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName,model.CustomerPhoneNumber, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
+            int isValid = this.bookingService.CreateBooking(model.CustomerFirstName, model.CustomerLastName,model.CustomerPhoneNumber, userId, car.DealerId, model.BookingDate, price, model.ReturningDate, model.CarId);
 
             if (isValid == -1)
             {

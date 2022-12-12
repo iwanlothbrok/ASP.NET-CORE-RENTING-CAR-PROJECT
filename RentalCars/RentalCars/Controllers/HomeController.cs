@@ -1,9 +1,7 @@
 ﻿namespace RentalCars.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Caching.Memory;
-    using Nest;
     using RentalCars.Core.Extensions;
     using RentalCars.Core.Models.Home;
     using RentalCars.Core.Services.Bookings;
@@ -46,7 +44,7 @@
         {
             const string latestCarsCacheKey = "LatestCarsCacheKey";
 
-            var latestCars = this.cache.Get<List<CarServiceModel>>(latestCarsCacheKey);
+            List<CarServiceModel>? latestCars = this.cache.Get<List<CarServiceModel>>(latestCarsCacheKey);
 
             if (latestCars == null)
             {
@@ -54,7 +52,7 @@
                    .GetLastThreeCars()
                    .ToList();
 
-                var cacheOptions = new MemoryCacheEntryOptions()
+                MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
                     .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
                 this.cache.Set(latestCarsCacheKey, latestCars, cacheOptions);
@@ -74,7 +72,16 @@
             if (GetBookingAndCarInfo(model) == -1)
             {
                 return RedirectToAction("Error", "Home");
-            } 
+            }
+
+            Booking? booking = this.bookingService.GetBookByUserId(User.GetId());
+
+            if (booking.IsPaid == true)
+            {
+                TempData[GlobalMessageKey] = "Thank you for renting your car, the dealer will call you soon! Best Regards!";
+
+                return RedirectToAction(nameof(Index));
+            }
 
             return View(model);
         }
@@ -82,7 +89,7 @@
         [HttpPost]
         public IActionResult Pay(PaymentsModel model)
         {
-            var userId = User.GetId();
+            string userId = User.GetId();
             if (model.CreditCardNumber.ToString().Length != 16 || model.CVV.ToString().Length != 3)
             {
                 ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with payment, try again!");
@@ -98,7 +105,7 @@
             {
                 ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with card month, try again!");
             }
-            
+
             if (this.ModelState.IsValid == false)
             {
                 return RedirectToAction(nameof(Pay));
@@ -166,6 +173,17 @@
             return 1;
         }
 
+        public IActionResult GetYouPaymentInfo()
+        {
+            PaymentsModel model = new PaymentsModel();
+
+            if (GetBookingAndCarInfo(model) == -1)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            return View(model);
+        }
     }
 }
 

@@ -1,0 +1,40 @@
+﻿@using RentalCars.Core.Models.Home
+@model PaymentsModel
+
+@{
+	ViewData["Title"] = "Rented cars";
+}
+
+@{
+	Layout = "~/Pages/Shared/_layout.cshtml";
+}
+
+<h1>Rented Cars</h1>
+
+<table class="table table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Renter</th>
+			<th scope="col">Dealer name</th>
+			<th scope="col">Dealer phone number</th>
+			<th scope="col">Booking Date</th>
+			<th scope="col">Return Date</th>
+			<th scope="col">Car brand and model</th>
+			<th scope="col">Rented for</th>
+			<th scope="col">Is paid</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td scope="col">@Model.Book.CustomerFirstName @Model.Book.CustomerLastName</td>
+			<td scope="col">@Model.Car.Dealer.Name</td>
+			<td scope="col">@Model.Car.Dealer.PhoneNumber</td>
+			<td scope="col">@Model.Book.BookingDate</td>
+			<td scope="col">@Model.Book.ReturnDate</td>
+			<td scope="col">@Model.Car.Brand @Model.Car.Model</td>
+			<td scope="col">@String.Format("{0:f2}", Model.Book.DailyPrice) BGN</td>
+			<td scope="col">@(Model.Book.IsPaid ? "Yes" : "No")</td>
+		</tr>
+	</tbody>
+</table>

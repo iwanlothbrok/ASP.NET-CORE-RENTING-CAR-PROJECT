@@ -23,5 +23,7 @@
         public bool IsConfirmedByDealer { get; set; } = false;
 
         public bool IsConfirmedByAdmin { get; set; } = false;
+
+        public bool IsPaid { get; set; }
     }
 }
