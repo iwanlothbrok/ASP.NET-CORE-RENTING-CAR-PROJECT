@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Nest;
     using RentalCars.Infrastructure.Data.Models;
     using RentalCars.Infrastructure.InitialSeed;
 
@@ -45,19 +46,19 @@
                   .HasForeignKey<Booking>(d => d.CustomerId)
                   .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-              .Entity<Booking>()
-              .HasOne<Car>()
-              .WithOne()
-              .HasForeignKey<Booking>(d => d.CarId)
-              .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //  .Entity<Booking>()
+            //  .HasOne<Car>()
+            //  .WithOne()
+            //  .HasForeignKey<Booking>(d => d.CarId)
+            //  .OnDelete(DeleteBehavior.Restrict);
 
             builder
-             .Entity<Booking>()
-             .HasOne<Dealer>()
-             .WithOne()
-             .HasForeignKey<Booking>(d => d.DealerId)
-             .OnDelete(DeleteBehavior.Restrict);
+            .Entity<Booking>()
+            .HasOne(c => c.Dealer)
+            .WithMany(c => c.Bookings)
+            .HasForeignKey(c => c.DealerId)
+            .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
 

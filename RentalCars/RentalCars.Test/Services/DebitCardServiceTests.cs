@@ -32,7 +32,7 @@
         public void CreateMethodShouldBeSuccessful()
         {
             //Act
-            var service = new DebitCardService(rentalCarsDb);
+            DebitCardService service = new DebitCardService(rentalCarsDb);
 
             //Assert
             Assert.That(service.CreateDebitCard(1111111111111111,123,"iw iwasd", "may", 2023), Is.TypeOf<int>());
@@ -43,7 +43,7 @@
         public void CreateMethodShouldBeNegativeNumber()
         {
             //Act
-            var service = new DebitCardService(rentalCarsDb);
+            DebitCardService service = new DebitCardService(rentalCarsDb);
 
             //Assert
             Assert.That(service.CreateDebitCard(0, 123, "iw iwasd", "may", 2023), Is.EqualTo(-1));

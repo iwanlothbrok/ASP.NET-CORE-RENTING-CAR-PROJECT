@@ -53,6 +53,7 @@
         /// </summary>
         public int? DealerId { get; set; }
 
+        public Dealer? Dealer { get; set; }
         /// <summary>
         /// customer id 
         /// </summary>

@@ -32,5 +32,6 @@
         public string UserId { get; set; }
 
         public IEnumerable<Car>? Cars { get; init; } = new List<Car>();
+        public IEnumerable<Booking>? Bookings { get; init; } = new List<Booking>();
     }
 }

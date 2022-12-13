@@ -56,8 +56,9 @@
 
                     car.IsBooked = false;
                     car.IsPublic = false;
-
-                    Delete(book.Id);
+                    car.BookingId = 0;
+                    
+                    book.IsPaid = false;
                 }
             }
         }
