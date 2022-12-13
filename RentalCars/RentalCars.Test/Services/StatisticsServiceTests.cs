@@ -39,7 +39,7 @@
             var result = service.Total();
 
             //Assert
-            Assert.That(result.TotalUsers, Is.EqualTo(4));
+            Assert.That(result.TotalUsers, Is.EqualTo(1));
             Assert.That(result.TotalCars, Is.EqualTo(2));
         }
 

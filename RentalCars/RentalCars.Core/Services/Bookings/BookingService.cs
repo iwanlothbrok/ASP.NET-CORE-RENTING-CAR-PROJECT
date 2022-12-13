@@ -74,11 +74,11 @@
         {
             decimal allPrice = GetCarPrice(bookingDate, returingDate, price);
 
-
             if (allPrice <= 0)
             {
                 return -1;
             }
+
             Booking booking = new Booking
             {
                 CustomerFirstName = firstName,
@@ -93,7 +93,6 @@
                 IsConfirmedByDealer = false,
                 CarId = carId
             };
-
 
             this.data.Bookings.Add(booking);
             this.data.SaveChanges();

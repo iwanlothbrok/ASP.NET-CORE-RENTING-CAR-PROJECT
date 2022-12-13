@@ -53,7 +53,7 @@
             Assert.NotNull(result);
             Assert.That(result.TotalCars, Is.EqualTo(4));
             Assert.That(result.TotalRents, Is.EqualTo(0));
-            Assert.That(result.TotalUsers, Is.EqualTo(4));
+            Assert.That(result.TotalUsers, Is.EqualTo(1));
         }
 
         [TearDown]

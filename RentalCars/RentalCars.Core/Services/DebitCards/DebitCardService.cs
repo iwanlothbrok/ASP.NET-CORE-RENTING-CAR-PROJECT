@@ -1,8 +1,8 @@
-﻿using RentalCars.Data;
-using RentalCars.Infrastructure.Data.Models;
-
-namespace RentalCars.Core.Services.DebitCards
+﻿namespace RentalCars.Core.Services.DebitCards
 {
+    using RentalCars.Data;
+    using RentalCars.Infrastructure.Data.Models;
+
     public class DebitCardService : IDebitCardService
     {
         private readonly ApplicationDbContext data;
@@ -14,7 +14,10 @@ namespace RentalCars.Core.Services.DebitCards
 
         public int CreateDebitCard(long creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear)
         {
-            if (cvv == 0 || expYear == 0)
+            if (cvv == 0 
+                || creditCardNumber == 0
+                || creditCardNumber.ToString().Length != 16 
+                || cvv.ToString().Length != 3)
             {
                 return -1;
             }
