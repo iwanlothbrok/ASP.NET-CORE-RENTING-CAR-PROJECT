@@ -23,5 +23,7 @@
         [Required]
         [Range(ExpYearMin, ExpYearMax)]
         public int ExpYear { get; set; }
+
+        public List<Payment>? Payments { get; set; } = new List<Payment>();
     }
 }

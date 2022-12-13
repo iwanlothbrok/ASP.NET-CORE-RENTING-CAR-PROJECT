@@ -117,7 +117,7 @@ namespace RentalCars.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    TempData[GlobalMessageKey] = "Welcome from \"Rental Cars!\"";
+                    TempData[GlobalMessageKey] = "Welcome to \"Rental Cars!\"";
 
                     return LocalRedirect(returnUrl);
                 }

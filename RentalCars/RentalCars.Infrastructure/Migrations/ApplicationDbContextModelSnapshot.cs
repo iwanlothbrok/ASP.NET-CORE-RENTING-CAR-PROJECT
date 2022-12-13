@@ -592,9 +592,9 @@ namespace RentalCars.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("RentalCars.Infrastructure.Data.Models.FakeDebitCard", "DebitCard")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("DebitCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -612,6 +612,11 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Navigation("Bookings");
 
                     b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.FakeDebitCard", b =>
+                {
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

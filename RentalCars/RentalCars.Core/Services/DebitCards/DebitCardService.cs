@@ -25,7 +25,7 @@
             FakeDebitCard card = new FakeDebitCard
             {
                 CVV = cvv,
-                CreditCardNumber = creditCardNumber,
+                CreditCardNumber = 0000_0000_0000_0000,
                 ExpMonth = expMonth,
                 ExpYear = expYear,
                 FullName = fullNameOnCard,
