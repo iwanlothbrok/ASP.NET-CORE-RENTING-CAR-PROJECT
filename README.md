@@ -21,7 +21,7 @@ A simple ASP.NET Core MVC Web App which I created to exercise what I've learned 
 - User 2 -> email: **user2@library.bg** / password: **User.2**
 - Admin -> email: **admin@library.bg** / password: **Admin.1**
 
-**[Here](https://imgur.com/a/7eTIQQG) is a screenshot of the project's database diagram**
+**[Here](https://imgur.com/a/Io6cSqU) is a screenshot of the project's database diagram**
 
 ## :hammer_and_pick: Built With
 - ASP.NET Core 6

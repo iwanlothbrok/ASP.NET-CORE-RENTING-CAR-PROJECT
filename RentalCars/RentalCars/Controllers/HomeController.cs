@@ -115,7 +115,7 @@
 
             if (debitCardId == -1)
             {
-                ModelState.AddModelError(model.CreditCardNumber.ToString(), "Problem with payment, try again!");
+                return RedirectToAction(nameof(Pay));
             }
 
             if (GetBookingAndCarInfo(model) == -1)

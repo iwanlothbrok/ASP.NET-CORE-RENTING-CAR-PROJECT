@@ -42,6 +42,8 @@
             {
                 if (this.carService.IsByDealer(model.CarId, dealer))
                 {
+                    TempData[GlobalMessageKey] = "You cannot book your car!";
+
                     return RedirectToAction("Error", "Home");
                 }
             }
@@ -56,6 +58,8 @@
 
             if (this.bookingService.UserHasBookedCar(userId))
             {
+                TempData[GlobalMessageKey] = "You have already booked a car!";
+
                 return RedirectToAction("Error", "Home");
             }
 

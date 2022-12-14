@@ -19,7 +19,6 @@
             bool publicOnly = true,
             bool isBooked = false);
 
-
         IEnumerable<CarServiceModel> GetLastThreeCars();
 
         public Car FindCar(int id);

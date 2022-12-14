@@ -14,9 +14,9 @@
 
         public int CreateDebitCard(long creditCardNumber, int cvv, string fullNameOnCard, string expMonth, int expYear)
         {
-            if (cvv == 0 
+            if (cvv == 0
                 || creditCardNumber == 0
-                || creditCardNumber.ToString().Length != 16 
+                || creditCardNumber.ToString().Length != 16
                 || cvv.ToString().Length != 3)
             {
                 return -1;
@@ -25,7 +25,7 @@
             FakeDebitCard card = new FakeDebitCard
             {
                 CVV = cvv,
-                CreditCardNumber = 0000_0000_0000_0000,
+                CreditCardNumber = creditCardNumber,
                 ExpMonth = expMonth,
                 ExpYear = expYear,
                 FullName = fullNameOnCard,
@@ -35,6 +35,9 @@
             {
                 return -1;
             }
+
+            long fakeCarNumber = 1111444400001111;
+            card.CreditCardNumber = fakeCarNumber;
 
             this.data.FakeDebitCards.Add(card);
             this.data.SaveChanges();
