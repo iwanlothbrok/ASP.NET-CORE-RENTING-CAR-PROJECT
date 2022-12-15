@@ -38,6 +38,35 @@
         }
 
         [Test]
+        public void GetDealerShouldReturnNull()
+        {
+            //Arrange
+            var fakeId = 12312;
+
+            //Act
+            var service = new DealerService(rentalCarsDb, mapper);
+
+
+            //Assert
+            Assert.That(service.GetDealer(fakeId), Is.Null);
+        }
+
+        [Test]
+        public void GetDealerShouldReturnValidDealer()
+        {
+            //Arrange
+            var fakeId = 2;
+
+            //Act
+            var service = new DealerService(rentalCarsDb, mapper);
+
+
+            //Assert
+            Assert.That(service.GetDealer(fakeId), Is.Not.Null);
+        }
+
+
+        [Test]
         public void IsDealerShouldReturnFalse()
         {
             //Arrange

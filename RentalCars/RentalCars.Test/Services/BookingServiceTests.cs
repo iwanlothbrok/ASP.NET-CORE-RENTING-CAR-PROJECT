@@ -39,6 +39,41 @@
         }
 
         [Test]
+        public void GetBookingsByUserShouldBeEmpty()
+        {
+            //Arrange
+            string userId = "fakeId";
+
+            //Act
+            var service = new CarService(rentalCarsDb, mapper);
+
+
+            var bookingService = new BookingService(rentalCarsDb, mapper, service);
+
+            //Assert
+            Assert.That(bookingService.GetBookByUserId(userId), Is.EqualTo(null));
+        }
+
+        [Test]
+        public void GetBookingsByUserShouldReturnBook()
+        {
+            //Arrange
+            string userId = "aeab5bc9-86c6-49ef-8f4f-faf8667d78b7";
+
+            //Act
+            CarService service = new CarService(rentalCarsDb, mapper);
+
+
+            BookingService bookingService = new BookingService(rentalCarsDb, mapper, service);
+            Booking? book = bookingService.GetBookByUserId(userId);
+
+            //Assert
+            Assert.That(bookingService.GetBookByUserId(userId), Is.Not.Null);
+            Assert.That(book.Id, Is.EqualTo(1));
+
+        }
+
+        [Test]
         public void FindCarByBookingIdShouldReturnZero()
         {
             //Arrange
@@ -97,10 +132,10 @@
 
             //Assert
             Assert.That(bookingService.GetBookingsAll().Where(c => c.IsConfirmedByDealer == true
-            && c.IsConfirmedByAdmin == true), Is.Empty);
+            && c.IsConfirmedByAdmin == false), Is.Empty);
 
             Assert.That(bookingService.GetBookingsAll().Where(c => c.IsConfirmedByDealer == true
-            && c.IsConfirmedByAdmin == true).Count(), Is.EqualTo(expectingCount));
+            && c.IsConfirmedByAdmin == false).Count(), Is.EqualTo(expectingCount));
         }
 
         [Test]
@@ -114,7 +149,7 @@
             var bookingService = new BookingService(rentalCarsDb, mapper, service);
 
             //Assert
-            Assert.That(bookingService.CreateBooking("iwo", "iw","0889100848", userId, 1, "20/1/2022", 0, "20/1/2022", 1), Is.EqualTo(-1));
+            Assert.That(bookingService.CreateBooking("iwo", "iw", "0889100848", userId, 1, "20/1/2022", 0, "20/1/2022", 1), Is.EqualTo(-1));
         }
 
         [Test]
@@ -247,14 +282,18 @@
             var isConfByDealers = false;
             var isConfByAdmin = true;
 
-            var expectedCount = 0;
-
             //Act
             var service = new CarService(rentalCarsDb, mapper);
             var bookingService = new BookingService(rentalCarsDb, mapper, service);
 
+            var book = rentalCarsDb.Bookings.FirstOrDefault();
+
+            book.IsConfirmedByAdmin = false;
+            rentalCarsDb.SaveChanges();
+
+            var bookInfo= bookingService.All(isConfByAdmin, isConfByDealers);
             //Assert
-            Assert.That(bookingService.All(isConfByAdmin, isConfByDealers).Bookings.Count(), Is.EqualTo(expectedCount));
+            Assert.That(bookInfo.Bookings.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -392,7 +431,7 @@
             {
                 CarId = mercedes.Id,
                 IsConfirmedByDealer = true,
-                IsConfirmedByAdmin = false,
+                IsConfirmedByAdmin = true,
                 CustomerFirstName = "Iwo",
                 CustomerLastName = "Iwanow",
                 CustomerPhoneNumber = "121231231231",
@@ -401,6 +440,7 @@
                 BookingDate = DateTime.Now,
                 ReturnDate = DateTime.Today.AddDays(1),
                 DailyPrice = 1000,
+                IsPaid = true,
                 Id = 1
             };
 

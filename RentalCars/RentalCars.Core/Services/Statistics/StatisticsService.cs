@@ -15,11 +15,13 @@
         {
             var totalCars = this.data.Cars.Count(c => c.IsPublic);
             var totalUsers = this.data.Users.Count();
+            var totalRents = this.data.Bookings.Where(c=>c.IsPaid == true).Count();
 
             return new StatisticsServiceModel
             {
                 TotalCars = totalCars,
-                TotalUsers = totalUsers
+                TotalUsers = totalUsers,
+                TotalRents = totalRents
             };
         }
     }

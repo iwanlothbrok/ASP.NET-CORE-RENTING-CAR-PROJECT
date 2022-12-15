@@ -57,7 +57,7 @@
                     car.IsBooked = false;
                     car.IsPublic = false;
                     car.BookingId = 0;
-                    
+
                     book.IsPaid = false;
                 }
             }
@@ -224,6 +224,7 @@
 
 
             IEnumerable<AdminBookingModel> bookings = GetBookings(bookingQuery)
+                                                                 .Where(p => p.IsConfirmedByAdmin == confirmByAdmin || p.IsConfirmedByDealer == confirmByDealer)
                                                                  .ToList();
 
             return new BookingQueryModel
