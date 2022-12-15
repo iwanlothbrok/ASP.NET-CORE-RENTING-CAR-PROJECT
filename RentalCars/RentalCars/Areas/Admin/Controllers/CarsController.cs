@@ -1,13 +1,10 @@
 ﻿namespace RentalCars.Areas.Admin.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RentalCars.Core.Services.Cars;
     using RentalCars.Core.Services.Cars.Models;
 
-    [Area(Constants.AreaName)]
-    [Authorize(Roles = Constants.AreaName)]
-    public class CarsController : Controller
+    public class CarsController : BaseAdminController
     {
         private readonly ICarService cars;
 

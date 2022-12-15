@@ -3,5 +3,9 @@
     public class Constants
     {
         public const string AreaName = "Admin";
+
+        public const string AdminName = "Admin";
+
+        public const string ManagerName = "Manager";
     }
 }

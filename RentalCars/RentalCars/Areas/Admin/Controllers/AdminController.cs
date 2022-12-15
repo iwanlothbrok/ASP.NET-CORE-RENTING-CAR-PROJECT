@@ -5,7 +5,7 @@
     using RentalCars.Controllers;
 
     [Area(Constants.AreaName)]
-    public class AdminController : BaseController
+    public class AdminController : BaseAdminController
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
@@ -16,6 +16,11 @@
             this.userManager = userManager;
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+        
         [HttpGet]
         public async Task<IActionResult> CreateRolesandUsers()
         {
