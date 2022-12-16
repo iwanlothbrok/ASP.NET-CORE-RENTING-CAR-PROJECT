@@ -101,7 +101,5 @@
 
             return RedirectToAction("Index", "Home");
         }
-            public IActionResult DebitCard()
-         => View();
     }
 }

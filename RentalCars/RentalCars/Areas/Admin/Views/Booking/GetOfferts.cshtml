@@ -47,7 +47,7 @@
 				<td scope="col">@(booking.IsConfirmedByDealer ? "Yes" : "No")</td>
 				<td scope="col">@(booking.IsPaid ? "Yes" : "No")</td>
 				<td scope="col">
-					<a asp-area="Admin" asp-controller="Booking" asp-action="ChangeVisibility" asp-route-id="@booking.Id"  class="btn btn-info float-right ml-3">@(booking.IsConfirmedByAdmin ? "Hide" : "Accept")</a>
+					<a asp-area="Admin" asp-controller="Booking" asp-action="ChangeVisibility" asp-route-id="@booking.Id"  class="btn btn-info float-right ml-3">@(booking.IsConfirmedByAdmin ? "Accept" : "Hide")</a>
 				</td>
 			</tr>
 		}
