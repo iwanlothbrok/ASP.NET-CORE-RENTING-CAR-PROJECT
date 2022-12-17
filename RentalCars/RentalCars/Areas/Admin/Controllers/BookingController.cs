@@ -12,6 +12,8 @@
         public BookingController(IBookingService booking)
         {
             this.booking = booking;
+
+            booking.ReturningDateChecker(booking.GetBookingsAll());
         }
 
         public IActionResult Rent()

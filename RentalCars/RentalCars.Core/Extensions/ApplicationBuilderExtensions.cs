@@ -16,6 +16,7 @@
             var data = scopedServices.ServiceProvider
                 .GetService<ApplicationDbContext>();
 
+            data.Database.Migrate();
 
             var seeder = new Seeder();
             seeder.Seed(data, services);

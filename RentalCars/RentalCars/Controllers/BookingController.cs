@@ -21,7 +21,7 @@
             this.dealerService = dealer;
             this.bookingService = bookingService;
 
-            bookingService.ReturningDateChecker(bookingService.GetBookingsAll());
+            this.bookingService.ReturningDateChecker(bookingService.GetBookingsAll());
         }
 
         public IActionResult Rent()

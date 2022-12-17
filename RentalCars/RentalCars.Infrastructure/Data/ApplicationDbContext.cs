@@ -66,8 +66,8 @@
             .WithMany(c => c.Payments)
             .HasForeignKey(c => c.DebitCardId)
             .OnDelete(DeleteBehavior.Restrict);
-
-            builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
+ 
+           // builder.ApplyConfiguration(new InitialDataConfiguration<Category>(@"InitialSeed/categories.json"));
 
             base.OnModelCreating(builder);
         }

@@ -57,8 +57,7 @@
         /// <summary>
         /// customer id 
         /// </summary>
-        [Required]
-        public string CustomerId { get; set; } = null!;
+        public string? CustomerId { get; set; }
 
         /// <summary>
         ///is it confirmed by admin
@@ -74,5 +73,7 @@
         /// 
         /// </summary>
         public bool IsPaid { get; set; } = false;
+
+        public bool IsExpired { get; set; } = false;
     }
 }

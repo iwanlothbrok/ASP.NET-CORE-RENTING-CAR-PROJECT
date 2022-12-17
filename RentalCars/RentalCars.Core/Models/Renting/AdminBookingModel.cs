@@ -7,6 +7,7 @@
         public string CustomerFirstName { get; set; } = null!;
 
         public string CustomerLastName { get; set; } = null!;
+        public string CustomerPhoneNumber { get; set; } = null!;
 
         public string BookingDate { get; set; }
 
@@ -25,5 +26,7 @@
         public bool IsConfirmedByAdmin { get; set; } = false;
 
         public bool IsPaid { get; set; }
+
+        public bool IsExpired { get; set; }
     }
 }

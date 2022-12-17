@@ -1,7 +1,6 @@
 ﻿namespace RentalCars.Infrastructure.InitialSeed.Seeding
 {
     using Microsoft.EntityFrameworkCore;
-    using Nest;
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using static RentalCars.Infrastructure.InitialSeed.Seeding.Constants.SeedingConstants;
@@ -53,6 +52,5 @@
                 .Users
                 .Where(c => c.Email == email)
                 .FirstOrDefault(u => u.Email == email).Id;
-
     }
 }

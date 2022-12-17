@@ -243,7 +243,6 @@ namespace RentalCars.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CustomerLastName")
@@ -266,6 +265,9 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Property<bool>("IsConfirmedByDealer")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsExpired")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsPaid")
                         .HasColumnType("bit");
 
@@ -275,7 +277,8 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CustomerId] IS NOT NULL");
 
                     b.HasIndex("DealerId");
 
@@ -544,8 +547,7 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithOne()
                         .HasForeignKey("RentalCars.Infrastructure.Data.Models.Booking", "CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RentalCars.Infrastructure.Data.Models.Dealer", "Dealer")
                         .WithMany("Bookings")

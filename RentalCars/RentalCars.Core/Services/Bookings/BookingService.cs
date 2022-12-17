@@ -42,23 +42,22 @@
 
         public void ReturningDateChecker(IEnumerable<Booking> bookings)
         {
-            foreach (var book in bookings)
+            foreach (var book in bookings.Where(c=>c.CarId != null))
             {
                 if (DateTime.Compare(book.ReturnDate, DateTime.UtcNow) <= 0)
                 {
                     Car car = carService.FindCar((int)book.CarId);
 
-                    if (car is null)
-                    {
-                        Delete(book.Id);
-                        continue;
-                    }
-
                     car.IsBooked = false;
                     car.IsPublic = false;
-                    car.BookingId = 0;
+                    car.BookingId = null;
 
-                    book.IsPaid = false;
+                    book.DealerId = null;
+                    book.CarId = null;
+                    book.CustomerId = null;
+                    book.IsExpired = true;
+
+                    this.data.SaveChanges();
                 }
             }
         }
@@ -169,7 +168,7 @@
 
         public void ChangeVisilityByAdmin(int id)
         {
-            Booking? booking = this.data.Bookings.Where(c => c.Id == id).FirstOrDefault();
+            Booking? booking = this.data.Bookings.Where(c => c.Id == id && c.IsExpired == false).FirstOrDefault();
 
             if (booking != null)
             {

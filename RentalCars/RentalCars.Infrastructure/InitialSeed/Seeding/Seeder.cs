@@ -14,6 +14,7 @@
                 new UsersSeeder(),
                 new AdminSeeder(),
                 new DealerSeeder(),
+                new CategorySeeder(),
                 new CarsSeeder()
             };
 
