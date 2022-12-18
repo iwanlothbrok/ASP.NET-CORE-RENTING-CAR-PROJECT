@@ -17,9 +17,9 @@ A simple ASP.NET Core MVC Web App which I created to exercise what I've learned 
 
 **When you run the project for the first time sample data will be seeded as well as these test accounts:**
 
-- User 1 -> email: **user1@library.bg** / password: **User.1**
-- User 2 -> email: **user2@library.bg** / password: **User.2**
-- Admin -> email: **admin@library.bg** / password: **Admin.1**
+- User 1 -> email: **user1@abv.bg** / password: **User.1**
+- User 2 -> email: **user2@abv.bg** / password: **User.2**
+- Admin -> email: **admin@abv.bg** / password: **Admin.1**
 
 **[Here](https://imgur.com/a/Io6cSqU) is a screenshot of the project's database diagram**
 
