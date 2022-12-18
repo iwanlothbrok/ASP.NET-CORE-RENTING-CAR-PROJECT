@@ -49,8 +49,8 @@
             PaymentService service = new PaymentService(rentalCarsDb, bookingService);
 
             //Assert
-            Assert.That(service.CreatePaymentInfo(1, 1, 1, true, "123sdfsdf3a"), Is.TypeOf<int>());
-            Assert.That(service.CreatePaymentInfo(1, 1, 1, true, "123sdfsdf3a"), Is.GreaterThan(-1));
+            Assert.That(service.CreatePaymentInfo(1, 1, 1, true, "buyerFakeId1"), Is.TypeOf<int>());
+            Assert.That(service.CreatePaymentInfo(1, 1, 1, true, "buyerFakeId1"), Is.GreaterThan(-1));
         }
 
         [Test]
@@ -63,9 +63,9 @@
             PaymentService service = new PaymentService(rentalCarsDb, bookingService);
 
             //Assert
-            Assert.That(service.CreatePaymentInfo(0, 1, 1, true, "123sdfsdf3a"), Is.EqualTo(-1));
-            Assert.That(service.CreatePaymentInfo(1, 0, 1, true, "123sdfsdf3a"), Is.EqualTo(-1));
-            Assert.That(service.CreatePaymentInfo(1, 1, 0, true, "123sdfsdf3a"), Is.EqualTo(-1));
+            Assert.That(service.CreatePaymentInfo(0, 1, 1, true, "buyerFakeId1"), Is.EqualTo(-1));
+            Assert.That(service.CreatePaymentInfo(1, 0, 1, true, "buyerFakeId1"), Is.EqualTo(-1));
+            Assert.That(service.CreatePaymentInfo(1, 1, 0, true, "buyerFakeId1"), Is.EqualTo(-1));
         }
 
         [TearDown]
@@ -78,7 +78,7 @@
         {
             IdentityUser user = new IdentityUser()
             {
-                Id = "249b1fe6-3667-43d5-9ac9-4de6a92d923a",
+                Id = "userFakeId1",
                 PasswordHash = "1234",
                 Email = "2123@abv.bg",
                 EmailConfirmed = true,
@@ -89,7 +89,7 @@
             };
             IdentityUser buyer = new IdentityUser()
             {
-                Id = "123sdfsdf3a",
+                Id = "buyerFakeId1",
                 PasswordHash = "1234",
                 Email = "asd@abv.bg",
                 EmailConfirmed = true,
@@ -98,6 +98,11 @@
                 LockoutEnabled = true,
                 AccessFailedCount = 0
             };
+            Category category = new Category()
+            {
+                Id = 1,
+                Name = "SVU",
+            };
             Dealer dealer = new Dealer()
             {
                 Id = 1,
@@ -105,7 +110,6 @@
                 PhoneNumber = "0000999",
                 UserId = user.Id
             };
-
             Car mercedes = new Car()
             {
                 Brand = "bmw",
@@ -118,7 +122,7 @@
                 IsBooked = false,
                 IsPublic = true,
                 Year = 2022,
-                CategoryId = 7,
+                CategoryId = category.Id,
                 Dealer = dealer,
             };
             var book = new Booking()
@@ -129,7 +133,7 @@
                 DealerId = 1,
                 CustomerFirstName = "aaa",
                 CustomerLastName = "aaa",
-                CustomerId = "123sdfsdf3a",
+                CustomerId = buyer.Id,
                 CustomerPhoneNumber = "asda",
                 DailyPrice = 1241,
                 IsConfirmedByDealer = true,
@@ -138,7 +142,7 @@
             };
             var debitCard = new FakeDebitCard()
             {
-                CreditCardNumber = 12341231231,
+                CreditCardNumber = 1111222233334444,
                 CVV = 123,
                 ExpMonth = "may",
                 FullName = "aaasda",
@@ -147,7 +151,8 @@
             };
             rentalCarsDb.Users.AddRange(user,buyer);
             rentalCarsDb.Dealers.Add(dealer);
-            rentalCarsDb.Cars.AddRange(mercedes);
+            rentalCarsDb.Categories.Add(category);
+            rentalCarsDb.Cars.Add(mercedes);
             rentalCarsDb.Bookings.Add(book);
             rentalCarsDb.FakeDebitCards.Add(debitCard);
 

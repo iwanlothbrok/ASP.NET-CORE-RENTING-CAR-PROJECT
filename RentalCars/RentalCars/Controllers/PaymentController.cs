@@ -103,7 +103,7 @@
 
             TempData[GlobalMessageKey] = "Thank you for renting your car, the dealer will call you soon! Best Regards!";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
         public int GetBookingAndCarInfo(PaymentsModel model)
         {

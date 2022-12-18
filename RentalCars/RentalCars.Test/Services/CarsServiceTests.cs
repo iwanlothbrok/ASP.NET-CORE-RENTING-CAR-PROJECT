@@ -283,10 +283,10 @@
         }
 
         [Test]
-        public void AllCategoriesShouldBeNine()
+        public void AllCategoriesShouldBeTwo()
         {
             //Arrange
-            var categoriesCount = 9;
+            var categoriesCount = 2;
 
             //Act
             var service = new CarService(rentalCarsDb, mapper);
