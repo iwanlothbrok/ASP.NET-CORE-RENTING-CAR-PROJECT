@@ -42,16 +42,12 @@
 
             return RedirectToAction("Index", "Home");
         }
+
         [HttpGet]
         public IActionResult Rent()
         {
             string userId = User.GetId();
             int dealerId = dealerService.IdByUser(userId);
-
-            //if (this.booking.CheckIfIsDealer(dealerId) == false)
-            //{
-            //    return RedirectToAction("Error", "Home");
-            //}
 
             IEnumerable<AdminBookingModel> bookings = this.booking
                 .All(confirmByAdmin: false, confirmByDealer: false)

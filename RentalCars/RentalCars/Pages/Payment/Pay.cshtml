@@ -1,0 +1,94 @@
+﻿@using RentalCars.Core.Models.Home
+@using RentalCars.Core.Services.Bookings
+@inject ICarService carService
+@inject IBookingService bookingService
+@model PaymentsModel
+
+@{
+	ViewData["Title"] = "Payment";
+}
+
+<link rel="stylesheet" href="~/css/payment.css" />
+
+<form method="post">
+	<div class="row">
+		<div class="col-75">
+			<div class="container">
+				<div class="row">
+					<div class="col-50">
+						<h3>Payment</h3>
+						<div class="form-group">
+							<label asp-for="NameOnCard"></label>
+							<input asp-for="NameOnCard" class="form-control" placeholder="Petar Petrov">
+							<span asp-validation-for="NameOnCard" class="small text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="CreditCardNumber"></label>
+							<input asp-for="CreditCardNumber" class="form-control">
+							<span asp-validation-for="CreditCardNumber" class="small text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="ExpMonth"></label>
+							<input asp-for="ExpMonth" class="form-control" placeholder="September">
+							<span asp-validation-for="ExpMonth" class="small text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="ExpYear"></label>
+							<input asp-for="ExpYear" class="form-control" placeholder="2022">
+							<span asp-validation-for="ExpYear" class="small text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="CVV"></label>
+							<input asp-for="CVV" class="form-control" placeholder="362">
+							<span asp-validation-for="CVV" class="small text-danger"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<input type="submit" value="Pay" class="btn">
+		</div>
+	</div>
+</form>
+
+<div class="col-25">
+	<div class="container">
+		<h4>
+			Cart
+			<span class="price" style="color:black"></span>
+		</h4>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Brand</th>
+					<th scope="col">Model</th>
+					<th scope="col">Price</th>
+					<th scope="col">Car Year</th>
+					<th scope="col">Booking date</th>
+					<th scope="col">Returning date</th>
+					<th scope="col">Dealer name and phone number</th>
+					<th scope="col">Approved</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@{
+
+				}
+				<tr>
+					<td scope="col">@Model.Car.Brand</td>
+					<td scope="col">@Model.Car.Model</td>
+					<td scope="col">@Model.Book.DailyPrice</td>
+					<td scope="col">@Model.Car.Year</td>
+					<td scope="col">@Model.Book.BookingDate</td>
+					<td scope="col">@Model.Book.ReturnDate</td>
+					<td scope="col">@Model.Dealer.Name + @Model.Dealer.PhoneNumber </td>
+					<td scope="col">@(Model.Book.IsConfirmedByDealer && Model.Book.IsConfirmedByAdmin ? "Yes" : "No")</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

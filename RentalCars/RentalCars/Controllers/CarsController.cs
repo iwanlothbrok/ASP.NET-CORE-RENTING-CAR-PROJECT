@@ -129,14 +129,14 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            var user = this.User.GetId();
+            string user = this.User.GetId();
 
             if (user == null)
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            var dealerId = this.dealerService.IdByUser(user);
+            int dealerId = this.dealerService.IdByUser(user);
 
             if (dealerId == 0)
             {
