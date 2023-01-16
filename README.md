@@ -24,35 +24,35 @@ A simple ASP.NET Core MVC Web App which I created to exercise what I've learned 
 	
 **Dealers**
 - What can Dealers do in the project?
-		- They can register and log in.	
-		- They can see the Home page. 	
-		- They can see the All Cars page.	
-		- They can see the Details page.	
-		- They can see the Mine Cars page.
-		- They can see the statistics.
-		- They can add new cars.
-		- They can edit their cars.
-		- They can delete their cars.			
-		- They can rent a car.
-		- They can send money for the renting.
-		- They can see all offers for their cars.
-		- They can see their rented cars.
-		- They can accept offers.
+	- They can register and log in.	
+	- They can see the Home page. 	
+	- They can see the All Cars page.	
+	- They can see the Details page.	
+	- They can see the Mine Cars page.
+	- They can see the statistics.
+	- They can add new cars.
+	- They can edit their cars.
+	- They can delete their cars.
+	- They can rent a car.
+	- They can send money for the renting.
+	- They can see all offers for their cars.
+	- They can see their rented cars.
+	- They can accept offers.
 
 **Admin**
 - What can Admin do in the project?
-		- They can register and log in.	
-		- They can see the Home page. 	
-		- They can see the All Cars page.	
-		- They can see the Details page.	
-		- They can see the statistics.
-		- They can accept the newest cars added.
-		- They can accept when the car is edited.
-		- They can rent a car.
-		- They can send money for the renting.
-		- They can see all offers for renting.
-		- They can see all rented cars.
-		- They can accept offers.
+	- They can register and log in.	
+	- They can see the Home page. 	
+	- They can see the All Cars page.	
+	- They can see the Details page.	
+	- They can see the statistics.
+	- They can accept the newest cars added.
+	- They can accept when the car is edited.
+	- They can rent a car.
+	- They can send money for the renting.
+	- They can see all offers for renting.
+	- They can see all rented cars.
+	- They can accept offers.
 			
 **When you run the project for the first time sample data will be seeded as well as these test accounts:**
 - Users
