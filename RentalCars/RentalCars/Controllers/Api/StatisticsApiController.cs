@@ -15,6 +15,6 @@
 
         [HttpGet]
         public StatisticsServiceModel GetStatistics()
-            => this.statistics.Total();
+            =>  this.statistics.Total();
     }
 }

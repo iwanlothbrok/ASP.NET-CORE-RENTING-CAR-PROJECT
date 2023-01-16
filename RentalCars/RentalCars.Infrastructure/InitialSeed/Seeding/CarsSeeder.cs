@@ -13,7 +13,6 @@
             {
                 SeedCars(data,
                     77,
-
                     "Lamborghini",
                     "Aventador",
                     "The Aventador Roadster has a unique engine" +

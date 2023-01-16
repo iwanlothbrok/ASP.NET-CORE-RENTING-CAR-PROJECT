@@ -5,6 +5,7 @@
     using RentalCars.Controllers;
 
     [Area(Constants.AreaName)]
+
     public class AdminController : BaseAdminController
     {
         private readonly RoleManager<IdentityRole> roleManager;
