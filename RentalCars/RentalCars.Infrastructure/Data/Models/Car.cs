@@ -87,5 +87,8 @@
         /// if car is booked this is the id of booking 
         /// </summary>
         public int? BookingId { get; set; }
+
+        public string? Country { get; set; }
+        public string? City { get; set; }
     }
 }

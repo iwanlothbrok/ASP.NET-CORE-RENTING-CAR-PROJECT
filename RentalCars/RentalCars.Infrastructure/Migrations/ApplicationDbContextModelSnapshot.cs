@@ -307,6 +307,12 @@ namespace RentalCars.Infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DealerId")
                         .HasColumnType("int");
 
@@ -355,43 +361,6 @@ namespace RentalCars.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Mini"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Economy"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Midsize"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Large"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "SUV"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Vans"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Luxury"
-                        });
                 });
 
             modelBuilder.Entity("RentalCars.Infrastructure.Data.Models.Dealer", b =>
