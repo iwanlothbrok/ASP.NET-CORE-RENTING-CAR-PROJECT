@@ -33,11 +33,21 @@
         [Range(PriceMinValue, PriceMaxValue)]
         public decimal Price { get; init; }
 
+        [Display(Name = "Year of the car")]
         [Range(YearMinValue, YearMaxValue)]
         public int Year { get; init; }
 
         [Display(Name = "Category")]
         public int CategoryId { get; init; }
+
+        [Required]
+
+        [Display(Name = "Country")]
+        public string Country { get; init; } = null!;
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; init; } = null!;
 
         public IEnumerable<CarCategoryServiceModel>? Categories { get; set; }
     }

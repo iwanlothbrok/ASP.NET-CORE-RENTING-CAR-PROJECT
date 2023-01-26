@@ -10,6 +10,7 @@
     using RentalCars.Data;
     using RentalCars.Infrastructure.Data.Models;
     using System.Collections.Generic;
+    using System.Diagnostics.Metrics;
     using System.Linq;
 
     public class CarService : ICarService
@@ -111,15 +112,19 @@
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 carsQuery = carsQuery.Where(c =>
-                    (c.Brand + " " + c.Model).ToLower().Contains(searchTerm.ToLower()) ||
-                    c.Description.ToLower().Contains(searchTerm.ToLower()));
+                    (c.Brand + " " + c.Model).ToLower().Contains(searchTerm.ToLower())
+                    || c.Description.ToLower().Contains(searchTerm.ToLower())
+                    || c.Country.ToLower().Contains(searchTerm.ToLower())
+                    || c.City.ToLower().Contains(searchTerm.ToLower()));
+
             }
 
             carsQuery = sorting switch
             {
                 CarSorting.Year => carsQuery.OrderByDescending(c => c.Year),
                 CarSorting.BrandAndModel => carsQuery.OrderBy(c => c.Brand).ThenBy(c => c.Model),
-                CarSorting.DateCreated or _ => carsQuery.OrderByDescending(c => c.Id)
+                CarSorting.Location => carsQuery.OrderBy(c=>c.Country).ThenBy(c=>c.City),
+                CarSorting.DateCreated or _ => carsQuery.OrderByDescending(c => c.Id),
             };
 
             int totalCars = carsQuery.Count();
@@ -138,7 +143,7 @@
             };
         }
 
-        public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> carPhoto, int year, int categoryId, int dealerId)
+        public async Task<int> Create(string brand, string model, string description, decimal price, List<IFormFile> carPhoto, int year, int categoryId, int dealerId, string country, string city)
         {
             byte[] photo = new byte[8000];
             foreach (var item in carPhoto)
@@ -168,16 +173,17 @@
                 Year = year,
                 CategoryId = categoryId,
                 DealerId = dealerId,
-                IsPublic = false
+                IsPublic = false,
+                Country = country,
+                City = city
             };
 
             await this.data.Cars.AddAsync(carData);
             await this.data.SaveChangesAsync();
-
             return carData.Id;
         }
 
-        public async Task<bool> Edit(int id, string brand, string model, decimal price, string description, List<IFormFile> carPhoto, int year, int categoryId)
+        public async Task<bool> Edit(int id, string brand, string model, decimal price, string description, List<IFormFile> carPhoto, int year, int categoryId, string country, string city)
         {
             if (this.data.Cars.Find(id) == null)
             {
@@ -218,6 +224,8 @@
             carData.Year = year;
             carData.CategoryId = categoryId;
             carData.IsPublic = false;
+            carData.City = city;
+            carData.Country = country;
 
             this.data.SaveChanges();
 

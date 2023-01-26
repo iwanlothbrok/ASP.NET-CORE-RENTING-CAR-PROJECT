@@ -32,7 +32,9 @@
             string description,
             List<IFormFile> carPhoto,
             int year,
-            int categoryId);
+            int categoryId,
+            string country,
+            string city);
 
         Task<int> Create(string brand,
           string model,
@@ -41,7 +43,9 @@
           List<IFormFile> carPhoto,
           int year,
           int categoryId,
-          int dealerId);
+          int dealerId,
+          string country,
+          string city);
         CarDetailsServiceModel Details(int carId);
 
         IEnumerable<CarServiceModel> GetCars(IQueryable<Car> carQuery);

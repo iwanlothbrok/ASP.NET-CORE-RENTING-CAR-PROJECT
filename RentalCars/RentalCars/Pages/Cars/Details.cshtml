@@ -26,6 +26,7 @@
             </p>
             <p>@Model.Description</p>
             <p>Category: <b>@Model.CategoryName</b></p>
+            <p>Location: <b>@Model.Country, @Model.City</b></p>
             <p><i>(@(Model.IsBooked ? "Rented" : "Not Rented"))</i></p>
             <div class="form-inline">
                 @if (this.User.Identity.IsAuthenticated)

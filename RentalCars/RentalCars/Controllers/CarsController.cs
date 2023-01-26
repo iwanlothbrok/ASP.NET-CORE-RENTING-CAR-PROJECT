@@ -71,7 +71,7 @@
                 return RedirectToAction(nameof(Add));
             }
 
-            await this.carService.Create(car.Brand, car.Model, car.Description, car.Price, carPhoto, car.Year, car.CategoryId, dealerId);
+            await this.carService.Create(car.Brand, car.Model, car.Description, car.Price, carPhoto, car.Year, car.CategoryId, dealerId, car.Country, car.City);
 
             TempData[GlobalMessageKey] = "Thank you for adding your car!";
 
@@ -220,7 +220,9 @@
                 car.Description,
                 carPhoto,
                 car.Year,
-                car.CategoryId);
+                car.CategoryId,
+                car.Country,
+                car.City);
 
             TempData[GlobalMessageKey] = "You edit your car successfully!";
 

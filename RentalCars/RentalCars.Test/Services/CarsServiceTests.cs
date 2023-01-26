@@ -398,6 +398,8 @@
             var DealerId = 1;
             var Price = 50;
             var Description = "asdasdasdasdadasda";
+            var Country = "asdasdasdasdadasda";
+            var City = "asdasdasdasdadasda";
             var Year = 2022;
             var CategoryId = 1;
 
@@ -412,7 +414,9 @@
                     CarPhoto,
                     Year,
                     CategoryId,
-                    DealerId);
+                    DealerId,
+                    Country,
+                    City);
             //Assert
             Assert.That(a, Is.EqualTo(carId));
         }
@@ -428,6 +432,8 @@
             List<IFormFile> CarPhoto = new List<IFormFile>();
             var Price = 50;
             var Description = "asdasdasdasdadasda";
+            var City = "asdasdasdasdadasda";
+            var Country = "asdasdasdasdadasda";
             var Year = 2022;
             var CategoryId = 1;
 
@@ -436,7 +442,7 @@
 
 
             //Assert
-            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId));
+            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId, City, Country));
         }
 
         [Test]
@@ -450,6 +456,8 @@
             List<IFormFile> CarPhoto = new List<IFormFile>();
             var Price = 50;
             var Description = "asdasdasdasdadasda";
+            var City = "asdasdasdasdadasda";
+            var Country= "asdasdasdasdadasda";
             var Year = 2022;
             var CategoryId = 1;
 
@@ -458,7 +466,7 @@
 
 
             //Assert
-            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId));
+            Assert.IsFalse(await service.Edit(carId, Brand, Model, Price, Description, CarPhoto, Year, CategoryId,Country,City));
         }
 
         [TearDown]
