@@ -91,6 +91,7 @@
                 Price = price,
                 CategoryId = categoryId,
                 DealerId = dealerId,
+                Country = country,
                 City = city
             };
 

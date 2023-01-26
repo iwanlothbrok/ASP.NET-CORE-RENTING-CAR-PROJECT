@@ -88,7 +88,10 @@
         /// </summary>
         public int? BookingId { get; set; }
 
-        public string? Country { get; set; }
-        public string? City { get; set; }
+        [Required]
+        public string Country { get; set; } = null!;
+
+        [Required]
+        public string City { get; set; } = null!;
     }
 }
